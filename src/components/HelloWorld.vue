@@ -10,8 +10,8 @@
 import {computed, defineComponent} from 'vue'
 import {useStore} from 'vuex';
 import store from "@/store";
-// import MainFrame from "./Container/MainFrame.vue"
-import Frame from "@/components/Container/Frame.vue";
+// import MainFrame from "./container/MainFrame.vue"
+import Frame from "@/components/container/Frame.vue";
 
 
 export default defineComponent({
