@@ -1,9 +1,9 @@
 <template>
   <div class="lnb_wrap">
     <div v-for="header in headers">
-      <div class="lnb_container">
+      <li class="lnb_container">
         <router-link :to="{path : header}">{{ header }}</router-link>
-      </div>
+      </li>
     </div>
   </div>
 </template>
@@ -27,15 +27,29 @@ export default defineComponent({
   height: 560px;
   border: 1px solid;
 
+
   .lnb_container {
     height: 80px;
-    background-color: aqua;
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #2fd4b6;
 
     a {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      background-color: #133550;
+      color: #35bfa8;
       text-decoration: none;
+    }
+
+    a.router-link-active.router-link-exact-active {
+      background: linear-gradient(to right, #6ba6ae, #518086);
+      color: #ffe14f;
     }
 
   }

@@ -1,8 +1,8 @@
 <template>
   <div class="content_wrap">
-    <div class="btn_wrap">
-      <img alt="close_btn" class="btn_close" src="../../assets/image/close.png" @click="onClose"/>
-    </div>
+    <!--    <div class="btn_wrap">-->
+    <!--      <img alt="close_btn" class="btn_close" src="../../assets/image/close.png" @click="onClose"/>-->
+    <!--    </div>-->
     <router-view/>
   </div>
 </template>
@@ -18,25 +18,13 @@ export default defineComponent({
   data() {
     const store = useStore();
   },
-  methods: {
-    onClose: function () {
-      store.dispatch('setIsShowPopup', false);
-    }
-  },
+  methods: {},
 })
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .content_wrap {
   width: 960px;
   border: 1px solid;
-
-  .btn_wrap {
-    float: right;
-
-    .btn_close {
-      height: 50px;
-      width: 50px;
-    }
-  }
+  position: relative;
 }
 </style>
