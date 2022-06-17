@@ -1,4 +1,5 @@
 <template>
+  Achievement
 </template>
 
 
@@ -6,7 +7,7 @@
 import {defineComponent} from "vue";
 
 export default defineComponent({
-  name: 'Acheivement',
+  name: 'Achievement',
   data() {
   },
   methods: {},

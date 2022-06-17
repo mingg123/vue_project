@@ -1,6 +1,15 @@
 <template>
   <div class="lnb_wrap">
-    here is lnb
+    <!--    here is lnb-->
+    <router-link to="/achievement">achievement</router-link>
+    |
+    <router-link to="/attendance">attendance</router-link>
+    |
+    <router-link to="/banner">banner</router-link>
+    |
+    <router-link to="/shop">shop</router-link>
+    |
+    <router-link to="/items">items</router-link>
   </div>
 </template>
 

@@ -1,10 +1,10 @@
 <template>
   <div class="frame_wrap">
-    <div class="frame_container" >
-    <div class="frame_inner">
-      <LNB/>
-      <Content/>
-    </div>
+    <div class="frame_container">
+      <div class="frame_inner">
+        <LNB/>
+        <Content/>
+      </div>
     </div>
   </div>
 
@@ -32,7 +32,7 @@ export default defineComponent({
     border: 1px solid;
 
     .frame_inner {
-      margin : 10px;
+      margin: 10px;
       display: flex;
     }
   }

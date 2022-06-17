@@ -1,5 +1,5 @@
 <template>
-  Attendance
+  Items
 </template>
 
 
@@ -7,9 +7,13 @@
 import {defineComponent} from "vue";
 
 export default defineComponent({
-  name: 'Attendance',
+  name: 'Items',
   data() {
   },
   methods: {},
 })
 </script>
+<style lang="scss">
+.wrap {
+}
+</style>

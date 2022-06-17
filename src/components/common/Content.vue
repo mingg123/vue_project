@@ -3,8 +3,7 @@
     <div class="btn_wrap">
       <img alt="close_btn" class="btn_close" src="../../image/close.png" @click="onClose"/>
     </div>
-    <span>hihi</span>
-    <div>bye</div>
+    <router-view/>
   </div>
 </template>
 
@@ -39,6 +38,5 @@ export default defineComponent({
       width: 50px;
     }
   }
-
 }
 </style>
