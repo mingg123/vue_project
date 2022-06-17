@@ -1,15 +1,10 @@
 <template>
   <div class="lnb_wrap">
-    <!--    here is lnb-->
-    <router-link to="/achievement">achievement</router-link>
-    |
-    <router-link to="/attendance">attendance</router-link>
-    |
-    <router-link to="/banner">banner</router-link>
-    |
-    <router-link to="/shop">shop</router-link>
-    |
-    <router-link to="/items">items</router-link>
+    <div v-for="header in headers">
+      <div class="lnb_container">
+        <router-link :to="{path : header}">{{ header }}</router-link>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -20,6 +15,8 @@ import {defineComponent} from "vue";
 export default defineComponent({
   name: 'LNB',
   data() {
+    const headers = ['achievement', 'attendance', 'banner', 'shop', 'items']
+    return {headers}
   },
   methods: {},
 })
@@ -29,5 +26,18 @@ export default defineComponent({
   width: 210px;
   height: 560px;
   border: 1px solid;
+
+  .lnb_container {
+    height: 80px;
+    background-color: aqua;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    a {
+      text-decoration: none;
+    }
+
+  }
 }
 </style>

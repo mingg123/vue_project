@@ -1,7 +1,7 @@
 <template>
   <div class="content_wrap">
     <div class="btn_wrap">
-      <img alt="close_btn" class="btn_close" src="../../image/close.png" @click="onClose"/>
+      <img alt="close_btn" class="btn_close" src="../../assets/image/close.png" @click="onClose"/>
     </div>
     <router-view/>
   </div>
