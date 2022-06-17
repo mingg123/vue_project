@@ -1,6 +1,6 @@
 <template>
   <button v-on:click="onClickPopup">
-    클릭
+    Open
   </button>
   <Frame v-if="this.$store.state.isShowPopup"/>
 
@@ -17,18 +17,18 @@ import Frame from "@/components/container/Frame.vue";
 export default defineComponent({
   name: 'HelloWorld',
   components: {Frame},
-  data () {
+  data() {
     const store = useStore();
     const isShowPopup = computed(() => {
       return store.getters.getIsShowPopup;
     }).value
-    console.log(isShowPopup)
+
     return {
       isShowPopup
     }
   },
-  methods : {
-    onClickPopup : function() {
+  methods: {
+    onClickPopup: function () {
       store.dispatch('setIsShowPopup', true);
     }
   },

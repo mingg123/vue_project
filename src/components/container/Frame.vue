@@ -1,10 +1,11 @@
 <template>
   <div class="frame_wrap">
-    <div class="frame_container">
+    <div class="frame_container" >
+    <div class="frame_inner">
       <LNB/>
       <Content/>
     </div>
-
+    </div>
   </div>
 
 </template>
@@ -14,6 +15,7 @@ import {defineComponent} from "vue";
 import LNB from "@/components/common/LNB.vue";
 import Content from "@/components/common/Content.vue";
 
+
 export default defineComponent({
   name: 'Frame',
   components: {Content, LNB},
@@ -21,13 +23,20 @@ export default defineComponent({
 </script>
 <style lang="scss">
 .frame_wrap {
-  width: 1200px;
-  height: 580px;
-  border: 1px solid;
+  width: 1280px;
+  height: 720px;
+
   .frame_container {
-    margin : 10px;
-    display: flex;
+    width: 1200px;
+    height: 580px;
+    border: 1px solid;
+
+    .frame_inner {
+      margin : 10px;
+      display: flex;
+    }
   }
+
 }
 
 </style>
