@@ -1,32 +1,38 @@
 <template>
   <div class="lnb_wrap">
-    <div v-for="header in headers">
+    <div v-for="header in headers" :key="header">
       <li class="lnb_container">
-        <router-link :to="{path : header}">{{ header }}</router-link>
+        <router-link :to="{ path: header }">{{ header }}</router-link>
       </li>
     </div>
   </div>
 </template>
 
-
-<script lang='ts'>
-import {defineComponent} from "vue";
+<script lang="ts">
+import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: 'LNB',
-  data() {
-    const headers = ['achievement', 'attendance', 'banner', 'shop', 'items']
-    return {headers}
+  name: "LNB",
+  setup() {
+    const headers = [
+      "achievement",
+      "attendance",
+      "banner",
+      "shop",
+      "items",
+      "trash",
+    ];
+    return { headers };
   },
+
   methods: {},
-})
+});
 </script>
 <style lang="scss">
 .lnb_wrap {
   width: 210px;
   height: 560px;
   border: 1px solid;
-
 
   .lnb_container {
     height: 80px;
@@ -51,7 +57,6 @@ export default defineComponent({
       background: linear-gradient(to right, #6ba6ae, #518086);
       color: #ffe14f;
     }
-
   }
 }
 </style>

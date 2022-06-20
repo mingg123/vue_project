@@ -2,37 +2,40 @@
   <div class="frame_wrap">
     <div class="frame_container">
       <div class="btn_wrap">
-        <img alt="close_btn" class="btn_close" src="../../assets/image/close.png" @click="onClose"/>
+        <img
+          alt="close_btn"
+          class="btn_close"
+          src="../../assets/image/close.png"
+          @click="onClose"
+        />
       </div>
       <div class="frame_inner">
-        <LNB/>
-        <Content/>
+        <LNB />
+        <Content />
       </div>
     </div>
   </div>
-
 </template>
 
-<script lang='ts'>
-import {defineComponent} from "vue";
+<script lang="ts">
+import { defineComponent } from "vue";
 import LNB from "@/components/common/LNB.vue";
 import Content from "@/components/common/Content.vue";
 import store from "@/store";
-import {useStore} from "vuex";
-
+import { useStore } from "vuex";
 
 export default defineComponent({
-  name: 'Frame',
-  components: {Content, LNB},
-  data() {
+  name: "Frame",
+  components: { Content, LNB },
+  setup() {
     const store = useStore();
   },
   methods: {
     onClose: function () {
-      store.dispatch('setIsShowPopup', false);
-    }
-  }
-})
+      store.dispatch("setIsShowPopup", false);
+    },
+  },
+});
 </script>
 <style lang="scss">
 .frame_wrap {
@@ -47,8 +50,6 @@ export default defineComponent({
     flex-direction: column;
 
     .btn_wrap {
-
-
       .btn_close {
         height: 30px;
         width: 30px;
@@ -60,7 +61,5 @@ export default defineComponent({
       display: flex;
     }
   }
-
 }
-
 </style>

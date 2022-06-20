@@ -20,7 +20,7 @@ import BuyButton from "@/components/utils/BuyButton.vue";
 export default defineComponent({
   name: "Shop",
   components: { BuyButton },
-  data() {},
+  setup() {},
   methods: {},
 });
 </script>
