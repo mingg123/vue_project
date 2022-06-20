@@ -1,28 +1,28 @@
 <template>
   <div class="shop_wrap">
     <span class="title">첫 구매 보너스!</span>
-    <span class="subTitle">이세계에서 새로운 모험을 떠나는 신규 모험가님을 위한 해택</span>
-    <span class="subTitle" :style="{'top' : '35%'}">퀴즈 첫 구매시, 최소 3배 이상의 보너스 퀴즈 추가 지급!</span>
+    <span class="subTitle"
+      >이세계에서 새로운 모험을 떠나는 신규 모험가님을 위한 해택</span
+    >
+    <span class="subTitle" :style="{ top: '35%' }"
+      >퀴즈 첫 구매시, 최소 3배 이상의 보너스 퀴즈 추가 지급!</span
+    >
     <div class="buyBtn_container">
-      <BuyButton label="구매하러 가기" bgcolor="#FFD200"/>
-
+      <BuyButton label="구매하러 가기" :bgColor="'#FFD200'" />
     </div>
   </div>
-
 </template>
 
-
-<script lang='ts'>
-import {defineComponent} from "vue";
+<script lang="ts">
+import { defineComponent } from "vue";
 import BuyButton from "@/components/utils/BuyButton.vue";
 
 export default defineComponent({
-  name: 'Shop',
-  components: {BuyButton},
-  data() {
-  },
+  name: "Shop",
+  components: { BuyButton },
+  data() {},
   methods: {},
-})
+});
 </script>
 <style lang="scss" scoped>
 .shop_wrap {
@@ -33,7 +33,7 @@ export default defineComponent({
 
   .title {
     font-size: 60px;
-    background: linear-gradient(to right top, #CBB8EE, #861657);
+    background: linear-gradient(to right top, #cbb8ee, #861657);
     color: transparent;
     -webkit-background-clip: text;
     position: absolute;
@@ -60,6 +60,4 @@ export default defineComponent({
     padding-top: 45%;
   }
 }
-
-
 </style>

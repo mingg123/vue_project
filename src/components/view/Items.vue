@@ -1,17 +1,13 @@
-<template>
-  Items
-</template>
+<template>Items</template>
 
-
-<script lang='ts'>
-import {defineComponent} from "vue";
+<script lang="ts">
+import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: 'Items',
-  data() {
-  },
+  name: "Items",
+  data() {},
   methods: {},
-})
+});
 </script>
 <style lang="scss">
 .wrap {

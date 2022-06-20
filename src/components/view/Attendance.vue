@@ -1,15 +1,11 @@
-<template>
-  Attendance
-</template>
+<template>Attendance</template>
 
-
-<script lang='ts'>
-import {defineComponent} from "vue";
+<script lang="ts">
+import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: 'Attendance',
-  data() {
-  },
+  name: "Attendance",
+  data() {},
   methods: {},
-})
+});
 </script>

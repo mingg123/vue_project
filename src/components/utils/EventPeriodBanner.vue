@@ -1,25 +1,19 @@
 <template>
-  <h1 class="title">이벤트 기간 : {{ startDate }} ~ {{ endDate }} </h1>
+  <h1 class="title">이벤트 기간 : {{ startDate }} ~ {{ endDate }}</h1>
 </template>
 
-
-<script lang='ts'>
-import {defineProps} from "vue";
-import {defineComponent, toRefs} from "vue";
-import {EventPeriodBannerProps} from "@/components/types";
+<script lang="ts">
+import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: 'EventPeriodBanner',
+  name: "EventPeriodBanner",
   props: {
     startDate: String,
     endDate: String,
   },
-  data() {
-  },
+  data() {},
   methods: {},
-})
-
-
+});
 </script>
 <style lang="scss">
 .title {

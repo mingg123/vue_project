@@ -1,35 +1,42 @@
 <template>
-  <a href="#" class="btn_wrap" :style="{height : height, width : width, backgroundColor: bgcolor}">{{ label }}</a>
+  <a
+    href="#"
+    class="btn_wrap"
+    :style="{
+      height: height + 'px',
+      width: width + 'px',
+      backgroundColor: bgColor,
+    }"
+    >{{ label }}</a
+  >
 </template>
 
-
-<script lang='ts'>
-import {defineComponent} from "vue";
+<script lang="ts">
+import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: 'BuyButton',
+  name: "BuyButton",
   props: {
     label: {
       type: String,
-      default: '구매하기'
+      default: "구매하기",
     },
     height: {
       type: Number,
-      default: "30px"
+      default: 30,
     },
     width: {
       type: Number,
-      default: "120px"
+      default: 120,
     },
-    bgcolor: {
+    bgColor: {
       type: String,
-      default: "#000"
-    }
+      default: "#000",
+    },
   },
-  data() {
-  },
+  data() {},
   methods: {},
-})
+});
 </script>
 <style lang="scss" scoped>
 .btn_wrap {
@@ -42,6 +49,4 @@ export default defineComponent({
   text-decoration: none;
   font-weight: bold;
 }
-
-
 </style>

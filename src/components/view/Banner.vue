@@ -1,15 +1,11 @@
-<template>
-  Banner
-</template>
+<template>Banner</template>
 
-
-<script lang='ts'>
-import {defineComponent} from "vue";
+<script lang="ts">
+import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: 'Banner',
-  data() {
-  },
+  name: "Banner",
+  data() {},
   methods: {},
-})
+});
 </script>

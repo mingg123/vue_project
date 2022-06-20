@@ -1,20 +1,19 @@
 <template>
   Achievement
-  <EventPeriodBanner :startDate="'2022/06/14'" :endDate="'06/27'"/>
+  <EventPeriodBanner :startDate="'2022/06/14'" :endDate="'06/27'" />
 </template>
 
-
-<script lang='ts'>
-import {defineComponent} from "vue";
+<script lang="ts">
+import { defineComponent } from "vue";
 import EventPeriodBanner from "@/components/utils/EventPeriodBanner.vue";
 
 export default defineComponent({
-  name: 'Achievement',
+  name: "Achievement",
   components: {
-    EventPeriodBanner
+    EventPeriodBanner,
   },
-  data() {
-  },
+
+  data() {},
   methods: {},
-})
+});
 </script>
