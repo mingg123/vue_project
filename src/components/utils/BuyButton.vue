@@ -45,7 +45,7 @@ export default defineComponent({
   font-size: large;
   padding: 20px 60px;
   color: white;
-  border-radius: 6px;
+  border-radius: 15px;
   text-decoration: none;
   font-weight: bold;
 }
