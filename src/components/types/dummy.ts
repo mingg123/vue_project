@@ -1,4 +1,4 @@
-import { Item } from "@/components/types/index";
+import { Attendance, Item } from "@/components/types/index";
 
 export const dummyItem: Item[] = [
   {
@@ -11,7 +11,7 @@ export const dummyItem: Item[] = [
   {
     id: "2",
     code: "2",
-    type: "ITEM",
+    type: "BALANCE",
     name: "골드 3000",
     imageUrl: "http",
   },
@@ -21,5 +21,26 @@ export const dummyItem: Item[] = [
     type: "ITEM",
     name: "쿠키 2000",
     imageUrl: "http",
+  },
+];
+
+export const dummyAttendance: Attendance[] = [
+  {
+    attandanceId: "1",
+    day: 1,
+    status: "READY",
+    reward: dummyItem[0],
+  },
+  {
+    attandanceId: "2",
+    day: 2,
+    status: "READY",
+    reward: dummyItem[1],
+  },
+  {
+    attandanceId: "3",
+    day: 3,
+    status: "READY",
+    reward: dummyItem[2],
   },
 ];
