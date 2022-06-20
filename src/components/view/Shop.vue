@@ -14,12 +14,11 @@
 
 <script lang='ts'>
 import {defineComponent} from "vue";
-import EventPeriodBanner from "@/components/utils/EventPeriodBanner.vue";
 import BuyButton from "@/components/utils/BuyButton.vue";
 
 export default defineComponent({
   name: 'Shop',
-  components: {BuyButton, EventPeriodBanner},
+  components: {BuyButton},
   data() {
   },
   methods: {},

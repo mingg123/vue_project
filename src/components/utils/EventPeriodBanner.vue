@@ -10,7 +10,10 @@ import {EventPeriodBannerProps} from "@/components/types";
 
 export default defineComponent({
   name: 'EventPeriodBanner',
-  props: ['startDate', 'endDate'],
+  props: {
+    startDate: String,
+    endDate: String,
+  },
   data() {
   },
   methods: {},

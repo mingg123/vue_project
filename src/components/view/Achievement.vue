@@ -1,6 +1,6 @@
 <template>
   Achievement
-  <EventPeriodBanner start-date="2022/06/14" end-date="06/27"/>
+  <EventPeriodBanner :startDate="'2022/06/14'" :endDate="'06/27'"/>
 </template>
 
 
