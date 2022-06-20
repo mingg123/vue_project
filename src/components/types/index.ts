@@ -1,4 +1,7 @@
-export interface EventPeriodBannerProps {
-    startDate: string
-    endDate: string
+export interface Item {
+  id: string;
+  code: string;
+  type: string;
+  name: string;
+  imageUrl: string;
 }
