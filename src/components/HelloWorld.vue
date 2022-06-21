@@ -5,8 +5,9 @@
 
 <script lang="ts">
 import { computed, defineComponent } from "vue";
-import store, { useStore } from "@/store";
+import { useStore } from "vuex";
 import Frame from "@/components/container/Frame.vue";
+import store from "@/store";
 
 export default defineComponent({
   name: "HelloWorld",

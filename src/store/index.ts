@@ -1,12 +1,15 @@
-import { createStore, Store, useStore as baseUseStore } from "vuex";
-import { InjectionKey } from "vue";
+import { createStore } from "vuex";
 
 export interface RootState {
   isShowPopup: boolean;
 }
 
-//타입 추론을 위해 추가. state밖에 적용되지 않음
-export const key: InjectionKey<Store<RootState>> = Symbol();
+// 타입 추론이 되지 않는 문제
+// export const key: InjectionKey<Store<RootState>> = Symbol();
+
+// export function useStore() {
+//   return baseUseStore(key);
+// }
 
 export default createStore<RootState>({
   state: {
@@ -28,7 +31,3 @@ export default createStore<RootState>({
     },
   },
 });
-
-export function useStore() {
-  return baseUseStore(key);
-}
