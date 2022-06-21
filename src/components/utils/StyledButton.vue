@@ -1,6 +1,6 @@
 <template>
   <a
-    href="#"
+    :href="link"
     class="btn_wrap"
     :style="{
       height: height + 'px',
@@ -15,7 +15,7 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "BuyButton",
+  name: "StyledButton",
   props: {
     label: {
       type: String,
@@ -33,20 +33,25 @@ export default defineComponent({
       type: String,
       default: "#000",
     },
+    link: {
+      type: String,
+      default: "/item",
+    },
   },
-  data() {},
+  setup() {},
   methods: {},
 });
 </script>
 <style lang="scss" scoped>
 .btn_wrap {
   background-color: #9abf7f;
-  display: inline-block;
   font-size: large;
-  padding: 20px 60px;
   color: white;
   border-radius: 15px;
   text-decoration: none;
   font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

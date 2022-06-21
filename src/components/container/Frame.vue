@@ -53,6 +53,7 @@ export default defineComponent({
       .btn_close {
         height: 30px;
         width: 30px;
+        float: right;
       }
     }
 
