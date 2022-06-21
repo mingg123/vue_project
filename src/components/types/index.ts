@@ -5,6 +5,7 @@ export interface Item {
   code: string;
   type: ItemType;
   name: string;
+  amount: number;
   imageUrl: string;
 }
 
