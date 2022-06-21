@@ -1,9 +1,9 @@
 <template>
   <div class="at_wrap">
     <h1>스페셜 로그인 보너스</h1>
-    <span class="subTitle"
-      >모험을 떠나시는 모험가님! 출석하고 보상 전부 받아가세요!</span
-    >
+    <span class="subTitle">
+      모험을 떠나시는 모험가님! 출석하고 보상 전부 받아가세요!
+    </span>
     <EventPeriodBanner :startDate="'2022.06.13'" :endDate="'07.13'" />
     <div class="select_container">
       <select class="day_select" @change="onChangeDay($event)">
@@ -27,7 +27,7 @@
           <!--            :alt="attancance.reward.id"-->
           <!--            src="../../assets/image/shopImage.png"-->
           <!--          />-->
-          <span> X {{ attancance.reward.amount }} </span>
+          <span>X {{ attancance.reward.amount }}</span>
           <button
             @click="addItem(attancance.attandanceId)"
             :disabled="attancance.status === 'FINISH'"
@@ -52,7 +52,7 @@ import {
   dummyMonthAttandance,
   dummyTwoWeekAttandance,
 } from "../types/dummy";
-import { Attendance, Item } from "@/components/types";
+import { Attendance, Item, VueEvent } from "@/components/types";
 import EventPeriodBanner from "@/components/utils/EventPeriodBanner.vue";
 
 type days = "7일" | "14일" | "28일";
@@ -70,7 +70,7 @@ export default defineComponent({
   methods: {
     addItem(attandanceId: string): void {
       const newAttandance = this.attandanceInfo.find(
-        (attandance) => attandance.attandanceId === attandanceId
+        attandance => attandance.attandanceId === attandanceId
       );
       if (newAttandance) {
         this.changeAttandanceState(newAttandance);
@@ -78,7 +78,7 @@ export default defineComponent({
       }
     },
 
-    getDummyDataForDay(day: days) {
+    getDummyDataFromDay(day: days) {
       if (day === "7일") {
         return dummyAttendance;
       } else if (day === "14일") {
@@ -88,9 +88,9 @@ export default defineComponent({
       }
     },
 
-    onChangeDay(e: Event) {
-      const clickedDay = (e.target as HTMLSelectElement).value as days;
-      this.attandanceInfo = this.getDummyDataForDay(clickedDay);
+    onChangeDay(e: VueEvent.Input<HTMLSelectElement>) {
+      const clickedDay = e.target.value as days;
+      this.attandanceInfo = this.getDummyDataFromDay(clickedDay);
     },
 
     changeAttandanceState(attandance: Attendance): void {
