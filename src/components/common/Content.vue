@@ -3,28 +3,33 @@
     <!--    <div class="btn_wrap">-->
     <!--      <img alt="close_btn" class="btn_close" src="../../assets/image/close.png" @click="onClose"/>-->
     <!--    </div>-->
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
-
-<script lang='ts'>
-import {defineComponent} from "vue";
-import {useStore} from "vuex";
+<script lang="ts">
+import { defineComponent } from "vue";
+import { useStore } from "vuex";
 import store from "@/store";
 
 export default defineComponent({
-  name: 'Content',
+  name: "Content",
   data() {
     const store = useStore();
   },
   methods: {},
-})
+});
 </script>
 <style lang="scss" scoped>
 .content_wrap {
   width: 960px;
   border: 1px solid;
   position: relative;
+  overflow-y: auto;
+}
+
+//스크롤바 기능 작동은 하지만 숨김
+.content_wrap::-webkit-scrollbar {
+  display: none;
 }
 </style>

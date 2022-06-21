@@ -19,7 +19,14 @@ export const dummyItem: Item[] = [
     id: "3",
     code: "3",
     type: "ITEM",
-    name: "쿠키 2000",
+    name: "루비 2000",
+    imageUrl: "http",
+  },
+  {
+    id: "4",
+    code: "4",
+    type: "ITEM",
+    name: "티켓",
     imageUrl: "http",
   },
 ];
@@ -43,4 +50,33 @@ export const dummyAttendance: Attendance[] = [
     status: "READY",
     reward: dummyItem[2],
   },
+  {
+    attandanceId: "4",
+    day: 5,
+    status: "READY",
+    reward: dummyItem[0],
+  },
+  {
+    attandanceId: "5",
+    day: 5,
+    status: "READY",
+    reward: dummyItem[1],
+  },
+  {
+    attandanceId: "6",
+    day: 6,
+    status: "READY",
+    reward: dummyItem[2],
+  },
+  {
+    attandanceId: "7",
+    day: 7,
+    status: "READY",
+    reward: dummyItem[3],
+  },
 ];
+
+export const dummyTwoWeekAttandance = dummyAttendance.concat(dummyAttendance);
+export const dummyMonthAttandance = dummyTwoWeekAttandance.concat(
+  dummyTwoWeekAttandance
+);

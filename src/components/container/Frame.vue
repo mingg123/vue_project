@@ -60,6 +60,7 @@ export default defineComponent({
     .frame_inner {
       //margin: 10px;
       display: flex;
+      height: 562px;
     }
   }
 }
