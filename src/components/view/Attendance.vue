@@ -15,15 +15,14 @@
     <div class="at_frame">
       <div v-for="attancance in attandanceInfo" :key="attancance">
         <div class="at_container">
-          <!--          attadance 내부-->
           <div class="at_day">{{ attancance.day }} 일차</div>
-          <img
-            class="at_image"
-            style="height: 50px"
-            :alt="attancance.reward.id"
-            :src="require(`../../assets/image/` + attancance.reward.imageUrl)"
-          />
-          {{ attancance.reward.id }}
+          <ItemZone :item="attancance.reward" />
+          <!--          <img-->
+          <!--            class="at_image"-->
+          <!--            style="height: 50px"-->
+          <!--            :alt="attancance.reward.id"-->
+          <!--            :src="require(`../../assets/image/` + attancance.reward.imageUrl)"-->
+          <!--          />-->
           <!--          <img-->
           <!--            :alt="attancance.reward.id"-->
           <!--            src="../../assets/image/shopImage.png"-->
@@ -39,10 +38,6 @@
         </div>
       </div>
     </div>
-    <div>얻은 item List</div>
-    <div v-for="item in getItemList" :key="item.id">
-      <li>{{ item }}</li>
-    </div>
   </div>
 </template>
 
@@ -55,18 +50,21 @@ import {
 } from "../types/dummy";
 import { Attendance, Item, VueEvent } from "@/components/types";
 import EventPeriodBanner from "@/components/utils/EventPeriodBanner.vue";
+import { useStore } from "vuex";
+import store from "@/store";
+import ItemZone from "@/components/utils/ItemZone.vue";
 
 type days = "7일" | "14일" | "28일";
 
 export default defineComponent({
   name: "Attendance",
-  components: { EventPeriodBanner },
+  components: { ItemZone, EventPeriodBanner },
   setup() {
+    const store = useStore();
     const attandanceInfo = ref<Attendance[]>(dummyAttendance);
-    const getItemList = ref<Item[]>([]);
     const days: string[] = ["7일", "14일", "28일"];
 
-    return { attandanceInfo, getItemList, days };
+    return { attandanceInfo, days };
   },
   methods: {
     addItem(attandanceId: string): void {
@@ -75,16 +73,14 @@ export default defineComponent({
       );
       if (newAttandance) {
         this.changeAttandanceState(newAttandance);
-        this.getItemList = [...this.getItemList, newAttandance.reward];
+        store.dispatch("setItem", newAttandance.reward);
       }
     },
 
-    getDummyDataFromDay(day: days) {
+    getDummyDataFromDay(day: days): Attendance[] {
       if (day === "7일") {
-        console.log(dummyAttendance);
         return dummyAttendance;
       } else if (day === "14일") {
-        console.log(dummyTwoWeekAttandance);
         return dummyTwoWeekAttandance;
       } else {
         return dummyMonthAttandance;
