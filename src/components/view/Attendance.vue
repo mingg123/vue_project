@@ -48,7 +48,7 @@ import {
   dummyMonthAttandance,
   dummyTwoWeekAttandance,
 } from "../types/dummy";
-import { Attendance, Item, VueEvent } from "@/components/types";
+import { Attendance, VueEvent } from "@/components/types";
 import EventPeriodBanner from "@/components/utils/EventPeriodBanner.vue";
 import { useStore } from "vuex";
 import store from "@/store";
@@ -103,7 +103,7 @@ export default defineComponent({
   },
 });
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 @import "../../assets/scss/index.scss";
 
 .at_wrap {

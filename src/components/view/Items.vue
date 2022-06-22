@@ -1,37 +1,58 @@
 <template>
-  Item
-  <div v-for="item in items" :key="item.id">
-    <li>
-      {{ item }}
-      <button @click="removeItem(item.id)">삭제</button>
-    </li>
+  <div class="at_wrap" style="align-items: flex-start">
+    <div class="select_container">
+      <select class="day_select" @change="onChangeSortOption($event)">
+        <option v-for="option in sortOptions" :value="option" :key="option">
+          {{ option }}
+        </option>
+      </select>
+    </div>
+    <div class="item_frame">
+      <div class="at_frame" style="justify-content: flex-start">
+        <div v-for="item in getItems" :key="item.id">
+          <div class="at_container" style="height: 150px">
+            <ItemZone :item="item" />
+            <span>X {{ item.amount }}</span>
+            <button @click="removeItem(item.id)">삭제</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-// import { Item } from "@/components/types";
-// import { dummyItem } from "@/components/types/dummy";
-import { useStore } from "vuex";
-import { Item } from "@/components/types";
+import { defineComponent } from "vue";
+import { mapGetters, useStore } from "vuex";
+import { VueEvent } from "@/components/types";
+import ItemZone from "@/components/utils/ItemZone.vue";
+import store from "@/store";
 
 export default defineComponent({
   name: "Items",
   setup() {
+    const sortOptions = ["가장오래된순", "가장최신순"];
     const store = useStore();
-    const items = store.getters.getItems as Item[];
-    // const items = ref<Item[]>(dummyItem);
-    return { items };
+    return { sortOptions };
   },
-
+  components: { ItemZone },
   methods: {
     removeItem(id: string) {
-      this.items = this.items.filter((item) => item.id !== id);
+      store.dispatch("removeItem", id);
     },
+    onChangeSortOption(e: VueEvent.Input<HTMLSelectElement>) {
+      console.log(e.target.value);
+    },
+  },
+  computed: {
+    ...mapGetters(["getItems"]),
   },
 });
 </script>
 <style lang="scss">
-.wrap {
+.item_frame {
+  display: flex;
+  flex-direction: column;
+  padding-left: 1.5%;
 }
 </style>

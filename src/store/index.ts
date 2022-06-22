@@ -34,6 +34,9 @@ export default createStore<RootState>({
     SET_ITEM(state, item: Item) {
       state.items = [...state.items, item];
     },
+    REMOVE_ITEM(state, id: string) {
+      state.items = state.items.filter((item) => item.id !== id);
+    },
   },
   actions: {
     setIsShowPopup({ commit }, open) {
@@ -41,6 +44,9 @@ export default createStore<RootState>({
     },
     setItem({ commit }, item) {
       commit("SET_ITEM", item);
+    },
+    removeItem({ commit }, index) {
+      commit("REMOVE_ITEM", index);
     },
   },
 });

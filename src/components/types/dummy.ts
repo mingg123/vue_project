@@ -34,6 +34,30 @@ export const dummyItem: Item[] = [
     amount: 2,
     imageUrl: "ticket.png",
   },
+  {
+    id: uuid.v1(),
+    code: "5",
+    type: "ITEM",
+    name: "스킬 포션",
+    amount: 1,
+    imageUrl: "ticket.png",
+  },
+  {
+    id: uuid.v1(),
+    code: "6",
+    type: "ITEM",
+    name: "스킬 포션",
+    amount: 1,
+    imageUrl: "ticket.png",
+  },
+  {
+    id: uuid.v1(),
+    code: "7",
+    type: "ITEM",
+    name: "스킬 포션",
+    amount: 1,
+    imageUrl: "ticket.png",
+  },
 ];
 
 export const dummyAttendance: Attendance[] = [
@@ -59,25 +83,25 @@ export const dummyAttendance: Attendance[] = [
     attandanceId: uuid.v1(),
     day: 5,
     status: "READY",
-    reward: dummyItem[0],
+    reward: dummyItem[3],
   },
   {
     attandanceId: uuid.v1(),
     day: 5,
     status: "READY",
-    reward: dummyItem[1],
+    reward: dummyItem[4],
   },
   {
     attandanceId: uuid.v1(),
     day: 6,
     status: "READY",
-    reward: dummyItem[2],
+    reward: dummyItem[5],
   },
   {
     attandanceId: uuid.v1(),
     day: 7,
     status: "READY",
-    reward: dummyItem[3],
+    reward: dummyItem[6],
   },
 ];
 

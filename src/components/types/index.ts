@@ -2,6 +2,7 @@ export namespace VueEvent {
   export interface Input<T extends EventTarget> extends InputEvent {
     target: T;
   }
+
   export interface Keyboard<T extends EventTarget> extends KeyboardEvent {
     target: T;
   }
@@ -26,3 +27,5 @@ export interface Attendance {
   day: number;
   reward: Item;
 }
+
+export class Input {}
