@@ -1,8 +1,9 @@
 import { Attendance, Item } from "@/components/types/index";
+import { uuid } from "vue-uuid";
 
 export const dummyItem: Item[] = [
   {
-    id: "1",
+    id: uuid.v1(),
     code: "1",
     type: "ITEM",
     name: "물약",
@@ -10,7 +11,7 @@ export const dummyItem: Item[] = [
     imageUrl: "portion.png",
   },
   {
-    id: "2",
+    id: uuid.v1(),
     code: "2",
     type: "BALANCE",
     name: "골드 3000",
@@ -18,7 +19,7 @@ export const dummyItem: Item[] = [
     imageUrl: "money.png",
   },
   {
-    id: "3",
+    id: uuid.v1(),
     code: "3",
     type: "ITEM",
     name: "루비 2000",
@@ -26,7 +27,7 @@ export const dummyItem: Item[] = [
     imageUrl: "ruby.png",
   },
   {
-    id: "4",
+    id: uuid.v1(),
     code: "4",
     type: "ITEM",
     name: "티켓",
@@ -37,50 +38,64 @@ export const dummyItem: Item[] = [
 
 export const dummyAttendance: Attendance[] = [
   {
-    attandanceId: "1",
+    attandanceId: uuid.v1(),
     day: 1,
     status: "READY",
     reward: dummyItem[0],
   },
   {
-    attandanceId: "2",
+    attandanceId: uuid.v1(),
     day: 2,
     status: "READY",
     reward: dummyItem[1],
   },
   {
-    attandanceId: "3",
+    attandanceId: uuid.v1(),
     day: 3,
     status: "READY",
     reward: dummyItem[2],
   },
   {
-    attandanceId: "4",
+    attandanceId: uuid.v1(),
     day: 5,
     status: "READY",
     reward: dummyItem[0],
   },
   {
-    attandanceId: "5",
+    attandanceId: uuid.v1(),
     day: 5,
     status: "READY",
     reward: dummyItem[1],
   },
   {
-    attandanceId: "6",
+    attandanceId: uuid.v1(),
     day: 6,
     status: "READY",
     reward: dummyItem[2],
   },
   {
-    attandanceId: "7",
+    attandanceId: uuid.v1(),
     day: 7,
     status: "READY",
     reward: dummyItem[3],
   },
 ];
 
-export const dummyTwoWeekAttandance = dummyAttendance.concat(dummyAttendance);
-export const dummyMonthAttandance = dummyTwoWeekAttandance.concat(
+export const dummyTwoWeekAttandance: Attendance[] =
+  createDummyData(dummyAttendance);
+
+export const dummyMonthAttandance: Attendance[] = createDummyData(
   dummyTwoWeekAttandance
 );
+
+function createDummyData(dummy: Attendance[]): Attendance[] {
+  const newAttadance: Attendance[] = (
+    dummy.concat(dummy) as Omit<Attendance, "attandanceId" | "status">[]
+  ).map((attendance) => ({
+    ...attendance,
+    status: "READY",
+    attandanceId: uuid.v1(),
+  }));
+  newAttadance.map((at) => (at.reward.id = uuid.v1()));
+  return newAttadance;
+}

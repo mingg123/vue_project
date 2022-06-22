@@ -23,6 +23,7 @@
             :alt="attancance.reward.id"
             :src="require(`../../assets/image/` + attancance.reward.imageUrl)"
           />
+          {{ attancance.reward.id }}
           <!--          <img-->
           <!--            :alt="attancance.reward.id"-->
           <!--            src="../../assets/image/shopImage.png"-->
@@ -70,7 +71,7 @@ export default defineComponent({
   methods: {
     addItem(attandanceId: string): void {
       const newAttandance = this.attandanceInfo.find(
-        attandance => attandance.attandanceId === attandanceId
+        (attandance) => attandance.attandanceId === attandanceId
       );
       if (newAttandance) {
         this.changeAttandanceState(newAttandance);
@@ -80,8 +81,10 @@ export default defineComponent({
 
     getDummyDataFromDay(day: days) {
       if (day === "7일") {
+        console.log(dummyAttendance);
         return dummyAttendance;
       } else if (day === "14일") {
+        console.log(dummyTwoWeekAttandance);
         return dummyTwoWeekAttandance;
       } else {
         return dummyMonthAttandance;
