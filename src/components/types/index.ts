@@ -28,4 +28,13 @@ export interface Attendance {
   reward: Item;
 }
 
+export type QuestStatusType = AttandanceStatusType | "RUNNING";
+
+export interface Quest {
+  title: string;
+  subTitle: string;
+  reward: Item;
+  status: QuestStatusType;
+}
+
 export class Input {}
