@@ -145,7 +145,7 @@ export const dummyQuest: Quest[] = [
   {
     title: "코노스바 스토리 n기 클리어",
     subTitle: "코노스바 스토리 n기 클리어 시 아이템 지급",
-    reward: dummyItem[7],
+    reward: dummyItem[6],
     status: "RUNNING",
   },
 ];

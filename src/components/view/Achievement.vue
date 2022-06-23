@@ -7,8 +7,10 @@
     <EventPeriodBanner :startDate="'2022/06/14'" :endDate="'06/27'" />
     <div class="quest_container" v-for="quest in quests" :key="quest">
       <div class="quest_content">
-        <span>{{ quest.title }}</span>
-        <span>{{ quest.subTitle }}</span>
+        <div class="quest_inner">
+          <span class="quest_title">{{ quest.title }}</span>
+          <span>{{ quest.subTitle }}</span>
+        </div>
       </div>
       <div class="quest_item">
         <ItemZone v-if="quest.reward" :item="quest.reward" />
@@ -62,10 +64,32 @@ export default defineComponent({
     width: 900px;
     border: 1px solid;
     margin-bottom: 10px;
+    align-items: center;
+    justify-content: center;
 
     .quest_content {
       display: flex;
       flex-direction: column;
+      flex: 8;
+
+      .quest_inner {
+        display: flex;
+        flex-direction: column;
+        padding-left: 10%;
+
+        .quest_title {
+          font-size: x-large;
+          font-weight: 700;
+        }
+      }
+    }
+
+    .quest_item {
+      flex: 1;
+    }
+
+    .quest_btn {
+      flex: 1;
     }
   }
 }
