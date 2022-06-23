@@ -31,6 +31,7 @@ export interface Attendance {
 export type QuestStatusType = AttandanceStatusType | "RUNNING";
 
 export interface Quest {
+  id: string;
   title: string;
   subTitle: string;
   reward: Item;

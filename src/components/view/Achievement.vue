@@ -5,7 +5,12 @@
       매일 퀘스트 완료하고 매일 아이템도 받아가세요!
     </span>
     <EventPeriodBanner :startDate="'2022/06/14'" :endDate="'06/27'" />
-    <div class="quest_container" v-for="quest in quests" :key="quest">
+    <div
+      class="quest_container"
+      v-for="quest in quests"
+      :key="quest"
+      :class="quest.status"
+    >
       <div class="quest_content">
         <div class="quest_inner">
           <span class="quest_title">{{ quest.title }}</span>
@@ -16,7 +21,14 @@
         <ItemZone v-if="quest.reward" :item="quest.reward" />
       </div>
       <div class="quest_btn">
-        <button>{{ getQuestState(quest.status) }}</button>
+        <button
+          class="quest_btn_inner"
+          :class="'btn_' + quest.status"
+          :disabled="quest.status !== 'READY'"
+          @click="addItem(quest.id)"
+        >
+          {{ getQuestState(quest.status) }}
+        </button>
       </div>
     </div>
   </div>
@@ -25,9 +37,10 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import EventPeriodBanner from "@/components/utils/EventPeriodBanner.vue";
-import { Quest, QuestStatusType } from "@/components/types";
+import { Item, Quest, QuestStatusType } from "@/components/types";
 import { dummyQuest } from "@/components/types/dummy";
 import ItemZone from "@/components/utils/ItemZone.vue";
+import store from "@/store";
 
 export default defineComponent({
   name: "Achievement",
@@ -40,6 +53,17 @@ export default defineComponent({
     return { quests };
   },
   methods: {
+    addItem(questId: string): void {
+      const newQuest = this.quests.find((quest) => quest.id === questId);
+      if (newQuest) {
+        this.changeQuestState(newQuest);
+        store.dispatch("setItem", newQuest.reward);
+      }
+    },
+
+    changeQuestState(quest: Quest) {
+      quest.status = "FINISH";
+    },
     getQuestState(stats: QuestStatusType): string {
       if (stats === "READY") {
         return "보상받기";
@@ -57,6 +81,10 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .READY {
+    background-color: #d2e1ff;
+  }
 
   .quest_container {
     display: flex;
@@ -89,7 +117,19 @@ export default defineComponent({
     }
 
     .quest_btn {
-      flex: 1;
+      flex: 2;
+
+      .quest_btn_inner {
+        width: 120px;
+        height: 40px;
+      }
+
+      .btn_READY {
+        color: white;
+        background-color: royalblue;
+        border-width: 1px;
+        box-shadow: 1px 1px 1px 1px;
+      }
     }
   }
 }
