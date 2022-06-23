@@ -13,9 +13,9 @@
       </select>
     </div>
     <div class="at_frame">
-      <div v-for="attancance in attandanceInfo" :key="attancance">
+      <div v-for="(attancance, idx) in attandanceInfo" :key="attancance">
         <div class="at_container">
-          <div class="at_day">{{ attancance.day }} 일차</div>
+          <div class="at_day">{{ idx + 1 }} 일차</div>
           <ItemZone :item="attancance.reward" />
           <!--          <img-->
           <!--            class="at_image"-->
@@ -28,6 +28,7 @@
           <!--            src="../../assets/image/shopImage.png"-->
           <!--          />-->
           <span>X {{ attancance.reward.amount }}</span>
+
           <button
             @click="addItem(attancance.attandanceId)"
             :disabled="attancance.status === 'FINISH'"
@@ -37,6 +38,9 @@
           </button>
         </div>
       </div>
+    </div>
+    <div class="popup_wrap" v-if="getItemPopup">
+      <getItemPopup :item="getClickedItem" />
     </div>
   </div>
 </template>
@@ -48,23 +52,25 @@ import {
   dummyMonthAttandance,
   dummyTwoWeekAttandance,
 } from "../types/dummy";
-import { Attendance, VueEvent } from "@/components/types";
+import { Attendance, Item, VueEvent } from "@/components/types";
 import EventPeriodBanner from "@/components/utils/EventPeriodBanner.vue";
-import { useStore } from "vuex";
+import { mapGetters, useStore } from "vuex";
 import store from "@/store";
 import ItemZone from "@/components/utils/ItemZone.vue";
+import getItemPopup from "@/components/dialog/getItemPopup.vue";
 
 type days = "7일" | "14일" | "28일";
 
 export default defineComponent({
   name: "Attendance",
-  components: { ItemZone, EventPeriodBanner },
+  components: { getItemPopup, ItemZone, EventPeriodBanner },
   setup() {
     const store = useStore();
     const attandanceInfo = ref<Attendance[]>(dummyAttendance);
     const days: string[] = ["7일", "14일", "28일"];
 
-    return { attandanceInfo, days };
+    const clickedItem: Item | null = null;
+    return { attandanceInfo, days, clickedItem };
   },
   methods: {
     addItem(attandanceId: string): void {
@@ -74,6 +80,8 @@ export default defineComponent({
       if (newAttandance) {
         this.changeAttandanceState(newAttandance);
         store.dispatch("setItem", newAttandance.reward);
+        store.dispatch("setItemPopup", true);
+        store.dispatch("setClickedItem", newAttandance.reward);
       }
     },
 
@@ -100,6 +108,7 @@ export default defineComponent({
     addItemClass(attancance: Attendance): string | null {
       return attancance.status === "FINISH" ? "finish" : null;
     },
+    ...mapGetters(["getItemPopup", "getClickedItem"]),
   },
 });
 </script>
@@ -169,5 +178,12 @@ export default defineComponent({
   .finish {
     background-color: green;
   }
+}
+
+.popup_wrap {
+  position: fixed;
+  z-index: 9998;
+  top: 20%;
+  left: 40%;
 }
 </style>

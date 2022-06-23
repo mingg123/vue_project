@@ -1,7 +1,6 @@
 <template>
   <v-app>
     <v-main>
-      <v-btn>Address</v-btn>
       <HelloWorld />
     </v-main>
   </v-app>

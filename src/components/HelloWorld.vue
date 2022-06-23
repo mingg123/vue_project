@@ -1,5 +1,5 @@
 <template>
-  <button v-on:click="onClickPopup">Open</button>
+  <button class="popup_btn" v-on:click="onClickPopup">Open</button>
   <Frame v-if="isShowPopup" />
 </template>
 
@@ -25,3 +25,9 @@ export default defineComponent({
   },
 });
 </script>
+<style lang="scss">
+.popup_btn {
+  width: 120px;
+  height: 50px;
+}
+</style>

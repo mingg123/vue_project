@@ -122,6 +122,7 @@ export default defineComponent({
       .quest_btn_inner {
         width: 120px;
         height: 40px;
+        font-weight: bold;
       }
 
       .btn_READY {
