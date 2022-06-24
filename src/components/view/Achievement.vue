@@ -1,34 +1,34 @@
 <template>
   <div class="ac_wrap">
-    <h1>코노스바 런칭 기념 팡파레~!</h1>
-    <span class="subTitle">
-      매일 퀘스트 완료하고 매일 아이템도 받아가세요!
-    </span>
-    <EventPeriodBanner :startDate="'2022/06/14'" :endDate="'06/27'" />
-    <div
-      class="quest_container"
-      v-for="quest in quests"
-      :key="quest"
-      :class="quest.status"
-    >
-      <div class="quest_content">
-        <div class="quest_inner">
-          <span class="quest_title">{{ quest.title }}</span>
-          <span>{{ quest.subTitle }}</span>
-        </div>
-      </div>
-      <div class="quest_item">
-        <ItemZone v-if="quest.reward" :item="quest.reward" />
-      </div>
-      <div class="quest_btn">
-        <button
-          class="quest_btn_inner"
-          :class="'btn_' + quest.status"
-          :disabled="quest.status !== 'READY'"
-          @click="addItem(quest.id)"
+    <div class="ac_container">
+      <EventPeriodBanner :startDate="'2022/06/14'" :endDate="'06/27'" />
+      <div class="quest_main_container">
+        <div
+          class="quest_container"
+          v-for="quest in quests"
+          :key="quest"
+          :class="quest.status"
         >
-          {{ getQuestState(quest.status) }}
-        </button>
+          <div class="quest_content">
+            <div class="quest_inner">
+              <span class="quest_title">{{ quest.title }}</span>
+              <span>{{ quest.subTitle }}</span>
+            </div>
+          </div>
+          <div class="quest_item">
+            <ItemZone v-if="quest.reward" :item="quest.reward" />
+          </div>
+          <div class="quest_btn">
+            <button
+              class="quest_btn_inner"
+              :class="'btn_' + quest.status"
+              :disabled="quest.status !== 'READY'"
+              @click="addItem(quest.id)"
+            >
+              {{ getQuestState(quest.status) }}
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -77,37 +77,51 @@ export default defineComponent({
 });
 </script>
 <style lang="scss">
+@import "../../assets/scss/index.scss";
+
 .ac_wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  background-image: url("../../assets/image/bg_honeyitem_202109.png");
+  height: 100%;
+  background-size: $background_image_width $background_image_height;
+
+  .ac_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
   .READY {
     background-color: #d2e1ff;
   }
 
-  .quest_container {
-    display: flex;
-    height: 80px;
-    width: 900px;
-    border: 1px solid;
-    margin-bottom: 10px;
-    align-items: center;
-    justify-content: center;
+  .quest_main_container {
+    overflow-y: auto;
+    height: 400px;
+    padding-top: 40%;
 
-    .quest_content {
+    .quest_container {
       display: flex;
-      flex-direction: column;
-      flex: 8;
+      height: 80px;
+      width: 900px;
+      border: 1px solid;
+      margin-bottom: 10px;
+      align-items: center;
+      justify-content: center;
 
-      .quest_inner {
+      .quest_content {
         display: flex;
         flex-direction: column;
-        padding-left: 10%;
+        flex: 8;
 
-        .quest_title {
-          font-size: x-large;
-          font-weight: 700;
+        .quest_inner {
+          display: flex;
+          flex-direction: column;
+          padding-left: 10%;
+
+          .quest_title {
+            font-size: x-large;
+            font-weight: 700;
+          }
         }
       }
     }
@@ -132,6 +146,10 @@ export default defineComponent({
         box-shadow: 1px 1px 1px 1px;
       }
     }
+  }
+
+  .quest_main_container::-webkit-scrollbar {
+    display: none;
   }
 }
 </style>

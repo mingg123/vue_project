@@ -25,7 +25,7 @@ export default defineComponent({
   width: 960px;
   border: 1px solid;
   position: relative;
-  overflow-y: auto;
+  //overflow-y: auto;
 }
 
 //스크롤바 기능 작동은 하지만 숨김
