@@ -1,39 +1,34 @@
 <template>
   <div class="banner_wrap">
-    <span class="title">1+1 패키지</span>
-    <span class="subTitle">퀴츠와 에리스 구입 기회를 놓치지 마세요!</span>
+    <div class="event_wrap">
+      <EventPeriodBanner :startDate="'2022/06/14'" :endDate="'06/27'" />
+    </div>
     <div class="btn_wrap">
       <div class="buyBtn_container">
-        <img src="../../assets/image/diamond.png" style="height: 150px" />
-        <StyledButton
-          label="바로가기"
-          :bgColor="'#FFD200'"
-          width="180"
-          height="50"
-          link="goDirect"
-        />
-      </div>
-      <div class="buyBtn_container">
-        <img src="../../assets/image/money.png" style="height: 150px" />
-        <StyledButton
-          label="바로가기"
-          :bgColor="'#FFD200'"
-          width="180"
-          height="50"
-          link="goDirect"
-        />
+        <a href="https://www.naver.com/">
+          <img src="../../assets/image/banner_btn_adventurer_support.png" />
+        </a>
+        <!--        <StyledButton-->
+        <!--          label="9900원"-->
+        <!--          :bgColor="'#FFD200'"-->
+        <!--          width="180"-->
+        <!--          height="50"-->
+        <!--          link="goDirect"-->
+        <!--        />-->
       </div>
     </div>
+    <a href="" class="cancellation-btn"> [청약 철회 규정 보기] </a>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import StyledButton from "@/components/utils/StyledButton.vue";
+import EventPeriodBanner from "@/components/utils/EventPeriodBanner.vue";
 
 export default defineComponent({
   name: "Banner",
-  components: { StyledButton },
+  components: { EventPeriodBanner, StyledButton },
   setup() {},
   methods: {},
 });
@@ -44,30 +39,13 @@ export default defineComponent({
 .banner_wrap {
   height: 100%;
   background-size: $background_image_width $background_image_height;
-  background-image: url("../../assets/image/castleImage.jpg");
+  background-image: url("../../assets/image/bg_step_pack_1.png");
   text-align: center;
   z-index: 1;
 
-  .title {
-    font-size: $title_font_size;
-    background: linear-gradient(to right top, #cbb8ee, #861657);
-    color: transparent;
-    -webkit-background-clip: text;
+  .event_wrap {
+    padding-left: 5%;
     position: absolute;
-    font-weight: 900;
-    top: 20%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  .subTitle {
-    font-size: $subTitle_font_size;
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-weight: bold;
-    color: white;
   }
 
   .btn_wrap {
@@ -81,7 +59,14 @@ export default defineComponent({
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 30%;
+    padding-top: 38%;
+  }
+
+  .cancellation-btn {
+    padding-left: 25%;
+    position: absolute;
+    padding-top: 2%;
+    color: #00f5ff;
   }
 }
 </style>

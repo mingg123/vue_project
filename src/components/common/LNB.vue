@@ -2,7 +2,9 @@
   <div class="lnb_wrap">
     <div v-for="header in headers" :key="header">
       <li class="lnb_container">
-        <router-link :to="{ path: header }">{{ header }}</router-link>
+        <router-link :to="{ path: header.path }"
+          >{{ header.title }}
+        </router-link>
       </li>
     </div>
   </div>
@@ -15,13 +17,21 @@ export default defineComponent({
   name: "LNB",
   setup() {
     const headers = [
-      "achievement",
-      "attendance",
-      "banner",
-      "shop",
-      "items",
-      "trash",
+      { path: "achievement", title: "이 멋진 세계에 매일 꿀템을" },
+      { path: "attendance", title: "월간 로그인 보너스" },
+      { path: "banner", title: "성장 부스터 팩" },
+      { path: "shop", title: "첫 구매 보너스" },
+      { path: "items", title: "아이템" },
+      { path: "trash", title: "휴지통" },
     ];
+    // const headers = [
+    //   "achievement",
+    //   "attendance",
+    //   "banner",
+    //   "shop",
+    //   "items",
+    //   "trash",
+    // ];
     return { headers };
   },
 
