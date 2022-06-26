@@ -9,6 +9,16 @@
           :key="quest"
           :class="quest.status"
         >
+          <img
+            v-if="quest.status !== 'READY'"
+            class="status_icon"
+            src="../../assets/image/complete.png"
+          />
+          <img
+            v-else
+            class="status_icon"
+            src="../../assets/image/incomplete.png"
+          />
           <div class="quest_content">
             <div class="quest_inner">
               <span class="quest_title">{{ quest.title }}</span>
@@ -54,7 +64,7 @@ export default defineComponent({
   },
   methods: {
     addItem(questId: string): void {
-      const newQuest = this.quests.find((quest) => quest.id === questId);
+      const newQuest = this.quests.find(quest => quest.id === questId);
       if (newQuest) {
         this.changeQuestState(newQuest);
         store.dispatch("setItem", newQuest.reward);
@@ -96,18 +106,22 @@ export default defineComponent({
 
   .quest_main_container {
     overflow-y: auto;
-    height: 400px;
-    padding-top: 40%;
+    height: 300px;
+    margin-top: 17%;
 
     .quest_container {
+      background-size: 800px 80px;
+      background-image: url("../../assets/image/quest_bg.png");
       display: flex;
       height: 80px;
-      width: 900px;
-      border: 1px solid;
+      width: 800px;
       margin-bottom: 10px;
       align-items: center;
       justify-content: center;
 
+      .status_icon {
+        padding-left: 3%;
+      }
       .quest_content {
         display: flex;
         flex-direction: column;
