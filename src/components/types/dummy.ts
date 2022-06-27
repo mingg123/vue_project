@@ -1,22 +1,25 @@
 import { Attendance, Item, Quest } from "@/components/types/index";
 import { uuid } from "vue-uuid";
 
+const now = new Date();
+export const dummyDate = now.getDate();
+
 export const dummyItem: Item[] = [
   {
     id: uuid.v1(),
     code: "1",
     type: "ITEM",
-    name: "물약",
-    amount: 1,
+    name: "quartz",
+    amount: 100,
     imageUrl:
       "https://qa-eve.nexon.com/eve/ui/images/konosuba/achievement/honeyItem/quartz_100.png",
   },
   {
     id: uuid.v1(),
     code: "2",
-    type: "BALANCE",
-    name: "골드 3000",
-    amount: 3000,
+    type: "ITEM",
+    name: "beef",
+    amount: 1,
     imageUrl:
       "https://qa-eve.nexon.com/eve/ui/images/konosuba/achievement/honeyItem/stemina_beef_1.png",
   },
@@ -24,8 +27,8 @@ export const dummyItem: Item[] = [
     id: uuid.v1(),
     code: "3",
     type: "ITEM",
-    name: "루비 2000",
-    amount: 2000,
+    name: "beef",
+    amount: 1,
     imageUrl:
       "https://qa-eve.nexon.com/eve/ui/images/konosuba/achievement/honeyItem/stemina_beef_1.png",
   },
@@ -34,7 +37,7 @@ export const dummyItem: Item[] = [
     code: "4",
     type: "ITEM",
     name: "티켓",
-    amount: 2,
+    amount: 20,
     imageUrl:
       "https://qa-eve.nexon.com/eve/ui/images/konosuba/achievement/honeyItem/skip_ticket_20.png",
   },
@@ -42,17 +45,17 @@ export const dummyItem: Item[] = [
     id: uuid.v1(),
     code: "5",
     type: "ITEM",
-    name: "스킬 포션",
-    amount: 1,
+    name: "티켓",
+    amount: 10,
     imageUrl:
       "https://qa-eve.nexon.com/eve/ui/images/konosuba/achievement/honeyItem/skip_ticket_10.png",
   },
   {
     id: uuid.v1(),
     code: "6",
-    type: "ITEM",
-    name: "스킬 포션",
-    amount: 1,
+    type: "BALANCE",
+    name: "재화",
+    amount: 50000,
     imageUrl:
       "https://qa-eve.nexon.com/eve/ui/images/konosuba/attendance/specialBonus28Day/eris_50000.png",
   },
@@ -60,8 +63,8 @@ export const dummyItem: Item[] = [
     id: uuid.v1(),
     code: "7",
     type: "ITEM",
-    name: "스킬 포션",
-    amount: 1,
+    name: "포션",
+    amount: 5,
     imageUrl:
       "https://qa-eve.nexon.com/eve/ui/images/konosuba/attendance/specialBonus28Day/power_potion_big_5.png",
   },
@@ -163,7 +166,7 @@ export const dummyQuest: Quest[] = [
   //   status: "RUNNING",
   // },
 ];
-dummyQuest.map((at) => (at.reward.id = uuid.v1()));
+dummyQuest.map(at => (at.reward.id = uuid.v1()));
 
 export const dummyTwoWeekAttandance: Attendance[] =
   createDummyData(dummyAttendance);
@@ -172,17 +175,24 @@ export const dummyMonthAttandance: Attendance[] = createDummyData(
   dummyTwoWeekAttandance
 );
 
+// 7일 데이터로 14, 28일 만듬.
+// 임의로 오늘 날짜 이후의 날(day) 같은 경우에는 보상받을 수 없도록 status 지정
 function createDummyData(dummy: Attendance[]): Attendance[] {
   const newAttadance: Attendance[] = (
     JSON.parse(JSON.stringify(dummy.concat(dummy))) as Omit<
       Attendance,
       "attandanceId" | "status"
     >[]
-  ).map((attendance) => ({
+  ).map(attendance => ({
     ...attendance,
     status: "READY",
     attandanceId: uuid.v1(),
   }));
-  newAttadance.map((at) => (at.reward.id = uuid.v1()));
+  newAttadance.map((at, idx) => {
+    if (idx + 1 > dummyDate) {
+      at.status = "RUNNING";
+    }
+    at.reward.id = uuid.v1();
+  });
   return newAttadance;
 }

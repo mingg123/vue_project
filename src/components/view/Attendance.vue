@@ -32,7 +32,7 @@
             <button
               :style="{ width: '110px', height: '30px', border: 0, outline: 0 }"
               @click="addItem(attancance.attandanceId)"
-              :disabled="isFinishAttandance(attancance)"
+              :disabled="isFinishAttandance(attancance) || getItemPopup"
               :class="attancance.status.toLowerCase()"
             ></button>
           </div>
@@ -53,7 +53,6 @@ import {
   dummyTwoWeekAttandance,
 } from "../types/dummy";
 import { Attendance, Item, VueEvent } from "@/components/types";
-import EventPeriodBanner from "@/components/utils/EventPeriodBanner.vue";
 import { mapGetters, useStore } from "vuex";
 import store from "@/store";
 import ItemZone from "@/components/utils/ItemZone.vue";
@@ -70,12 +69,13 @@ export default defineComponent({
     const days: string[] = ["7일", "14일", "28일"];
 
     const clickedItem: Item | null = null;
+
     return { attandanceInfo, days, clickedItem };
   },
   methods: {
     addItem(attandanceId: string): void {
       const newAttandance = this.attandanceInfo.find(
-        (attandance) => attandance.attandanceId === attandanceId
+        attandance => attandance.attandanceId === attandanceId
       );
       if (newAttandance) {
         this.changeAttandanceState(newAttandance);
@@ -121,9 +121,9 @@ export default defineComponent({
   },
 });
 </script>
+
 <style lang="scss">
 @import "../../assets/scss/index.scss";
-
 .at_wrap {
   background-image: url("../../assets/image/attendance/bg_28days.png");
   height: 100%;
@@ -136,7 +136,7 @@ export default defineComponent({
   .at_container {
     overflow-y: auto;
     height: 320px;
-    margin-top: 16%;
+    margin-top: 20%;
   }
 
   .at_container::-webkit-scrollbar {
@@ -154,9 +154,9 @@ export default defineComponent({
   }
 
   .select_container {
-    padding-right: 2.5%;
-    margin-left: auto;
-
+    position: absolute;
+    left: 10%;
+    top: 23%;
     .day_select {
       width: 120px;
       height: 30px;
