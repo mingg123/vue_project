@@ -88,7 +88,7 @@ export default defineComponent({
 @import "../../assets/scss/index.scss";
 
 .ac_wrap {
-  background-image: url("../../assets/image/bg_honeyitem_202109.png");
+  background-image: url("../../assets/image/achievement/bg_honeyitem_ko.png");
   height: 100%;
   background-size: $background_image_width $background_image_height;
 
