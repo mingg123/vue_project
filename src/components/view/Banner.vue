@@ -8,22 +8,14 @@
         <a href="https://www.naver.com/">
           <img src="../../assets/image/banner_btn_adventurer_support.png" />
         </a>
-        <!--        <StyledButton-->
-        <!--          label="9900원"-->
-        <!--          :bgColor="'#FFD200'"-->
-        <!--          width="180"-->
-        <!--          height="50"-->
-        <!--          link="goDirect"-->
-        <!--        />-->
       </div>
     </div>
-    <a href="" class="cancellation-btn"> [청약 철회 규정 보기] </a>
+    <a href="" class="cancellation-btn">[청약 철회 규정 보기]</a>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import StyledButton from "@/components/utils/StyledButton.vue";
 import EventPeriodBanner from "@/components/utils/EventPeriodBanner.vue";
 
 export default defineComponent({

@@ -1,7 +1,4 @@
-<template>
-  Trash
-  <img :src="dummy[0].imageUrl" />
-</template>
+<template>Trash</template>
 
 <script lang="ts">
 import { defineComponent } from "vue";

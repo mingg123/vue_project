@@ -70,7 +70,7 @@ export default defineComponent({
   },
   methods: {
     addItem(questId: string): void {
-      const newQuest = this.quests.find((quest) => quest.id === questId);
+      const newQuest = this.quests.find(quest => quest.id === questId);
       if (newQuest && newQuest.status === "READY") {
         this.changeQuestState(newQuest);
         store.dispatch("setItem", newQuest.reward);

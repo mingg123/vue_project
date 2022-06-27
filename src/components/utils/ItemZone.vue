@@ -5,7 +5,6 @@
     :alt="item.id"
     :src="item.imageUrl"
   />
-  <!--    :src="require(`../../assets/image/` + item.imageUrl)"-->
 </template>
 
 <script lang="ts">

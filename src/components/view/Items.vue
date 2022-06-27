@@ -1,5 +1,11 @@
 <template>
-  <div class="at_wrap" style="align-items: flex-start">
+  <div
+    class="at_wrap"
+    :style="{
+      alignItems: 'flex-start',
+      backgroundImage: 'none',
+    }"
+  >
     <div class="select_container">
       <select class="day_select" @change="onChangeSortOption($event)">
         <option v-for="option in sortOptions" :value="option" :key="option">
@@ -10,7 +16,15 @@
     <div class="item_frame">
       <div class="at_frame" style="justify-content: flex-start">
         <div v-for="item in getItems" :key="item.id">
-          <div class="at_container" style="height: 150px">
+          <div
+            class="at_container"
+            :style="{
+              marginLeft: '10%',
+              width: '150px',
+              display: 'flex',
+              flexDirection: 'column',
+            }"
+          >
             <ItemZone :item="item" />
             <span>X {{ item.amount }}</span>
             <button @click="removeItem(item.id)">삭제</button>
@@ -21,7 +35,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" scope>
 import { defineComponent } from "vue";
 import { mapGetters, useStore } from "vuex";
 import { VueEvent } from "@/components/types";
@@ -50,9 +64,14 @@ export default defineComponent({
 });
 </script>
 <style lang="scss">
-.item_frame {
+.item_wrap {
   display: flex;
   flex-direction: column;
-  padding-left: 1.5%;
+  align-items: center;
+  .item_frame {
+    display: flex;
+    flex-direction: column;
+    padding-left: 1.5%;
+  }
 }
 </style>

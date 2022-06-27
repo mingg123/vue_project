@@ -19,16 +19,14 @@ export interface Item {
   imageUrl: string;
 }
 
-type AttandanceStatusType = "READY" | "FINISH";
-
 export interface Attendance {
   attandanceId: string;
-  status: AttandanceStatusType;
+  status: QuestStatusType;
   day: number;
   reward: Item;
 }
 
-export type QuestStatusType = AttandanceStatusType | "RUNNING";
+export type QuestStatusType = "READY" | "FINISH" | "RUNNING";
 
 export interface Quest {
   id: string;

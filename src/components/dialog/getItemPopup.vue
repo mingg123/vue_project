@@ -3,11 +3,7 @@
     <h1 style="flex: 1">알림</h1>
 
     <div v-if="item" class="item_container">
-      <img
-        class="item_img"
-        :src="require(`../../assets/image/` + item.imageUrl)"
-      />
-      <!--      <div>{{ item }}</div>-->
+      <img class="item_img" :src="item.imageUrl" />
     </div>
     <button class="close_btn" @click="onClose">확인</button>
   </div>
