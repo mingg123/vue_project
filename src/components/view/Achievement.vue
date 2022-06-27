@@ -1,7 +1,13 @@
 <template>
   <div class="ac_wrap">
+    <div class="event_wrap">
+      <EventPeriodBanner
+        :startDate="'2022/06/01'"
+        :endDate="'12/31'"
+        :color="'#8B4513'"
+      />
+    </div>
     <div class="ac_container">
-      <EventPeriodBanner :startDate="'2022/06/14'" :endDate="'06/27'" />
       <div class="quest_main_container">
         <div
           class="quest_container"
@@ -12,12 +18,12 @@
           <img
             v-if="quest.status !== 'READY'"
             class="status_icon"
-            src="../../assets/image/complete.png"
+            src="../../assets/image/incomplete.png"
           />
           <img
             v-else
             class="status_icon"
-            src="../../assets/image/incomplete.png"
+            src="../../assets/image/complete.png"
           />
           <div class="quest_content">
             <div class="quest_inner">
@@ -29,14 +35,14 @@
             <ItemZone v-if="quest.reward" :item="quest.reward" />
           </div>
           <div class="quest_btn">
-            <button
-              class="quest_btn_inner"
-              :class="'btn_' + quest.status"
-              :disabled="quest.status !== 'READY'"
+            <img
+              :src="
+                require('../../assets/image/btn_reward_' +
+                  quest.status.toLowerCase() +
+                  '.png')
+              "
               @click="addItem(quest.id)"
-            >
-              {{ getQuestState(quest.status) }}
-            </button>
+            />
           </div>
         </div>
       </div>
@@ -47,7 +53,7 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import EventPeriodBanner from "@/components/utils/EventPeriodBanner.vue";
-import { Item, Quest, QuestStatusType } from "@/components/types";
+import { Quest } from "@/components/types";
 import { dummyQuest } from "@/components/types/dummy";
 import ItemZone from "@/components/utils/ItemZone.vue";
 import store from "@/store";
@@ -64,24 +70,16 @@ export default defineComponent({
   },
   methods: {
     addItem(questId: string): void {
-      const newQuest = this.quests.find(quest => quest.id === questId);
-      if (newQuest) {
+      const newQuest = this.quests.find((quest) => quest.id === questId);
+      if (newQuest && newQuest.status === "READY") {
         this.changeQuestState(newQuest);
         store.dispatch("setItem", newQuest.reward);
+        console.log(this.quests);
       }
     },
 
     changeQuestState(quest: Quest) {
       quest.status = "FINISH";
-    },
-    getQuestState(stats: QuestStatusType): string {
-      if (stats === "READY") {
-        return "보상받기";
-      } else if (stats === "RUNNING") {
-        return "진행 중";
-      } else {
-        return "지급완료";
-      }
     },
   },
 });
@@ -94,20 +92,21 @@ export default defineComponent({
   height: 100%;
   background-size: $background_image_width $background_image_height;
 
+  .event_wrap {
+    padding-left: $event_period_padding_left;
+    position: absolute;
+  }
+
   .ac_container {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  .READY {
-    background-color: #d2e1ff;
-  }
-
   .quest_main_container {
     overflow-y: auto;
     height: 300px;
-    margin-top: 17%;
+    margin-top: 22%;
 
     .quest_container {
       background-size: 800px 80px;
@@ -122,10 +121,11 @@ export default defineComponent({
       .status_icon {
         padding-left: 3%;
       }
+
       .quest_content {
         display: flex;
         flex-direction: column;
-        flex: 8;
+        flex: 7;
 
         .quest_inner {
           display: flex;
@@ -151,13 +151,6 @@ export default defineComponent({
         width: 120px;
         height: 40px;
         font-weight: bold;
-      }
-
-      .btn_READY {
-        color: white;
-        background-color: royalblue;
-        border-width: 1px;
-        box-shadow: 1px 1px 1px 1px;
       }
     }
   }

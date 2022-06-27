@@ -28,7 +28,7 @@ import EventPeriodBanner from "@/components/utils/EventPeriodBanner.vue";
 
 export default defineComponent({
   name: "Banner",
-  components: { EventPeriodBanner, StyledButton },
+  components: { EventPeriodBanner },
   setup() {},
   methods: {},
 });
@@ -44,7 +44,7 @@ export default defineComponent({
   z-index: 1;
 
   .event_wrap {
-    padding-left: 5%;
+    padding-left: $event_period_padding_left;
     position: absolute;
   }
 

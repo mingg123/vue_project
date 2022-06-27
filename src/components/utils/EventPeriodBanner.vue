@@ -1,5 +1,7 @@
 <template>
-  <h1 class="title">이벤트 기간 : {{ startDate }} ~ {{ endDate }}</h1>
+  <h1 class="title" :style="{ color: color }">
+    이벤트 기간 : {{ startDate }} ~ {{ endDate }}
+  </h1>
 </template>
 
 <script lang="ts">
@@ -10,8 +12,9 @@ export default defineComponent({
   props: {
     startDate: String,
     endDate: String,
+    color: String,
   },
-  data() {},
+  setup() {},
   methods: {},
 });
 </script>

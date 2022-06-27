@@ -3,8 +3,9 @@
     class="at_image"
     style="height: 50px"
     :alt="item.id"
-    :src="require(`../../assets/image/` + item.imageUrl)"
+    :src="item.imageUrl"
   />
+  <!--    :src="require(`../../assets/image/` + item.imageUrl)"-->
 </template>
 
 <script lang="ts">
