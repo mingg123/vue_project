@@ -53,7 +53,8 @@ export const dummyItem: Item[] = [
     type: "ITEM",
     name: "스킬 포션",
     amount: 1,
-    imageUrl: "ticket.png",
+    imageUrl:
+      "https://qa-eve.nexon.com/eve/ui/images/konosuba/attendance/specialBonus28Day/eris_50000.png",
   },
   {
     id: uuid.v1(),
@@ -61,7 +62,8 @@ export const dummyItem: Item[] = [
     type: "ITEM",
     name: "스킬 포션",
     amount: 1,
-    imageUrl: "ticket.png",
+    imageUrl:
+      "https://qa-eve.nexon.com/eve/ui/images/konosuba/attendance/specialBonus28Day/power_potion_big_5.png",
   },
 ];
 
