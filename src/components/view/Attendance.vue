@@ -20,10 +20,19 @@
           >
             <div class="at_day">{{ idx + 1 }} 일</div>
             <ItemZone :item="attancance.reward" />
+            <img
+              v-if="isFinishAttandance(attancance)"
+              src="../../assets/image/attendance/stamp.png"
+              :style="{
+                position: 'absolute',
+                paddingTop: '20%',
+                paddingRight: '40%',
+              }"
+            />
             <button
               :style="{ width: '110px', height: '30px', border: 0, outline: 0 }"
               @click="addItem(attancance.attandanceId)"
-              :disabled="attancance.status === 'FINISH'"
+              :disabled="isFinishAttandance(attancance)"
               :class="attancance.status.toLowerCase()"
             ></button>
           </div>
@@ -54,7 +63,7 @@ type days = "7일" | "14일" | "28일";
 
 export default defineComponent({
   name: "Attendance",
-  components: { getItemPopup, ItemZone, EventPeriodBanner },
+  components: { getItemPopup, ItemZone },
   setup() {
     const store = useStore();
     const attandanceInfo = ref<Attendance[]>(dummyAttendance);
@@ -66,7 +75,7 @@ export default defineComponent({
   methods: {
     addItem(attandanceId: string): void {
       const newAttandance = this.attandanceInfo.find(
-        attandance => attandance.attandanceId === attandanceId
+        (attandance) => attandance.attandanceId === attandanceId
       );
       if (newAttandance) {
         this.changeAttandanceState(newAttandance);
@@ -103,17 +112,11 @@ export default defineComponent({
         return "";
       }
     },
+    isFinishAttandance(attandance: Attendance): boolean {
+      return attandance.status === "FINISH" ? true : false;
+    },
   },
   computed: {
-    // addItemClass(idx: number): string | null {
-    //   if (idx === 28) {
-    //     return "_28";
-    //   } else if (idx % 7 === 0) {
-    //     return "_7";
-    //   } else {
-    //     return null;
-    //   }
-    // },
     ...mapGetters(["getItemPopup", "getClickedItem"]),
   },
 });
@@ -135,6 +138,7 @@ export default defineComponent({
     height: 320px;
     margin-top: 16%;
   }
+
   h1 {
     color: darkblue;
   }
@@ -171,6 +175,7 @@ export default defineComponent({
       width: 110px;
       height: 130px;
       margin: 5px;
+      position: relative;
 
       .at_day {
         display: flex;
@@ -178,7 +183,6 @@ export default defineComponent({
         align-items: flex-start;
         flex: 1;
         width: 100%;
-
         color: white;
         font-weight: bold;
       }
@@ -196,10 +200,12 @@ export default defineComponent({
     background-image: url("../../assets/image/attendance/btn_finish_28days.png");
     background-size: 110px 30px;
   }
+
   .running {
     background-image: url("../../assets/image/attendance/btn_running_28days.png");
     background-size: 110px 30px;
   }
+
   .ready {
     background-image: url("../../assets/image/attendance/btn_ready_28days.png");
     background-size: 110px 30px;
@@ -207,9 +213,9 @@ export default defineComponent({
 }
 
 .popup_wrap {
-  position: fixed;
+  position: absolute;
   z-index: 9998;
   top: 20%;
-  left: 40%;
+  left: 30%;
 }
 </style>
