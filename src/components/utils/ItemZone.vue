@@ -1,7 +1,7 @@
 <template>
   <img
     class="at_image"
-    style="height: 50px"
+    :style="{ height: height }"
     :alt="item.id"
     :src="item.imageUrl"
   />
@@ -15,6 +15,10 @@ export default defineComponent({
   name: "ItemZone",
   props: {
     item: Object as PropType<Item>,
+    height: {
+      type: String,
+      default: "50px",
+    },
   },
   setup() {},
   methods: {},

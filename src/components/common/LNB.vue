@@ -2,8 +2,8 @@
   <div class="lnb_wrap">
     <div v-for="header in headers" :key="header">
       <li class="lnb_container">
-        <router-link :to="{ path: header.path }"
-          >{{ header.title }}
+        <router-link :to="{ path: header.path }">
+          {{ header.title }}
         </router-link>
       </li>
     </div>
@@ -24,14 +24,7 @@ export default defineComponent({
       { path: "items", title: "아이템" },
       { path: "trash", title: "휴지통" },
     ];
-    // const headers = [
-    //   "achievement",
-    //   "attendance",
-    //   "banner",
-    //   "shop",
-    //   "items",
-    //   "trash",
-    // ];
+
     return { headers };
   },
 
@@ -50,6 +43,7 @@ export default defineComponent({
     justify-content: center;
     align-items: center;
     color: #2fd4b6;
+    border-bottom: 0.5px solid #2fd4b6;
 
     a {
       width: 100%;

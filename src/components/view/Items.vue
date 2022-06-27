@@ -6,29 +6,32 @@
       backgroundImage: 'none',
     }"
   >
-    <div class="select_container">
+    <div class="itemSelect_container">
       <select class="day_select" @change="onChangeSortOption($event)">
         <option v-for="option in sortOptions" :value="option" :key="option">
           {{ option }}
         </option>
       </select>
     </div>
-    <div class="item_frame">
-      <div class="at_frame" style="justify-content: flex-start">
-        <div v-for="item in getItems" :key="item.id">
-          <div
-            class="at_container"
-            :style="{
-              marginLeft: '10%',
-              width: '150px',
-              display: 'flex',
-              flexDirection: 'column',
-            }"
-          >
-            <ItemZone :item="item" />
-            <span>X {{ item.amount }}</span>
-            <button @click="removeItem(item.id)">삭제</button>
-          </div>
+    <div class="item_frame" :style="{ display: 'flex', gap: '3%' }">
+      <div
+        class="at_frame"
+        :style="{ justifyContent: 'flex-start', width: '150px' }"
+        v-for="item in getItems"
+        :key="item.id"
+      >
+        <div
+          class="at_container"
+          :style="{
+            marginLeft: '10%',
+            width: '100px',
+            height: '150px',
+            display: 'flex',
+            flexDirection: 'column',
+          }"
+        >
+          <ItemZone :item="item" :height="'80px'" />
+          <button @click="removeItem(item.id)">삭제</button>
         </div>
       </div>
     </div>
@@ -63,14 +66,20 @@ export default defineComponent({
   },
 });
 </script>
-<style lang="scss">
+<style lang="scss" scope>
+.itemSelect_container {
+  .day_select {
+    width: 120px;
+    height: 30px;
+  }
+}
 .item_wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
   .item_frame {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     padding-left: 1.5%;
   }
 }
