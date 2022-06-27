@@ -139,7 +139,11 @@ export default defineComponent({
     margin-top: 16%;
   }
 
-  h1 {
+  .at_container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .at_container h1 {
     color: darkblue;
   }
 
