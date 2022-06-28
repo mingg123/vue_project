@@ -1,5 +1,8 @@
 <template>
-  <div class="ac_wrap">
+  <div
+    class="ac_wrap"
+    :style="{ backgroundImage: 'url(' + backgroundImageUrl + ')' }"
+  >
     <div class="event_wrap">
       <EventPeriodBanner
         :startDate="'2022/06/01'"
@@ -37,7 +40,7 @@
           <div class="quest_btn">
             <img
               :src="
-                require('../../assets/image/btn_reward_' +
+                require(`../../assets/image/achievement/ko/btn_reward_` +
                   quest.status.toLowerCase() +
                   '.png')
               "
@@ -66,11 +69,14 @@ export default defineComponent({
   },
   setup() {
     const quests = ref<Quest[]>(dummyQuest);
-    return { quests };
+    const localLang = store.getters.getLocalLang;
+    const backgroundImageUrl = require(`../../assets/image/achievement/${localLang}/bg_honeyitem.png`);
+    const questBtnImageUrl = `../../assets/image/achievement/${localLang}/btn_reward_`;
+    return { quests, backgroundImageUrl, localLang, questBtnImageUrl };
   },
   methods: {
     addItem(questId: string): void {
-      const newQuest = this.quests.find((quest) => quest.id === questId);
+      const newQuest = this.quests.find(quest => quest.id === questId);
       if (newQuest && newQuest.status === "READY") {
         this.changeQuestState(newQuest);
         store.dispatch("setItem", newQuest.reward);
@@ -88,7 +94,7 @@ export default defineComponent({
 @import "../../assets/scss/index.scss";
 
 .ac_wrap {
-  background-image: url("../../assets/image/achievement/bg_honeyitem_ko.png");
+  background-image: url("../../assets/image/achievement/ko/bg_honeyitem.png");
   height: 100%;
   background-size: $background_image_width $background_image_height;
 
