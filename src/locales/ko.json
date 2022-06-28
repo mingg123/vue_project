@@ -12,5 +12,17 @@
   "buy_label": "구매 하러 가기",
   "attadance": {
     "day": "일"
+  },
+  "achievement": {
+    "login_title": "게임 접속",
+    "login_subtitle": "매일 게임 접속 시 아이템 지급",
+    "arena_title": "아레나 참여 1회",
+    "arena_subtitle": "매일 아레나 참여 1회 완료 시 아이템 지급",
+    "quest_title": "메인 퀘스트 노멀 20회",
+    "quest_subtitle": "매일 메인 퀘스트 노멀 완료 시 아이템 지급",
+    "hard_title": "메인 퀘스트 하드 10회",
+    "hard_subtitle": "매일 메인 퀘스트 하드 완료 시 아이템 지급",
+    "free_title": "프리퀘스트 8회",
+    "free_subtitle": "매일 프리퀘스트 완료 시 아이템 지급"
   }
 }

@@ -30,8 +30,10 @@
           />
           <div class="quest_content">
             <div class="quest_inner">
-              <span class="quest_title">{{ quest.title }}</span>
-              <span>{{ quest.subTitle }}</span>
+              <span class="quest_title">
+                {{ $t(`achievement.${quest.title}`) }}
+              </span>
+              <span>{{ $t(`achievement.${quest.subTitle}`) }}</span>
             </div>
           </div>
           <div class="quest_item">
@@ -40,9 +42,7 @@
           <div class="quest_btn">
             <img
               :src="
-                require(`../../assets/image/achievement/ko/btn_reward_` +
-                  quest.status.toLowerCase() +
-                  '.png')
+                require(`../../assets/image/achievement/${localLang}/btn_reward_${quest.status.toLowerCase()}.png`)
               "
               @click="addItem(quest.id)"
             />
@@ -60,6 +60,7 @@ import { Quest } from "@/components/types";
 import { dummyQuest } from "@/components/types/dummy";
 import ItemZone from "@/components/utils/ItemZone.vue";
 import store from "@/store";
+import { useI18n } from "vue-i18n";
 
 export default defineComponent({
   name: "Achievement",
@@ -71,8 +72,8 @@ export default defineComponent({
     const quests = ref<Quest[]>(dummyQuest);
     const localLang = store.getters.getLocalLang;
     const backgroundImageUrl = require(`../../assets/image/achievement/${localLang}/bg_honeyitem.png`);
-    const questBtnImageUrl = `../../assets/image/achievement/${localLang}/btn_reward_`;
-    return { quests, backgroundImageUrl, localLang, questBtnImageUrl };
+    const t = useI18n();
+    return { quests, backgroundImageUrl, localLang, t };
   },
   methods: {
     addItem(questId: string): void {

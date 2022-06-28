@@ -12,5 +12,17 @@
   "buy_label": "buy",
   "attadance": {
     "day": "day"
+  },
+  "achievement": {
+    "login_title": "Log-in",
+    "login_subtitle": "Log in daily for rewards",
+    "arena_title": "Participate in the Arena 1 times",
+    "arena_subtitle": "Participate in the Arena for daily rewards",
+    "quest_title": "MORMAL Main Quests 20 times",
+    "quest_subtitle": "Complete MORMAL Main Quests for daily rewards",
+    "hard_title": "HARD Main Quests 10 times",
+    "hard_subtitle": "Complete HARD Main Quests for daily rewards",
+    "free_title": "Free Quests 8 times",
+    "free_subtitle": "Complete Free Quests for daily rewards"
   }
 }
