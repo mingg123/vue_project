@@ -1,5 +1,5 @@
 import { createStore } from "vuex";
-import { day, Item } from "@/components/types";
+import { day, Item, languageJson } from "@/components/types";
 
 export interface RootState {
   isShowPopup: boolean;
@@ -7,6 +7,7 @@ export interface RootState {
   showItemPopup: boolean;
   clickedItem: Item | null;
   selectedAttendanceDay: day;
+  localLang: languageJson;
 }
 
 // 타입 추론이 되지 않는 문제
@@ -22,7 +23,8 @@ export default createStore<RootState>({
     items: [],
     showItemPopup: false,
     clickedItem: null,
-    selectedAttendanceDay: "28일",
+    selectedAttendanceDay: "28",
+    localLang: "ko",
   },
   getters: {
     getIsShowPopup(state): boolean {
@@ -39,6 +41,9 @@ export default createStore<RootState>({
     },
     getSelectedAttedanceDay(state): day {
       return state.selectedAttendanceDay;
+    },
+    getLocalLang(state): languageJson {
+      return state.localLang;
     },
   },
   mutations: {
@@ -60,6 +65,9 @@ export default createStore<RootState>({
     SET_SELECTED_ATTENDANCE_DAY(state, day: day) {
       state.selectedAttendanceDay = day;
     },
+    SET_LOCAL_LANG(state, lang) {
+      state.localLang = lang;
+    },
   },
   actions: {
     setIsShowPopup({ commit }, open) {
@@ -79,6 +87,9 @@ export default createStore<RootState>({
     },
     setSelectedAttedanceDay({ commit }, day) {
       commit("SET_SELECTED_ATTENDANCE_DAY", day);
+    },
+    setLocalLang({ commit }, lang) {
+      commit("SET_LOCAL_LANG", lang);
     },
   },
 });

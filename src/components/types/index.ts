@@ -8,7 +8,14 @@ export namespace VueEvent {
   }
 }
 
-export type day = "7일" | "14일" | "28일";
+export type day = "7" | "14" | "28";
+export type language = "English" | "Korean";
+export type languageJson = "en" | "ko";
+
+export enum Language {
+  en = "English",
+  ko = "Korean",
+}
 
 type ItemType = "BALANCE" | "ITEM";
 

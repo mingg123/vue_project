@@ -3,39 +3,47 @@
     <h1>{{ $t("language_setting") }}</h1>
     <div class="select_wrap">
       <h2 class="subTitle">{{ $t("lang_select") }}</h2>
-      <select class="select_inner" @change="onChangeLang($event)">
+      <select
+        v-model="selectedValue"
+        class="select_inner"
+        @change="onChangeLang($event)"
+      >
         <option v-for="(lang, idx) in langs" :key="`Lang${idx}`" :value="lang">
-          {{ lang }}
+          <!-- {{ lang }} -->
+          {{ getLagnuageType(lang) }}
         </option>
       </select>
     </div>
   </div>
 </template>
 <script lang="ts">
-import { defineComponent } from "@vue/runtime-core";
+import store from "@/store";
+import { defineComponent, ref } from "@vue/runtime-core";
 import { useI18n } from "vue-i18n";
-import { VueEvent } from "../types";
-
-type language = "English" | "Korean";
-type languageJson = "en" | "ko";
+import { Language, language, languageJson, VueEvent } from "../types";
 
 export default defineComponent({
   name: "Setting",
   setup() {
     const t = useI18n();
-    return { langs: ["English", "Korean"], t };
+
+    const selectedValue = ref(store.getters.getLocalLang);
+    return { langs: ["en", "ko"], t, selectedValue };
   },
   methods: {
-    getLagnuageType(lang: language): languageJson {
-      if (lang === "English") {
-        return "en";
-      } else {
-        return "ko";
+    onChangeLang(event: VueEvent.Input<HTMLSelectElement>) {
+      const lang = event.target.value as languageJson;
+      if (lang) {
+        this.$i18n.locale = lang;
+        store.dispatch("setLocalLang", lang);
       }
     },
-    onChangeLang(event: VueEvent.Input<HTMLSelectElement>) {
-      const lang = event.target.value as language;
-      if (lang) this.$i18n.locale = this.getLagnuageType(lang);
+    getLagnuageType(lang: languageJson): language {
+      if (lang === "en") {
+        return "English";
+      } else {
+        return "Korean";
+      }
     },
   },
 });

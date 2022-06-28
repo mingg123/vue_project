@@ -2,11 +2,11 @@
   <div class="at_wrap">
     <div class="select_container">
       <select class="day_select" @change="onChangeDay($event)">
-        <option value="selectedAttedanceDay" disabled selected>
-          {{ selectedAttedanceDay }}
+        <option value="selectedAttedanceDay">
+          {{ selectedAttedanceDay }} {{ $t("attadance.day") }}
         </option>
         <option v-for="day in newDay" :value="day" :key="day">
-          {{ day }} {{ $t("day") }}
+          {{ day }} {{ $t("attadance.day") }}
         </option>
       </select>
     </div>
@@ -69,12 +69,12 @@ export default defineComponent({
     const attandanceInfo = ref<Attendance[]>(
       getDummyDataFromDay(selectedAttedanceDay)
     );
-    const days: string[] = ["28일", "14일", "7일"];
+    const days: string[] = ["28", "14", "7"];
 
     const clickedItem: Item | null = null;
 
     const newDay = computed(() =>
-      days.filter(day => day !== selectedAttedanceDay).sort()
+      days.filter(day => day !== selectedAttedanceDay)
     );
     return {
       attandanceInfo,
