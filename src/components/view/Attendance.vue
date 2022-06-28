@@ -2,8 +2,11 @@
   <div class="at_wrap">
     <div class="select_container">
       <select class="day_select" @change="onChangeDay($event)">
-        <option v-for="day in days" :value="day" :key="day">
-          {{ day }}
+        <option value="selectedAttedanceDay" disabled selected>
+          {{ selectedAttedanceDay }}
+        </option>
+        <option v-for="day in newDay" :value="day" :key="day">
+          {{ day }} {{ $t("day") }}
         </option>
       </select>
     </div>
@@ -46,31 +49,41 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-import {
-  dummyAttendance,
-  dummyMonthAttandance,
-  dummyTwoWeekAttandance,
-} from "../types/dummy";
-import { Attendance, Item, VueEvent } from "@/components/types";
+import { defineComponent, ref, computed } from "vue";
+import { getDummyDataFromDay } from "../types/dummy";
+import { Attendance, day, Item, VueEvent } from "@/components/types";
 import { mapGetters, useStore } from "vuex";
 import store from "@/store";
 import ItemZone from "@/components/utils/ItemZone.vue";
 import getItemPopup from "@/components/dialog/getItemPopup.vue";
-
-type days = "7일" | "14일" | "28일";
+import { useI18n } from "vue-i18n";
 
 export default defineComponent({
   name: "Attendance",
   components: { getItemPopup, ItemZone },
   setup() {
     const store = useStore();
-    const attandanceInfo = ref<Attendance[]>(dummyAttendance);
-    const days: string[] = ["7일", "14일", "28일"];
+    const t = useI18n();
+    // const attandanceInfo = ref<Attendance[]>(dummyAttendance);
+    const selectedAttedanceDay = store.getters.getSelectedAttedanceDay;
+    const attandanceInfo = ref<Attendance[]>(
+      getDummyDataFromDay(selectedAttedanceDay)
+    );
+    const days: string[] = ["28일", "14일", "7일"];
 
     const clickedItem: Item | null = null;
 
-    return { attandanceInfo, days, clickedItem };
+    const newDay = computed(() =>
+      days.filter(day => day !== selectedAttedanceDay).sort()
+    );
+    return {
+      attandanceInfo,
+      days,
+      clickedItem,
+      selectedAttedanceDay,
+      newDay,
+      t,
+    };
   },
   methods: {
     addItem(attandanceId: string): void {
@@ -85,19 +98,10 @@ export default defineComponent({
       }
     },
 
-    getDummyDataFromDay(day: days): Attendance[] {
-      if (day === "7일") {
-        return dummyAttendance;
-      } else if (day === "14일") {
-        return dummyTwoWeekAttandance;
-      } else {
-        return dummyMonthAttandance;
-      }
-    },
-
     onChangeDay(e: VueEvent.Input<HTMLSelectElement>) {
-      const clickedDay = e.target.value as days;
-      this.attandanceInfo = this.getDummyDataFromDay(clickedDay);
+      const clickedDay = e.target.value as day;
+      store.dispatch("setSelectedAttedanceDay", clickedDay);
+      this.attandanceInfo = getDummyDataFromDay(clickedDay);
     },
 
     changeAttandanceState(attandance: Attendance): void {
@@ -118,6 +122,9 @@ export default defineComponent({
   },
   computed: {
     ...mapGetters(["getItemPopup", "getClickedItem"]),
+    // getDayOptionList() {
+    //   return (this.days as day).filters(day !== this.selectedAttedanceDay);
+    // },
   },
 });
 </script>

@@ -1,11 +1,12 @@
 <template>
   <h1 class="title" :style="{ color: color }">
-    이벤트 기간 : {{ startDate }} ~ {{ endDate }}
+    {{ $t("event_period") }}: {{ startDate }} ~ {{ endDate }}
   </h1>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { useI18n } from "vue-i18n";
 
 export default defineComponent({
   name: "EventPeriodBanner",
@@ -14,7 +15,10 @@ export default defineComponent({
     endDate: String,
     color: String,
   },
-  setup() {},
+  setup() {
+    const t = useI18n();
+    return { t };
+  },
   methods: {},
 });
 </script>

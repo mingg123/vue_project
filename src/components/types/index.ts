@@ -8,6 +8,8 @@ export namespace VueEvent {
   }
 }
 
+export type day = "7일" | "14일" | "28일";
+
 type ItemType = "BALANCE" | "ITEM";
 
 export interface Item {

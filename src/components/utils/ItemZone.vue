@@ -1,7 +1,7 @@
 <template>
   <img
     class="at_image"
-    :style="{ height: height }"
+    :style="{ height: height, marginRight: '5px' }"
     :alt="item.id"
     :src="item.imageUrl"
   />

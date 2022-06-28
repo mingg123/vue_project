@@ -3,7 +3,7 @@
     class="at_wrap"
     :style="{
       alignItems: 'flex-start',
-      backgroundImage: 'none',
+      backgroundImage: `url(${require('../../assets/image/item/bg_anotherword.png')})`,
     }"
   >
     <div class="itemSelect_container">
@@ -13,10 +13,28 @@
         </option>
       </select>
     </div>
-    <div class="item_frame" :style="{ display: 'flex', gap: '3%' }">
+    <div
+      class="item_frame"
+      :style="{
+        display: 'flex',
+        flexWrap: 'wrap',
+        overflowY: 'auto',
+        justifyContent: 'flex-start',
+        paddingLeft: '10%',
+      }"
+    >
       <div
         class="at_frame"
-        :style="{ justifyContent: 'flex-start', width: '150px' }"
+        :style="{
+          width: '130px',
+          height: '130px',
+          border: '1px solid',
+          marginRight: '20px',
+          marginTop: '20px',
+          backgroundColor: 'bisque',
+          borderRadius: '20%',
+          border: '5px solid #E0904C',
+        }"
         v-for="item in getItems"
         :key="item.id"
       >
@@ -24,13 +42,12 @@
           class="at_container"
           :style="{
             marginLeft: '10%',
-            width: '100px',
-            height: '150px',
             display: 'flex',
             flexDirection: 'column',
+            alignItems: 'center',
           }"
         >
-          <ItemZone :item="item" :height="'80px'" />
+          <ItemZone :item="item" :height="'71px'" />
           <button @click="removeItem(item.id)">삭제</button>
         </div>
       </div>
@@ -73,14 +90,8 @@ export default defineComponent({
     height: 30px;
   }
 }
-.item_wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  .item_frame {
-    display: flex;
-    flex-direction: row;
-    padding-left: 1.5%;
-  }
+
+.item_frame ::-webkit-scrollbar {
+  display: none;
 }
 </style>

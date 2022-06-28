@@ -1,0 +1,16 @@
+{
+  "language_setting": "언어 설정",
+  "lang_select": "언어 선택",
+  "attendance_router": "월간 로그인 보너스",
+  "achievement_router": "이 멋진 세계에 꿀탬을",
+  "banner_router": "성장 부스터 팩",
+  "shop_router": "첫 구매 보너스",
+  "items_router": "아이템",
+  "trash_router": "휴지통",
+  "setting_router": "설정",
+  "event_period": "이벤트 기간",
+  "buy_label": "구매 하러 가기",
+  "attadance": {
+    "day": "일"
+  }
+}

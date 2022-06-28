@@ -1,0 +1,16 @@
+{
+  "language_setting": "Language Setting",
+  "lang_select": "language select",
+  "attendance_router": "Monthly Log-In",
+  "achievement_router": "A gift for adventuresr!",
+  "banner_router": "Growth booster pack",
+  "shop_router": "First Purchase Bonus",
+  "items_router": "Item",
+  "trash_router": "Trash",
+  "setting_router": "Setting",
+  "event_period": "Event Period",
+  "buy_label": "buy",
+  "attadance": {
+    "day": "day"
+  }
+}

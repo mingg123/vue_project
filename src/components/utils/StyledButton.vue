@@ -7,12 +7,14 @@
       width: width + 'px',
       backgroundColor: bgColor,
     }"
-    >{{ label }}</a
   >
+    {{ $t("buy_label") }}
+  </a>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { useI18n } from "vue-i18n";
 
 export default defineComponent({
   name: "StyledButton",
@@ -38,7 +40,10 @@ export default defineComponent({
       default: "/item",
     },
   },
-  setup() {},
+  setup() {
+    const t = useI18n();
+    return { t };
+  },
   methods: {},
 });
 </script>

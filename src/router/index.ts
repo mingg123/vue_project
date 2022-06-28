@@ -5,7 +5,7 @@ import Banner from "@/components/view/Banner.vue";
 import Shop from "@/components/view/Shop.vue";
 import Items from "@/components/view/Items.vue";
 import Trash from "@/components/view/Trash.vue";
-
+import Setting from "@/components/view/Setting.vue";
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/achievement",
@@ -36,6 +36,11 @@ const routes: Array<RouteRecordRaw> = [
     path: "/trash",
     name: "trash",
     component: Trash,
+  },
+  {
+    path: "/setting",
+    name: "setting",
+    component: Setting,
   },
 ];
 const router = createRouter({

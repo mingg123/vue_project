@@ -3,7 +3,7 @@
     <div v-for="header in headers" :key="header">
       <li class="lnb_container">
         <router-link :to="{ path: header.path }">
-          {{ header.title }}
+          {{ $t(header.title) }}
         </router-link>
       </li>
     </div>
@@ -12,17 +12,20 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { useI18n } from "vue-i18n";
 
 export default defineComponent({
   name: "LNB",
   setup() {
+    const t = useI18n();
     const headers = [
-      { path: "achievement", title: "이 멋진 세계에 매일 꿀템을" },
-      { path: "attendance", title: "월간 로그인 보너스" },
-      { path: "banner", title: "성장 부스터 팩" },
-      { path: "shop", title: "첫 구매 보너스" },
-      { path: "items", title: "아이템" },
-      { path: "trash", title: "휴지통" },
+      { path: "achievement", title: "achievement_router" },
+      { path: "attendance", title: "attendance_router" },
+      { path: "banner", title: "banner_router" },
+      { path: "shop", title: "shop_router" },
+      { path: "items", title: "items_router" },
+      { path: "trash", title: "trash_router" },
+      { path: "setting", title: "setting_router" },
     ];
 
     return { headers };

@@ -1,4 +1,4 @@
-import { Attendance, Item, Quest } from "@/components/types/index";
+import { Attendance, day, Item, Quest } from "@/components/types/index";
 import { uuid } from "vue-uuid";
 
 const now = new Date();
@@ -166,7 +166,7 @@ export const dummyQuest: Quest[] = [
   //   status: "RUNNING",
   // },
 ];
-dummyQuest.map(at => (at.reward.id = uuid.v1()));
+dummyQuest.map((at) => (at.reward.id = uuid.v1()));
 
 export const dummyTwoWeekAttandance: Attendance[] =
   createDummyData(dummyAttendance);
@@ -183,7 +183,7 @@ function createDummyData(dummy: Attendance[]): Attendance[] {
       Attendance,
       "attandanceId" | "status"
     >[]
-  ).map(attendance => ({
+  ).map((attendance) => ({
     ...attendance,
     status: "READY",
     attandanceId: uuid.v1(),
@@ -195,4 +195,14 @@ function createDummyData(dummy: Attendance[]): Attendance[] {
     at.reward.id = uuid.v1();
   });
   return newAttadance;
+}
+
+export function getDummyDataFromDay(day: day): Attendance[] {
+  if (day === "7일") {
+    return dummyAttendance;
+  } else if (day === "14일") {
+    return dummyTwoWeekAttandance;
+  } else {
+    return dummyMonthAttandance;
+  }
 }
