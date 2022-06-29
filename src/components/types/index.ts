@@ -8,6 +8,13 @@ export namespace VueEvent {
   }
 }
 
+//TODO any 말고 좋은 방법 있는지 고민, 찾아보기
+type DOMStringMap = "index";
+
+export interface GaspTargetElement extends HTMLDivElement {
+  dataset: Record<DOMStringMap, any>;
+}
+
 export type day = "7" | "14" | "28";
 export type language = "English" | "Korean";
 export type languageJson = "en" | "ko";

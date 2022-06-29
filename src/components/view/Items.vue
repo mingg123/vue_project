@@ -91,7 +91,7 @@ export default defineComponent({
   }
 }
 
-.item_frame ::-webkit-scrollbar {
+.item_frame::-webkit-scrollbar {
   display: none;
 }
 </style>

@@ -65,7 +65,7 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import EventPeriodBanner from "@/components/utils/EventPeriodBanner.vue";
-import { Quest } from "@/components/types";
+import { GaspTargetElement, Quest } from "@/components/types";
 import { dummyQuest } from "@/components/types/dummy";
 import ItemZone from "@/components/utils/ItemZone.vue";
 import store from "@/store";
@@ -95,15 +95,15 @@ export default defineComponent({
       }
     },
 
-    changeQuestState(quest: Quest) {
+    changeQuestState(quest: Quest): void {
       quest.status = "FINISH";
     },
 
-    onBeforeEnter(el: any) {
-      el.style.opacity = 0;
-      el.style.height = 0;
+    onBeforeEnter(el: GaspTargetElement): void {
+      el.style.setProperty("opacity", "0");
+      el.style.setProperty("height", "0");
     },
-    onEnter(el: any, done: any) {
+    onEnter(el: GaspTargetElement): void {
       gsap.set(el, {
         x: "20%",
       });
@@ -112,7 +112,6 @@ export default defineComponent({
         opacity: 1,
         height: "80px",
         delay: el.dataset.index * 0.1,
-        onComplete: done,
       });
     },
   },

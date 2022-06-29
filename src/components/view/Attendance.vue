@@ -14,8 +14,20 @@
       </select>
     </div>
     <div class="at_container">
-      <div class="at_frame">
-        <div v-for="(attancance, idx) in attandanceInfo" :key="attancance">
+      <!--      <div class="at_frame">-->
+      <TransitionGroup
+        class="at_frame"
+        appear
+        tag="ul"
+        :css="false"
+        @before-enter="onBeforeEnter"
+        @enter="onEnter"
+      >
+        <div
+          v-for="(attancance, idx) in attandanceInfo"
+          :key="attancance"
+          :data-index="idx"
+        >
           <div
             class="day_container"
             :style="{
@@ -49,7 +61,8 @@
             ></button>
           </div>
         </div>
-      </div>
+      </TransitionGroup>
+      <!--      </div>-->
     </div>
     <div class="popup_wrap" v-if="getItemPopup">
       <getItemPopup :item="getClickedItem" />
@@ -60,12 +73,19 @@
 <script lang="ts">
 import { defineComponent, ref, computed } from "vue";
 import { getDummyDataFromDay } from "../types/dummy";
-import { Attendance, day, Item, VueEvent } from "@/components/types";
+import {
+  Attendance,
+  day,
+  GaspTargetElement,
+  Item,
+  VueEvent,
+} from "@/components/types";
 import { mapGetters, useStore } from "vuex";
 import store from "@/store";
 import ItemZone from "@/components/utils/ItemZone.vue";
 import getItemPopup from "@/components/dialog/getItemPopup.vue";
 import { useI18n } from "vue-i18n";
+import gsap from "gsap";
 
 export default defineComponent({
   name: "Attendance",
@@ -134,12 +154,19 @@ export default defineComponent({
     isFinishAttandance(attandance: Attendance): boolean {
       return attandance.status === "FINISH" ? true : false;
     },
+
+    onBeforeEnter(el: GaspTargetElement): void {
+      el.style.setProperty("opacity", "0");
+    },
+    onEnter(el: GaspTargetElement): void {
+      gsap.to(el, {
+        opacity: 1,
+        delay: el.dataset.index * 0.05,
+      });
+    },
   },
   computed: {
     ...mapGetters(["getItemPopup", "getClickedItem"]),
-    // getDayOptionList() {
-    //   return (this.days as day).filters(day !== this.selectedAttedanceDay);
-    // },
   },
 });
 </script>
@@ -158,6 +185,7 @@ export default defineComponent({
     overflow-y: auto;
     height: 320px;
     margin-top: 20%;
+    margin-right: 3%;
   }
 
   .at_container::-webkit-scrollbar {
