@@ -12,42 +12,51 @@
     </div>
     <div class="ac_container">
       <div class="quest_main_container">
-        <div
-          class="quest_container"
-          v-for="quest in quests"
-          :key="quest"
-          :class="quest.status"
+        <TransitionGroup
+          appear
+          tag="ul"
+          :css="false"
+          @before-enter="onBeforeEnter"
+          @enter="onEnter"
         >
-          <img
-            v-if="quest.status !== 'READY'"
-            class="status_icon"
-            src="../../assets/image/incomplete.png"
-          />
-          <img
-            v-else
-            class="status_icon"
-            src="../../assets/image/complete.png"
-          />
-          <div class="quest_content">
-            <div class="quest_inner">
-              <span class="quest_title">
-                {{ $t(`achievement.${quest.title}`) }}
-              </span>
-              <span>{{ $t(`achievement.${quest.subTitle}`) }}</span>
+          <div
+            class="quest_container"
+            v-for="(quest, index) in quests"
+            :key="quest"
+            :class="quest.status"
+            :data-index="index"
+          >
+            <img
+              v-if="quest.status !== 'READY'"
+              class="status_icon"
+              src="../../assets/image/incomplete.png"
+            />
+            <img
+              v-else
+              class="status_icon"
+              src="../../assets/image/complete.png"
+            />
+            <div class="quest_content">
+              <div class="quest_inner">
+                <span class="quest_title">
+                  {{ $t(`achievement.${quest.title}`) }}
+                </span>
+                <span>{{ $t(`achievement.${quest.subTitle}`) }}</span>
+              </div>
+            </div>
+            <div class="quest_item">
+              <ItemZone v-if="quest.reward" :item="quest.reward" />
+            </div>
+            <div class="quest_btn">
+              <img
+                :src="
+                  require(`../../assets/image/achievement/${localLang}/btn_reward_${quest.status.toLowerCase()}.png`)
+                "
+                @click="addItem(quest.id)"
+              />
             </div>
           </div>
-          <div class="quest_item">
-            <ItemZone v-if="quest.reward" :item="quest.reward" />
-          </div>
-          <div class="quest_btn">
-            <img
-              :src="
-                require(`../../assets/image/achievement/${localLang}/btn_reward_${quest.status.toLowerCase()}.png`)
-              "
-              @click="addItem(quest.id)"
-            />
-          </div>
-        </div>
+        </TransitionGroup>
       </div>
     </div>
   </div>
@@ -61,6 +70,7 @@ import { dummyQuest } from "@/components/types/dummy";
 import ItemZone from "@/components/utils/ItemZone.vue";
 import store from "@/store";
 import { useI18n } from "vue-i18n";
+import gsap from "gsap";
 
 export default defineComponent({
   name: "Achievement",
@@ -77,7 +87,7 @@ export default defineComponent({
   },
   methods: {
     addItem(questId: string): void {
-      const newQuest = this.quests.find(quest => quest.id === questId);
+      const newQuest = this.quests.find((quest) => quest.id === questId);
       if (newQuest && newQuest.status === "READY") {
         this.changeQuestState(newQuest);
         store.dispatch("setItem", newQuest.reward);
@@ -87,6 +97,23 @@ export default defineComponent({
 
     changeQuestState(quest: Quest) {
       quest.status = "FINISH";
+    },
+
+    onBeforeEnter(el: any) {
+      el.style.opacity = 0;
+      el.style.height = 0;
+    },
+    onEnter(el: any, done: any) {
+      gsap.set(el, {
+        x: "20%",
+      });
+      gsap.to(el, {
+        x: 0,
+        opacity: 1,
+        height: "80px",
+        delay: el.dataset.index * 0.1,
+        onComplete: done,
+      });
     },
   },
 });

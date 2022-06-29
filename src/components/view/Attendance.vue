@@ -83,7 +83,7 @@ export default defineComponent({
     const clickedItem: Item | null = null;
 
     const newDay = computed(() =>
-      days.filter(day => day !== selectedAttedanceDay)
+      days.filter((day) => day !== selectedAttedanceDay)
     );
     const localLang = store.getters.getLocalLang;
 
@@ -103,7 +103,7 @@ export default defineComponent({
   methods: {
     addItem(attandanceId: string): void {
       const newAttandance = this.attandanceInfo.find(
-        attandance => attandance.attandanceId === attandanceId
+        (attandance) => attandance.attandanceId === attandanceId
       );
       if (newAttandance) {
         this.changeAttandanceState(newAttandance);
