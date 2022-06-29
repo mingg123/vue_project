@@ -1,5 +1,8 @@
 <template>
-  <div class="at_wrap">
+  <div
+    class="at_wrap"
+    :style="{ backgroundImage: 'url(' + backgroundImageUrl + ')' }"
+  >
     <div class="select_container">
       <select class="day_select" @change="onChangeDay($event)">
         <option value="selectedAttedanceDay">
@@ -33,10 +36,16 @@
               }"
             />
             <button
-              :style="{ width: '110px', height: '30px', border: 0, outline: 0 }"
+              :style="{
+                width: '110px',
+                height: '30px',
+                border: 0,
+                outline: 0,
+                backgroundSize: '110px 30px',
+                backgroundImage: `url(${require(`../../assets/image/attendance/${localLang}/btn_${attancance.status.toLowerCase()}_28days.png`)})`,
+              }"
               @click="addItem(attancance.attandanceId)"
               :disabled="isFinishAttandance(attancance) || getItemPopup"
-              :class="attancance.status.toLowerCase()"
             ></button>
           </div>
         </div>
@@ -76,6 +85,10 @@ export default defineComponent({
     const newDay = computed(() =>
       days.filter(day => day !== selectedAttedanceDay)
     );
+    const localLang = store.getters.getLocalLang;
+
+    const backgroundImageUrl = require(`../../assets/image/attendance/${localLang}/bg_28days.png`);
+
     return {
       attandanceInfo,
       days,
@@ -83,6 +96,8 @@ export default defineComponent({
       selectedAttedanceDay,
       newDay,
       t,
+      backgroundImageUrl,
+      localLang,
     };
   },
   methods: {
@@ -132,7 +147,6 @@ export default defineComponent({
 <style lang="scss">
 @import "../../assets/scss/index.scss";
 .at_wrap {
-  background-image: url("../../assets/image/attendance/bg_28days.png");
   height: 100%;
   background-size: $background_image_width $background_image_height;
 
@@ -176,7 +190,6 @@ export default defineComponent({
     flex-wrap: wrap;
 
     .day_container {
-      // background-image: url("../../assets/image/attendance/day_bg.png");
       background-size: 110px 180px;
       display: flex;
       flex-direction: column;
@@ -205,21 +218,6 @@ export default defineComponent({
         padding-bottom: 10%;
       }
     }
-  }
-
-  .finish {
-    background-image: url("../../assets/image/attendance/btn_finish_28days.png");
-    background-size: 110px 30px;
-  }
-
-  .running {
-    background-image: url("../../assets/image/attendance/btn_running_28days.png");
-    background-size: 110px 30px;
-  }
-
-  .ready {
-    background-image: url("../../assets/image/attendance/btn_ready_28days.png");
-    background-size: 110px 30px;
   }
 }
 

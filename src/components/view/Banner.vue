@@ -17,7 +17,9 @@
         </a>
       </div>
     </div>
-    <a href="" class="cancellation-btn">[청약 철회 규정 보기]</a>
+    <a v-if="localLang === 'ko'" href="" class="cancellation-btn">
+      [청약 철회 규정 보기]
+    </a>
   </div>
 </template>
 
