@@ -1,18 +1,24 @@
 <template>
   <div class="setting_wrap">
-    <h1>{{ $t("language_setting") }}</h1>
-    <div class="select_wrap">
-      <h2 class="subTitle">{{ $t("lang_select") }}</h2>
-      <select
-        v-model="selectedValue"
-        class="select_inner"
-        @change="onChangeLang($event)"
-      >
-        <option v-for="(lang, idx) in langs" :key="`Lang${idx}`" :value="lang">
-          <!-- {{ lang }} -->
-          {{ getLagnuageType(lang) }}
-        </option>
-      </select>
+    <div class="setting_container">
+      <h1>{{ $t("language_setting") }}</h1>
+      <div class="select_wrap">
+        <h2 class="subTitle">{{ $t("lang_select") }}</h2>
+        <select
+          v-model="selectedValue"
+          class="select_inner"
+          @change="onChangeLang($event)"
+        >
+          <option
+            v-for="(lang, idx) in langs"
+            :key="`Lang${idx}`"
+            :value="lang"
+          >
+            <!-- {{ lang }} -->
+            {{ getLagnuageType(lang) }}
+          </option>
+        </select>
+      </div>
     </div>
   </div>
 </template>
@@ -49,19 +55,25 @@ export default defineComponent({
 });
 </script>
 <style lang="scss" scope>
+@import "../../assets/scss/index.scss";
 .setting_wrap {
-  padding: 3%;
-  text-align: left;
-  .select_wrap {
-    display: flex;
-    .subTitle {
-      width: 200px;
-      text-align: center;
-    }
-    .select_inner {
-      width: 120px;
-      height: 50px;
-      text-align: center;
+  height: 100%;
+  background-image: url("../../assets/image/common/contents_bg.png");
+  background-size: $background_image_width $background_image_height;
+  .setting_container {
+    padding: 3%;
+    text-align: left;
+    .select_wrap {
+      display: flex;
+      .subTitle {
+        width: 200px;
+        text-align: center;
+      }
+      .select_inner {
+        width: 120px;
+        height: 50px;
+        text-align: center;
+      }
     }
   }
 }

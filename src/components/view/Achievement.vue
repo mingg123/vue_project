@@ -95,7 +95,6 @@ export default defineComponent({
 @import "../../assets/scss/index.scss";
 
 .ac_wrap {
-  background-image: url("../../assets/image/achievement/ko/bg_honeyitem.png");
   height: 100%;
   background-size: $background_image_width $background_image_height;
 
@@ -117,7 +116,7 @@ export default defineComponent({
 
     .quest_container {
       background-size: 800px 80px;
-      background-image: url("../../assets/image/quest_bg.png");
+      background-image: url("../../assets/image/achievement/quest_bg.png");
       display: flex;
       height: 80px;
       width: 800px;
