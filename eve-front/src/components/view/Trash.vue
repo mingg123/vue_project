@@ -2,27 +2,31 @@
   <div class="trash_wrap">
     <button @click="addItem()">보내기</button>
     <button @click="allItem()">모든 아이템 받와오기</button>
+    {{ newItem }}
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import {defineComponent, ref} from "vue";
 import { addItem, getAllItem } from "@/API/ItemAxios";
 import { dummyItem } from "@/types/dummy";
+import { Item } from "@/types";
 
 export default defineComponent({
   name: "Trash",
   setup() {
-    const newItem = getAllItem();
-    console.log(newItem);
+    const newItem = ref<Item[]>();
     return { newItem };
   },
   methods: {
     addItem() {
       addItem(dummyItem[0]);
     },
-    allItem() {
-      getAllItem();
+    async allItem() {
+      const res = await getAllItem();
+      if (res) {
+        this.newItem = res;
+      };
     },
   },
 });
