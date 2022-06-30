@@ -28,11 +28,10 @@ public class ApiController {
   }
 
   @PostMapping("/addItem")
-  public List<ItemDto> addItem(@RequestBody ItemDto itemDto) {
-    log.info("추가 : {}", itemDto);
-    List<ItemDto> items = new ArrayList<>();
-    items.add(itemDto);
-    return items;
+  public List<Item> addItem(@RequestBody Item item) {
+    itemRepository.save(item);
+    log.info("addItem : {}", item);
+    return itemRepository.findAll();
   }
 
   @DeleteMapping("/{id}")

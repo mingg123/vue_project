@@ -1,3 +1,4 @@
+import { addItem, getAllItem } from "./../API/ItemAxios";
 import { createStore } from "vuex";
 import { day, Item, languageJson } from "@/types";
 
@@ -30,9 +31,11 @@ export default createStore<RootState>({
     getIsShowPopup(state): boolean {
       return state.isShowPopup;
     },
-    getItems(state): Item[] {
-      return state.items;
+
+    async getItems(state): Promise<Item[]> {
+      return await getAllItem();
     },
+
     getItemPopup(state): boolean {
       return state.showItemPopup;
     },
@@ -50,8 +53,9 @@ export default createStore<RootState>({
     SET_SHOWSTOPPING(state, open: boolean) {
       state.isShowPopup = open;
     },
-    SET_ITEM(state, item: Item) {
-      state.items = [...state.items, item];
+    async SET_ITEM(state, item: Item) {
+      await addItem(item);
+      // state.items = [...state.items, item];
     },
     REMOVE_ITEM(state, id: string) {
       state.items = state.items.filter(item => item.id !== id);

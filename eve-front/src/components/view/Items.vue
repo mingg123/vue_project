@@ -35,7 +35,7 @@
           borderRadius: '20%',
           border: '5px solid #E0904C',
         }"
-        v-for="item in getItems"
+        v-for="item in items"
         :key="item.id"
       >
         <div
@@ -56,7 +56,7 @@
 </template>
 
 <script lang="ts" scope>
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import { mapGetters, useStore } from "vuex";
 import { VueEvent } from "@/types";
 import ItemZone from "@/components/utils/ItemZone.vue";
@@ -67,7 +67,12 @@ export default defineComponent({
   setup() {
     const sortOptions = ["가장오래된순", "가장최신순"];
     const store = useStore();
-    return { sortOptions };
+
+    const items = ref([]);
+    store.getters.getItems.then((data: any) => {
+      items.value = data;
+    });
+    return { sortOptions, items };
   },
   components: { ItemZone },
   methods: {
@@ -77,9 +82,6 @@ export default defineComponent({
     onChangeSortOption(e: VueEvent.Input<HTMLSelectElement>) {
       console.log(e.target.value);
     },
-  },
-  computed: {
-    ...mapGetters(["getItems"]),
   },
 });
 </script>

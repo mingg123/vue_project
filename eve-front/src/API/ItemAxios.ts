@@ -18,8 +18,7 @@ export const getAllItem = async () => {
     const response = await axios.get(
       "http://localhost:9091/eve-project/allItem"
     );
-    // console.log(response.data);
-    return response.data as Item[];
+    return response.data;
   } catch (e) {
     console.error("[DEV] getAllItem error");
   }

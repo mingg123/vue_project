@@ -14,7 +14,6 @@
       </select>
     </div>
     <div class="at_container">
-      <!--      <div class="at_frame">-->
       <TransitionGroup
         class="at_frame"
         appear
@@ -62,7 +61,6 @@
           </div>
         </div>
       </TransitionGroup>
-      <!--      </div>-->
     </div>
     <div class="popup_wrap" v-if="getItemPopup">
       <getItemPopup :item="getClickedItem" />
@@ -73,13 +71,7 @@
 <script lang="ts">
 import { defineComponent, ref, computed } from "vue";
 import { getDummyDataFromDay } from "../../types/dummy";
-import {
-  Attendance,
-  day,
-  GaspTargetElement,
-  Item,
-  VueEvent,
-} from "@/types";
+import { Attendance, day, GaspTargetElement, Item, VueEvent } from "@/types";
 import { mapGetters, useStore } from "vuex";
 import store from "@/store";
 import ItemZone from "@/components/utils/ItemZone.vue";
@@ -103,7 +95,7 @@ export default defineComponent({
     const clickedItem: Item | null = null;
 
     const newDay = computed(() =>
-      days.filter((day) => day !== selectedAttedanceDay)
+      days.filter(day => day !== selectedAttedanceDay)
     );
     const localLang = store.getters.getLocalLang;
 
@@ -123,7 +115,7 @@ export default defineComponent({
   methods: {
     addItem(attandanceId: string): void {
       const newAttandance = this.attandanceInfo.find(
-        (attandance) => attandance.attandanceId === attandanceId
+        attandance => attandance.attandanceId === attandanceId
       );
       if (newAttandance) {
         this.changeAttandanceState(newAttandance);
