@@ -1,4 +1,4 @@
-import { Attendance, day, Item, Quest } from "@/components/types/index";
+import { Attendance, day, Item, Quest } from "@/types/index";
 import { uuid } from "vue-uuid";
 
 const now = new Date();

@@ -26,7 +26,7 @@
 import store from "@/store";
 import { defineComponent, ref } from "@vue/runtime-core";
 import { useI18n } from "vue-i18n";
-import { language, languageJson, VueEvent } from "../types";
+import { language, languageJson, VueEvent } from "../../types";
 
 export default defineComponent({
   name: "Setting",

@@ -72,14 +72,14 @@
 
 <script lang="ts">
 import { defineComponent, ref, computed } from "vue";
-import { getDummyDataFromDay } from "../types/dummy";
+import { getDummyDataFromDay } from "../../types/dummy";
 import {
   Attendance,
   day,
   GaspTargetElement,
   Item,
   VueEvent,
-} from "@/components/types";
+} from "@/types";
 import { mapGetters, useStore } from "vuex";
 import store from "@/store";
 import ItemZone from "@/components/utils/ItemZone.vue";

@@ -58,7 +58,7 @@
 <script lang="ts" scope>
 import { defineComponent } from "vue";
 import { mapGetters, useStore } from "vuex";
-import { VueEvent } from "@/components/types";
+import { VueEvent } from "@/types";
 import ItemZone from "@/components/utils/ItemZone.vue";
 import store from "@/store";
 

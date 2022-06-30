@@ -15,7 +15,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
 import store from "@/store";
-import { Item } from "@/components/types";
+import { Item } from "@/types";
 
 export default defineComponent({
   name: "getItemPopup",

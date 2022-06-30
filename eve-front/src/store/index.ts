@@ -1,5 +1,5 @@
 import { createStore } from "vuex";
-import { day, Item, languageJson } from "@/components/types";
+import { day, Item, languageJson } from "@/types";
 
 export interface RootState {
   isShowPopup: boolean;
