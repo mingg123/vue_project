@@ -10,9 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ItemDto {
-    @JsonProperty("id")
     private String id;
-    @JsonProperty("code")
     private String code;
     private String type;
     private String name;
