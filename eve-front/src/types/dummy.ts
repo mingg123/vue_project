@@ -1,5 +1,6 @@
 import { Attendance, day, Item, Quest } from "@/types/index";
 import { uuid } from "vue-uuid";
+import { getAllItem } from "@/API/ItemAxios";
 
 const now = new Date();
 export const dummyDate = now.getDate();
@@ -166,7 +167,7 @@ export const dummyQuest: Quest[] = [
   //   status: "RUNNING",
   // },
 ];
-dummyQuest.map(at => (at.reward.id = uuid.v1()));
+dummyQuest.map((at) => (at.reward.id = uuid.v1()));
 
 export const dummyTwoWeekAttandance: Attendance[] =
   createDummyData(dummyAttendance);
@@ -183,7 +184,7 @@ function createDummyData(dummy: Attendance[]): Attendance[] {
       Attendance,
       "attandanceId" | "status"
     >[]
-  ).map(attendance => ({
+  ).map((attendance) => ({
     ...attendance,
     status: "READY",
     attandanceId: uuid.v1(),

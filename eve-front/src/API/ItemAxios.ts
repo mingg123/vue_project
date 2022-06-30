@@ -9,6 +9,18 @@ export const addItem = async (item: Item) => {
     );
     console.log(response.data);
   } catch (e) {
-    console.error("[DEV] addItem 에러");
+    console.error("[DEV] addItem error");
+  }
+};
+
+export const getAllItem = async () => {
+  try {
+    const response = await axios.get(
+      "http://localhost:9091/eve-project/allItem"
+    );
+    // console.log(response.data);
+    return response.data as Item[];
+  } catch (e) {
+    console.error("[DEV] getAllItem error");
   }
 };

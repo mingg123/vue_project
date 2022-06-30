@@ -1,7 +1,10 @@
 package com.example.springproject.controller;
 
+import com.example.springproject.domain.Item;
 import com.example.springproject.dto.ItemDto;
+import com.example.springproject.repository.ItemRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -15,10 +18,12 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:8080/")
 public class ApiController {
 
-  @GetMapping("/all")
-  public String getAll() {
-    System.out.println("all call");
-    return "all";
+  @Autowired
+  ItemRepository itemRepository;
+
+  @GetMapping("/allItem")
+  public List<Item> getAll() {
+    return itemRepository.findAll();
   }
 
   @PostMapping("/addItem")
