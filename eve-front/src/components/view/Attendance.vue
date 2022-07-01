@@ -171,8 +171,8 @@ export default defineComponent({
 
   .at_container {
     overflow-y: auto;
-    height: 320px;
-    margin-top: 19%;
+    height: 310px;
+    margin-top: 20.5%;
     margin-right: 4%;
   }
 
