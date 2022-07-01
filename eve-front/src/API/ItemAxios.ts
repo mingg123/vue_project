@@ -23,3 +23,15 @@ export const getAllItem = async () => {
     console.error("[DEV] getAllItem error");
   }
 };
+
+export const deleteItem = async (id: string) => {
+  try {
+    const response = await axios.delete(
+      `http://localhost:9091/eve-project/${id}`
+    );
+    // console.log(response.data);
+    return response.data;
+  } catch (e) {
+    console.error("[DEV] deleteItem error");
+  }
+};
