@@ -5,7 +5,7 @@
         <img
           alt="close_btn"
           class="btn_close"
-          src="../../assets/image/close.png"
+          src="../../assets/image/common/btn_close.png"
           @click="onClose"
         />
       </div>
@@ -41,8 +41,12 @@ export default defineComponent({
 .frame_wrap {
   width: 1280px;
   height: 720px;
-
+  background-image: url("../../assets/image/common/frame_bg.png");
+  background-size: 1280px 720px;
   .frame_container {
+    //background-image: url("../../assets/image/common/frame_bg.png");
+    //background-size: 1200px 620px;
+    padding-top: 4%;
     width: 1200px;
     height: 620px;
     border: 1px solid;
@@ -50,9 +54,11 @@ export default defineComponent({
     flex-direction: column;
 
     .btn_wrap {
+      padding-right: 2%;
+      padding-top: 0.5%;
       .btn_close {
-        height: 30px;
-        width: 30px;
+        height: 40px;
+        width: 40px;
         float: right;
       }
     }
@@ -60,7 +66,7 @@ export default defineComponent({
     .frame_inner {
       //margin: 10px;
       display: flex;
-      height: 562px;
+      height: 550px;
     }
   }
 }

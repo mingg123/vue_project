@@ -47,12 +47,8 @@
               }"
             />
             <button
+              class="at_btn"
               :style="{
-                width: '110px',
-                height: '30px',
-                border: 0,
-                outline: 0,
-                backgroundSize: '110px 30px',
                 backgroundImage: `url(${require(`../../assets/image/attendance/${localLang}/btn_${attancance.status.toLowerCase()}_28days.png`)})`,
               }"
               @click="addItem(attancance.attandanceId)"
@@ -95,7 +91,7 @@ export default defineComponent({
     const clickedItem: Item | null = null;
 
     const newDay = computed(() =>
-      days.filter(day => day !== selectedAttedanceDay)
+      days.filter((day) => day !== selectedAttedanceDay)
     );
     const localLang = store.getters.getLocalLang;
 
@@ -115,7 +111,7 @@ export default defineComponent({
   methods: {
     addItem(attandanceId: string): void {
       const newAttandance = this.attandanceInfo.find(
-        attandance => attandance.attandanceId === attandanceId
+        (attandance) => attandance.attandanceId === attandanceId
       );
       if (newAttandance) {
         this.changeAttandanceState(newAttandance);
@@ -210,13 +206,13 @@ export default defineComponent({
     flex-wrap: wrap;
 
     .day_container {
-      background-size: 110px 180px;
+      background-size: $attendance_container_width 180px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       border: 1px solid gray;
-      width: 110px;
+      width: $attendance_container_width;
       height: 130px;
       margin: 5px;
       position: relative;
@@ -236,6 +232,13 @@ export default defineComponent({
         flex: 1;
         padding-left: 10%;
         padding-bottom: 10%;
+      }
+      .at_btn {
+        height: 30px;
+        border: 0;
+        outline: 0;
+        backgroundsize: $attendance_container_width 30px;
+        width: $attendance_container_width;
       }
     }
   }

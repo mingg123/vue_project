@@ -14,7 +14,6 @@
             :key="`Lang${idx}`"
             :value="lang"
           >
-            <!-- {{ lang }} -->
             {{ getLagnuageType(lang) }}
           </option>
         </select>
@@ -27,14 +26,16 @@ import store from "@/store";
 import { defineComponent, ref } from "@vue/runtime-core";
 import { useI18n } from "vue-i18n";
 import { language, languageJson, VueEvent } from "../../types";
+import { mapGetters } from "vuex";
 
 export default defineComponent({
   name: "Setting",
   setup() {
     const t = useI18n();
-
+    const localLang = ref<languageJson>(store.getters.getLocalLang);
+    console.log(localLang);
     const selectedValue = ref(store.getters.getLocalLang);
-    return { langs: ["en", "ko"], t, selectedValue };
+    return { langs: ["en", "ko"], t, selectedValue, localLang };
   },
   methods: {
     onChangeLang(event: VueEvent.Input<HTMLSelectElement>) {

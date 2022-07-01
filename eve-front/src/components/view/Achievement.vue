@@ -139,13 +139,13 @@ export default defineComponent({
     overflow-y: auto;
     height: 300px;
     margin-top: 22%;
-
+    padding-right: 5%;
     .quest_container {
-      background-size: 800px 80px;
+      background-size: $acheive_quest_width $acheive_quest_height;
       background-image: url("../../assets/image/achievement/quest_bg.png");
       display: flex;
-      height: 80px;
-      width: 800px;
+      height: $acheive_quest_height;
+      width: $acheive_quest_width;
       margin-bottom: 10px;
       align-items: center;
       justify-content: center;

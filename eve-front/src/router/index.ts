@@ -42,6 +42,16 @@ const routes: Array<RouteRecordRaw> = [
     name: "setting",
     component: Setting,
   },
+  {
+    path: "/test1",
+    name: "test1",
+    component: Setting,
+  },
+  {
+    path: "/test2",
+    name: "test2",
+    component: Setting,
+  },
 ];
 const router = createRouter({
   history: createWebHashHistory(),

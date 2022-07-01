@@ -67,7 +67,7 @@ export default defineComponent({
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 38%;
+    padding-top: 42%;
   }
 
   .cancellation-btn {

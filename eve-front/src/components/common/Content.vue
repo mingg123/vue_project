@@ -1,8 +1,5 @@
 <template>
   <div class="content_wrap">
-    <!--    <div class="btn_wrap">-->
-    <!--      <img alt="close_btn" class="btn_close" src="../../assets/image/close.png" @click="onClose"/>-->
-    <!--    </div>-->
     <router-view />
   </div>
 </template>
@@ -21,11 +18,12 @@ export default defineComponent({
 });
 </script>
 <style lang="scss" scoped>
+@import "../../assets/scss/index.scss";
 .content_wrap {
-  width: 960px;
-  border: 1px solid;
+  width: $background_image_width;
+  height: $background_image_height;
   position: relative;
-  //overflow-y: auto;
+  margin-left: 3.5%;
 }
 
 //스크롤바 기능 작동은 하지만 숨김

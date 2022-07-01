@@ -31,12 +31,10 @@ export default createStore<RootState>({
     getIsShowPopup(state): boolean {
       return state.isShowPopup;
     },
-
     async getItems(state): Promise<Item[]> {
       state.items = await getAllItem();
       return state.items;
     },
-
     getItemPopup(state): boolean {
       return state.showItemPopup;
     },
@@ -50,18 +48,16 @@ export default createStore<RootState>({
       return state.localLang;
     },
   },
+
   mutations: {
     SET_SHOWSTOPPING(state, open: boolean) {
       state.isShowPopup = open;
     },
-    async SET_ITEM(state, item: Item) {
-      await addItem(item);
+    SET_ITEM(state) {
+      console.log(state);
     },
-    async REMOVE_ITEM(state, id: string) {
-      const response = await deleteItem(id);
-      if (response) {
-        state.items = response;
-      }
+    async REMOVE_ITEM(state, items: Item[]) {
+      state.items = items;
     },
     SET_ITEM_POPUP(state, open: boolean) {
       state.showItemPopup = open;
@@ -80,11 +76,14 @@ export default createStore<RootState>({
     setIsShowPopup({ commit }, open) {
       commit("SET_SHOWSTOPPING", open);
     },
-    setItem({ commit }, item) {
-      commit("SET_ITEM", item);
+    async setItem({ commit }, item) {
+      await addItem(item);
+      commit("SET_ITEM");
     },
-    removeItem({ commit }, index) {
-      commit("REMOVE_ITEM", index);
+    async removeItem({ commit }, id) {
+      const newItem = await deleteItem(id);
+      commit("REMOVE_ITEM", newItem);
+      return newItem;
     },
     setItemPopup({ commit }, open) {
       commit("SET_ITEM_POPUP", open);

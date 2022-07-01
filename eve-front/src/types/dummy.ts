@@ -1,6 +1,5 @@
 import { Attendance, day, Item, Quest } from "@/types/index";
 import { uuid } from "vue-uuid";
-import { getAllItem } from "@/API/ItemAxios";
 
 const now = new Date();
 export const dummyDate = now.getDate();
