@@ -1,7 +1,7 @@
 <template>
   <div class="lnb_wrap">
     <img :src="require(`../../assets/image/common/${getLocalLang}/bi.png`)" />
-    <div class="lnb_container">
+    <div class="lnb_container" ref="lnb">
       <div v-for="header in headers" :key="header">
         <li class="lnb_inner">
           <router-link :to="{ path: header.path }">
@@ -10,7 +10,10 @@
         </li>
       </div>
     </div>
-    <img src="../../assets/image/common/navi_more_btn.png" />
+    <img
+      @click="onDownScroll()"
+      src="../../assets/image/common/navi_more_btn.png"
+    />
   </div>
 </template>
 
@@ -34,8 +37,13 @@ export default defineComponent({
       { path: "test1", title: "test1" },
       { path: "test2", title: "test2" },
     ];
-
     return { headers };
+  },
+  methods: {
+    onDownScroll() {
+      const lnb = this.$refs.lnb as Element;
+      lnb.scrollTop += 80;
+    },
   },
   computed: {
     ...mapGetters(["getLocalLang"]),
@@ -47,7 +55,6 @@ export default defineComponent({
 .lnb_wrap {
   width: $lnb_bg_width;
   height: 560px;
-  border: 1px solid;
   padding-left: 7.3%;
   text-align: center;
   .lnb_container {

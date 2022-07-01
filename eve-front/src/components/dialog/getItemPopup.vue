@@ -37,7 +37,6 @@ export default defineComponent({
   flex-direction: column;
   width: 390px;
   height: 300px;
-  border: 1px solid;
   background-color: #133550;
   align-items: center;
 

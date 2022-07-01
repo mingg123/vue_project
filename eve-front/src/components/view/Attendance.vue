@@ -172,8 +172,8 @@ export default defineComponent({
   .at_container {
     overflow-y: auto;
     height: 320px;
-    margin-top: 20%;
-    margin-right: 3%;
+    margin-top: 19%;
+    margin-right: 4%;
   }
 
   .at_container::-webkit-scrollbar {
@@ -192,8 +192,8 @@ export default defineComponent({
 
   .select_container {
     position: absolute;
-    left: 10%;
-    top: 23%;
+    left: 8%;
+    top: 22%;
     .day_select {
       width: 120px;
       height: 30px;

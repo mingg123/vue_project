@@ -44,15 +44,11 @@ export default defineComponent({
   background-image: url("../../assets/image/common/frame_bg.png");
   background-size: 1280px 720px;
   .frame_container {
-    //background-image: url("../../assets/image/common/frame_bg.png");
-    //background-size: 1200px 620px;
     padding-top: 4%;
     width: 1200px;
     height: 620px;
-    border: 1px solid;
     display: flex;
     flex-direction: column;
-
     .btn_wrap {
       padding-right: 2%;
       padding-top: 0.5%;
@@ -62,7 +58,6 @@ export default defineComponent({
         float: right;
       }
     }
-
     .frame_inner {
       //margin: 10px;
       display: flex;

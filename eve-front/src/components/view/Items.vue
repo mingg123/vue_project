@@ -54,8 +54,8 @@ export default defineComponent({
   justify-contentcontent: flex-start;
   padding-left: 10%;
   .item_container {
-    width: 130px;
-    height: 130px;
+    width: 100px;
+    height: 100px;
     margin-right: 20px;
     margin-top: 20px;
     .item_inner {
