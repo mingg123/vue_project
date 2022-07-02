@@ -7,7 +7,7 @@ import { createI18n, LocaleMessages, VueMessageType } from "vue-i18n";
  * See: https://github.com/intlify/vue-i18n-loader#rocket-i18n-resource-pre-compilation
  */
 
-function loadLocaleMessages(): LocaleMessages<VueMessageType> {
+export function loadLocaleMessages(): LocaleMessages<VueMessageType> {
   const locales = require.context(
     "./locales",
     true,
