@@ -52,14 +52,14 @@
                 backgroundImage: `url(${require(`../../assets/image/attendance/${localLang}/btn_${attancance.status.toLowerCase()}_28days.png`)})`,
               }"
               @click="addItem(attancance.attandanceId)"
-              :disabled="isFinishAttandance(attancance) || getItemPopup"
+              :disabled="isFinishAttandance(attancance) || getShowItemPopup"
             ></button>
           </div>
         </div>
       </TransitionGroup>
     </div>
-    <div class="popup_wrap" v-if="getItemPopup">
-      <getItemPopup :item="getClickedItem" />
+    <div class="popup_wrap" v-if="getShowItemPopup">
+      <ItemPopup :item="getClickedItem" />
     </div>
   </div>
 </template>
@@ -71,13 +71,13 @@ import { Attendance, day, GaspTargetElement, Item, VueEvent } from "@/types";
 import { mapGetters, useStore } from "vuex";
 import store from "@/store";
 import ItemZone from "@/components/utils/ItemZone.vue";
-import getItemPopup from "@/components/dialog/getItemPopup.vue";
 import { useI18n } from "vue-i18n";
 import gsap from "gsap";
+import ItemPopup from "@/components/popup/ItemPopup.vue";
 
 export default defineComponent({
   name: "Attendance",
-  components: { getItemPopup, ItemZone },
+  components: { ItemPopup, ItemZone },
   setup() {
     const store = useStore();
     const t = useI18n();
@@ -88,10 +88,8 @@ export default defineComponent({
     );
     const days: string[] = ["28", "14", "7"];
 
-    const clickedItem: Item | null = null;
-
     const newDay = computed(() =>
-      days.filter((day) => day !== selectedAttedanceDay)
+      days.filter(day => day !== selectedAttedanceDay)
     );
     const localLang = store.getters.getLocalLang;
 
@@ -100,7 +98,6 @@ export default defineComponent({
     return {
       attandanceInfo,
       days,
-      clickedItem,
       selectedAttedanceDay,
       newDay,
       t,
@@ -111,12 +108,12 @@ export default defineComponent({
   methods: {
     addItem(attandanceId: string): void {
       const newAttandance = this.attandanceInfo.find(
-        (attandance) => attandance.attandanceId === attandanceId
+        attandance => attandance.attandanceId === attandanceId
       );
       if (newAttandance) {
         this.changeAttandanceState(newAttandance);
         store.dispatch("setItem", newAttandance.reward);
-        store.dispatch("setItemPopup", true);
+        store.dispatch("setShowItemPopup", true);
         store.dispatch("setClickedItem", newAttandance.reward);
       }
     },
@@ -154,7 +151,7 @@ export default defineComponent({
     },
   },
   computed: {
-    ...mapGetters(["getItemPopup", "getClickedItem"]),
+    ...mapGetters(["getShowItemPopup", "getClickedItem"]),
   },
 });
 </script>
@@ -237,7 +234,7 @@ export default defineComponent({
         height: 30px;
         border: 0;
         outline: 0;
-        backgroundsize: $attendance_container_width 30px;
+        background-size: $attendance_container_width 30px;
         width: $attendance_container_width;
       }
     }
@@ -246,7 +243,6 @@ export default defineComponent({
 
 .popup_wrap {
   position: absolute;
-  z-index: 9998;
   top: 20%;
   left: 30%;
 }

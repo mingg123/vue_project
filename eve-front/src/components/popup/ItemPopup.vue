@@ -20,14 +20,14 @@ import store from "@/store";
 import { Item } from "@/types";
 
 export default defineComponent({
-  name: "getItemPopup",
+  name: "ItemPopup",
   props: {
     item: Object as PropType<Item>,
   },
   setup() {},
   methods: {
     onClose() {
-      store.dispatch("setItemPopup", false);
+      store.dispatch("setShowItemPopup", false);
     },
   },
 });
@@ -41,7 +41,6 @@ export default defineComponent({
   flex-direction: column;
   width: 450px;
   height: 300px;
-  //background-color: #133550;
   align-items: center;
 
   .popup_title {

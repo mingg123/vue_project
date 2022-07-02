@@ -53,11 +53,15 @@
                   require(`../../assets/image/achievement/${localLang}/btn_reward_${quest.status.toLowerCase()}.png`)
                 "
                 @click="addItem(quest.id)"
+                :disabled="getShowItemPopup"
               />
             </div>
           </div>
         </TransitionGroup>
       </div>
+    </div>
+    <div class="popup_wrap" v-if="getShowItemPopup">
+      <ItemPopup :item="getClickedItem" />
     </div>
   </div>
 </template>
@@ -71,12 +75,15 @@ import ItemZone from "@/components/utils/ItemZone.vue";
 import store from "@/store";
 import { useI18n } from "vue-i18n";
 import gsap from "gsap";
+import { mapGetters } from "vuex";
+import ItemPopup from "@/components/popup/ItemPopup.vue";
 
 export default defineComponent({
   name: "Achievement",
   components: {
     ItemZone,
     EventPeriodBanner,
+    ItemPopup,
   },
   setup() {
     const quests = ref<Quest[]>(dummyQuest);
@@ -87,11 +94,14 @@ export default defineComponent({
   },
   methods: {
     addItem(questId: string): void {
-      const newQuest = this.quests.find((quest) => quest.id === questId);
+      const newQuest = this.quests.find(quest => quest.id === questId);
       if (newQuest && newQuest.status === "READY") {
         this.changeQuestState(newQuest);
         store.dispatch("setItem", newQuest.reward);
-        console.log(this.quests);
+        store.dispatch("setShowItemPopup", true);
+        store.dispatch("setClickedItem", newQuest.reward);
+        console.log(newQuest.reward);
+        console.log("newQuest rewoard");
       }
     },
 
@@ -114,6 +124,9 @@ export default defineComponent({
         delay: el.dataset.index * 0.1,
       });
     },
+  },
+  computed: {
+    ...mapGetters(["getShowItemPopup", "getClickedItem"]),
   },
 });
 </script>
@@ -190,5 +203,10 @@ export default defineComponent({
   .quest_main_container::-webkit-scrollbar {
     display: none;
   }
+}
+.popup_wrap {
+  position: absolute;
+  top: 20%;
+  left: 30%;
 }
 </style>

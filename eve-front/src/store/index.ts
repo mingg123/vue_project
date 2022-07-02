@@ -35,7 +35,7 @@ export default createStore<RootState>({
       state.items = await getAllItem();
       return state.items;
     },
-    getItemPopup(state): boolean {
+    getShowItemPopup(state): boolean {
       return state.showItemPopup;
     },
     getClickedItem(state): Item {
@@ -85,7 +85,7 @@ export default createStore<RootState>({
       commit("REMOVE_ITEM", newItem);
       return newItem;
     },
-    setItemPopup({ commit }, open) {
+    setShowItemPopup({ commit }, open) {
       commit("SET_ITEM_POPUP", open);
     },
     setClickedItem({ commit }, item) {

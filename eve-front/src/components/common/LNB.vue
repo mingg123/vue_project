@@ -1,7 +1,11 @@
 <template>
   <div class="lnb_wrap">
     <img :src="require(`../../assets/image/common/${getLocalLang}/bi.png`)" />
-    <div class="lnb_container" ref="lnb">
+    <div
+      class="lnb_container"
+      :class="{ disable_router: getShowItemPopup }"
+      ref="lnb"
+    >
       <div v-for="header in headers" :key="header">
         <li class="lnb_inner">
           <router-link :to="{ path: header.path }">
@@ -46,7 +50,7 @@ export default defineComponent({
     },
   },
   computed: {
-    ...mapGetters(["getLocalLang"]),
+    ...mapGetters(["getLocalLang", "getShowItemPopup"]),
   },
 });
 </script>
@@ -83,6 +87,9 @@ export default defineComponent({
         background-size: $lnb_bg_width $lnb_bg_height;
       }
     }
+  }
+  .disable_router {
+    pointer-events: none;
   }
   .lnb_container::-webkit-scrollbar {
     display: none;
