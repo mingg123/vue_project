@@ -13,20 +13,18 @@ module.exports = {
     ecmaVersion: 2020,
   },
   rules: {
-    "prettier/prettier": [
-      "error",
-      {
-        endOfLine: "auto",
-      },
-    ],
     "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
-    "vue/multi-word-component-names": "off",
-    "no-unused-vars": [
-      "error",
-      { vars: "all", args: "after-used", ignoreRestSiblings: false },
-    ],
-    "no-empty-function": "off",
-    "@typescript-eslint/no-empty-function": ["warn"],
   },
+  overrides: [
+    {
+      files: [
+        "**/__tests__/*.{j,t}s?(x)",
+        "**/tests/unit/**/*.spec.{j,t}s?(x)",
+      ],
+      env: {
+        jest: true,
+      },
+    },
+  ],
 };
