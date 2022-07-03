@@ -27,7 +27,7 @@
 
 <script lang="ts" scope>
 import { defineComponent } from "vue";
-import ItemZone from "@/components/utils/ItemZone.vue";
+import ItemZone from "@/components/common/ItemZone.vue";
 import store from "@/store";
 
 export default defineComponent({

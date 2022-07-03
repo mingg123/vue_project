@@ -23,23 +23,22 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { useI18n } from "vue-i18n";
 import { mapGetters } from "vuex";
 
 export default defineComponent({
   name: "LNB",
   setup() {
-    const t = useI18n();
     const headers = [
       { path: "achievement", title: "achievement_router" },
       { path: "attendance", title: "attendance_router" },
       { path: "banner", title: "banner_router" },
       { path: "shop", title: "shop_router" },
       { path: "items", title: "items_router" },
-      { path: "trash", title: "trash_router" },
       { path: "setting", title: "setting_router" },
       { path: "test1", title: "test1" },
       { path: "test2", title: "test2" },
+      { path: "test3", title: "test3" },
+      { path: "test4", title: "test4" },
     ];
     return { headers };
   },

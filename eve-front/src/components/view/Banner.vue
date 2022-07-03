@@ -25,7 +25,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import EventPeriodBanner from "@/components/utils/EventPeriodBanner.vue";
+import EventPeriodBanner from "@/components/common/EventPeriodBanner.vue";
 import { useI18n } from "vue-i18n";
 import store from "@/store";
 
@@ -47,7 +47,6 @@ export default defineComponent({
 .banner_wrap {
   height: 100%;
   background-size: $background_image_width $background_image_height;
-  // background-image: url("../../assets/image/bg_step_pack_1.png");
   text-align: center;
   z-index: 1;
 

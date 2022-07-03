@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import StyledButton from "@/components/utils/StyledButton.vue";
+import StyledButton from "@/components/common/StyledButton.vue";
 
 export default defineComponent({
   name: "Shop",

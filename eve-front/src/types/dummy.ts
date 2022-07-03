@@ -1,3 +1,10 @@
+import {
+  eris_50000_ImgUrl,
+  power_potion_big_5_ImgUrl,
+  ticket_10_ImgUrl,
+  ticket_20_ImgUrl,
+} from "./../components/utils/imageUtil";
+import { beef_1_ImgUrl, quartz_100_ImgUrl } from "@/components/utils/imageUtil";
 import { Attendance, day, Item, Quest } from "@/types/index";
 import { uuid } from "vue-uuid";
 
@@ -6,13 +13,12 @@ export const dummyDate = now.getDate();
 
 export const dummyItem: Item[] = [
   {
-    id: "0",
+    id: uuid.v1(),
     code: "1",
     type: "ITEM",
     name: "quartz",
     amount: 100,
-    imageUrl:
-      "https://qa-eve.nexon.com/eve/ui/images/konosuba/achievement/honeyItem/quartz_100.png",
+    imageUrl: quartz_100_ImgUrl,
   },
   {
     id: uuid.v1(),
@@ -20,8 +26,7 @@ export const dummyItem: Item[] = [
     type: "ITEM",
     name: "beef",
     amount: 1,
-    imageUrl:
-      "https://qa-eve.nexon.com/eve/ui/images/konosuba/achievement/honeyItem/stemina_beef_1.png",
+    imageUrl: beef_1_ImgUrl,
   },
   {
     id: uuid.v1(),
@@ -29,8 +34,7 @@ export const dummyItem: Item[] = [
     type: "ITEM",
     name: "beef",
     amount: 1,
-    imageUrl:
-      "https://qa-eve.nexon.com/eve/ui/images/konosuba/achievement/honeyItem/stemina_beef_1.png",
+    imageUrl: beef_1_ImgUrl,
   },
   {
     id: uuid.v1(),
@@ -38,8 +42,7 @@ export const dummyItem: Item[] = [
     type: "ITEM",
     name: "티켓",
     amount: 20,
-    imageUrl:
-      "https://qa-eve.nexon.com/eve/ui/images/konosuba/achievement/honeyItem/skip_ticket_20.png",
+    imageUrl: ticket_20_ImgUrl,
   },
   {
     id: uuid.v1(),
@@ -47,8 +50,7 @@ export const dummyItem: Item[] = [
     type: "ITEM",
     name: "티켓",
     amount: 10,
-    imageUrl:
-      "https://qa-eve.nexon.com/eve/ui/images/konosuba/achievement/honeyItem/skip_ticket_10.png",
+    imageUrl: ticket_10_ImgUrl,
   },
   {
     id: uuid.v1(),
@@ -56,8 +58,7 @@ export const dummyItem: Item[] = [
     type: "BALANCE",
     name: "재화",
     amount: 50000,
-    imageUrl:
-      "https://qa-eve.nexon.com/eve/ui/images/konosuba/attendance/specialBonus28Day/eris_50000.png",
+    imageUrl: eris_50000_ImgUrl,
   },
   {
     id: uuid.v1(),
@@ -65,53 +66,52 @@ export const dummyItem: Item[] = [
     type: "ITEM",
     name: "포션",
     amount: 5,
-    imageUrl:
-      "https://qa-eve.nexon.com/eve/ui/images/konosuba/attendance/specialBonus28Day/power_potion_big_5.png",
+    imageUrl: power_potion_big_5_ImgUrl,
   },
 ];
 
-export const dummyAttendance: Attendance[] = [
+export const dummyWeek: Attendance[] = [
   {
     attandanceId: uuid.v1(),
     day: 1,
     status: "READY",
-    reward: JSON.parse(JSON.stringify(dummyItem[0])),
+    reward: deepCopy(dummyItem[0]),
   },
   {
     attandanceId: uuid.v1(),
     day: 2,
     status: "READY",
-    reward: JSON.parse(JSON.stringify(dummyItem[1])),
+    reward: deepCopy(dummyItem[1]),
   },
   {
     attandanceId: uuid.v1(),
     day: 3,
     status: "READY",
-    reward: JSON.parse(JSON.stringify(dummyItem[2])),
+    reward: deepCopy(dummyItem[2]),
   },
   {
     attandanceId: uuid.v1(),
     day: 5,
     status: "READY",
-    reward: JSON.parse(JSON.stringify(dummyItem[3])),
+    reward: deepCopy(dummyItem[3]),
   },
   {
     attandanceId: uuid.v1(),
     day: 5,
     status: "READY",
-    reward: JSON.parse(JSON.stringify(dummyItem[4])),
+    reward: deepCopy(dummyItem[4]),
   },
   {
     attandanceId: uuid.v1(),
     day: 6,
     status: "READY",
-    reward: JSON.parse(JSON.stringify(dummyItem[5])),
+    reward: deepCopy(dummyItem[5]),
   },
   {
     attandanceId: uuid.v1(),
     day: 7,
     status: "READY",
-    reward: JSON.parse(JSON.stringify(dummyItem[6])),
+    reward: deepCopy(dummyItem[6]),
   },
 ];
 
@@ -151,29 +151,12 @@ export const dummyQuest: Quest[] = [
     reward: dummyItem[4],
     status: "RUNNING",
   },
-  // {
-  //   id: uuid.v1(),
-  //   title: "맴버의 한계돌파 5단계 10회 완성",
-  //   subTitle: "한계돌파 5단계 10회 완성 시 아이템 지급",
-  //   reward: dummyItem[5],
-  //   status: "FINISH",
-  // },
-  // {
-  //   id: uuid.v1(),
-  //   title: "코노스바 스토리 n기 클리어",
-  //   subTitle: "코노스바 스토리 n기 클리어 시 아이템 지급",
-  //   reward: dummyItem[6],
-  //   status: "RUNNING",
-  // },
 ];
 dummyQuest.map(at => (at.reward.id = uuid.v1()));
 
-export const dummyTwoWeekAttandance: Attendance[] =
-  createDummyData(dummyAttendance);
+export const dummyTwoWeek: Attendance[] = createDummyData(dummyWeek);
 
-export const dummyMonthAttandance: Attendance[] = createDummyData(
-  dummyTwoWeekAttandance
-);
+export const dummyMonth: Attendance[] = createDummyData(dummyTwoWeek);
 
 // 7일 데이터로 14, 28일 만듬.
 // 임의로 오늘 날짜 이후의 날(day) 같은 경우에는 보상받을 수 없도록 status 지정
@@ -199,10 +182,14 @@ function createDummyData(dummy: Attendance[]): Attendance[] {
 
 export function getDummyDataFromDay(day: day): Attendance[] {
   if (day === "7") {
-    return dummyAttendance;
+    return dummyWeek;
   } else if (day === "14") {
-    return dummyTwoWeekAttandance;
+    return dummyTwoWeek;
   } else {
-    return dummyMonthAttandance;
+    return dummyMonth;
   }
+}
+
+function deepCopy(data: unknown) {
+  return JSON.parse(JSON.stringify(data));
 }

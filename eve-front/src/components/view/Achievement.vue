@@ -68,10 +68,10 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import EventPeriodBanner from "@/components/utils/EventPeriodBanner.vue";
+import EventPeriodBanner from "@/components/common/EventPeriodBanner.vue";
 import { GaspTargetElement, Quest } from "@/types";
 import { dummyQuest } from "@/types/dummy";
-import ItemZone from "@/components/utils/ItemZone.vue";
+import ItemZone from "@/components/common/ItemZone.vue";
 import store from "@/store";
 import { useI18n } from "vue-i18n";
 import gsap from "gsap";

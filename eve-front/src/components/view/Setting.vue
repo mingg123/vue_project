@@ -25,27 +25,27 @@
 import store from "@/store";
 import { defineComponent, ref } from "@vue/runtime-core";
 import { useI18n } from "vue-i18n";
-import { language, languageJson, VueEvent } from "../../types";
+import { Language, language, VueEvent } from "../../types";
 import { mapGetters } from "vuex";
 
 export default defineComponent({
   name: "Setting",
   setup() {
     const t = useI18n();
-    const localLang = ref<languageJson>(store.getters.getLocalLang);
+    const localLang = ref<language>(store.getters.getLocalLang);
     console.log(localLang);
     const selectedValue = ref(store.getters.getLocalLang);
     return { langs: ["en", "ko"], t, selectedValue, localLang };
   },
   methods: {
     onChangeLang(event: VueEvent.Input<HTMLSelectElement>) {
-      const lang = event.target.value as languageJson;
+      const lang = event.target.value as language;
       if (lang) {
         this.$i18n.locale = lang;
         store.dispatch("setLocalLang", lang);
       }
     },
-    getLagnuageType(lang: languageJson): language {
+    getLagnuageType(lang: language): string {
       if (lang === "en") {
         return "English";
       } else {

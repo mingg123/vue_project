@@ -4,7 +4,7 @@
     class="popup_btn"
     v-on:click="onClickPopup"
   />
-  <Frame v-if="isShowPopup" />
+  <Frame v-if="showFramePopup" />
 </template>
 
 <script lang="ts">
@@ -19,12 +19,12 @@ export default defineComponent({
   setup() {
     const store = useStore();
     return {
-      isShowPopup: computed(() => store.getters.getIsShowPopup),
+      showFramePopup: computed(() => store.getters.getShowFramePopup),
     };
   },
   methods: {
     onClickPopup: function () {
-      store.dispatch("setIsShowPopup", true);
+      store.dispatch("setShowFramePopup", true);
     },
   },
 });

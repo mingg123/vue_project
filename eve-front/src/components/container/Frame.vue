@@ -27,12 +27,9 @@ import { useStore } from "vuex";
 export default defineComponent({
   name: "Frame",
   components: { Content, LNB },
-  setup() {
-    const store = useStore();
-  },
   methods: {
     onClose: function () {
-      store.dispatch("setIsShowPopup", false);
+      store.dispatch("setShowFramePopup", false);
     },
   },
 });
@@ -59,7 +56,6 @@ export default defineComponent({
       }
     }
     .frame_inner {
-      //margin: 10px;
       display: flex;
       height: 550px;
     }

@@ -20,8 +20,6 @@ export default defineComponent({
       default: "50px",
     },
   },
-  setup() {},
-  methods: {},
 });
 </script>
 <style lang="scss">

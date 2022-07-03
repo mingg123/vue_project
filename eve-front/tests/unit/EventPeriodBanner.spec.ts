@@ -1,5 +1,5 @@
 import { mount } from "@vue/test-utils";
-import EventPeriodBanner from "@/components/utils/EventPeriodBanner.vue";
+import EventPeriodBanner from "@/components/common/EventPeriodBanner.vue";
 import { createI18n, LocaleMessages, useI18n, VueMessageType } from "vue-i18n";
 import { loadLocaleMessages } from "@/i18n";
 

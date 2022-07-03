@@ -4,9 +4,12 @@ import Attendance from "@/components/view/Attendance.vue";
 import Banner from "@/components/view/Banner.vue";
 import Shop from "@/components/view/Shop.vue";
 import Items from "@/components/view/Items.vue";
-import Trash from "@/components/view/Trash.vue";
 import Setting from "@/components/view/Setting.vue";
 const routes: Array<RouteRecordRaw> = [
+  {
+    path: "/",
+    redirect: "/achievement",
+  },
   {
     path: "/achievement",
     name: "achievement",
@@ -33,11 +36,6 @@ const routes: Array<RouteRecordRaw> = [
     component: Items,
   },
   {
-    path: "/trash",
-    name: "trash",
-    component: Trash,
-  },
-  {
     path: "/setting",
     name: "setting",
     component: Setting,
@@ -50,6 +48,16 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/test2",
     name: "test2",
+    component: Setting,
+  },
+  {
+    path: "/test3",
+    name: "test3",
+    component: Setting,
+  },
+  {
+    path: "/test4",
+    name: "test4",
     component: Setting,
   },
 ];

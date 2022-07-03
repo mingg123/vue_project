@@ -1,26 +1,19 @@
 import { addItem, deleteItem, getAllItem } from "./../API/ItemAxios";
 import { createStore } from "vuex";
-import { day, Item, languageJson } from "@/types";
+import { day, Item, language } from "@/types";
 
 export interface RootState {
-  isShowPopup: boolean;
+  showFramePopup: boolean;
   items: Item[];
   showItemPopup: boolean;
   clickedItem: Item | null;
   selectedAttendanceDay: day;
-  localLang: languageJson;
+  localLang: language;
 }
-
-// 타입 추론이 되지 않는 문제
-// export const key: InjectionKey<Store<RootState>> = Symbol();
-
-// export function useStore() {
-//   return baseUseStore(key);
-// }
 
 export default createStore<RootState>({
   state: {
-    isShowPopup: false,
+    showFramePopup: false,
     items: [],
     showItemPopup: false,
     clickedItem: null,
@@ -28,8 +21,8 @@ export default createStore<RootState>({
     localLang: "ko",
   },
   getters: {
-    getIsShowPopup(state): boolean {
-      return state.isShowPopup;
+    getShowFramePopup(state): boolean {
+      return state.showFramePopup;
     },
     async getItems(state): Promise<Item[]> {
       state.items = await getAllItem();
@@ -44,17 +37,17 @@ export default createStore<RootState>({
     getSelectedAttedanceDay(state): day {
       return state.selectedAttendanceDay;
     },
-    getLocalLang(state): languageJson {
+    getLocalLang(state): language {
       return state.localLang;
     },
   },
 
   mutations: {
-    SET_SHOWSTOPPING(state, open: boolean) {
-      state.isShowPopup = open;
+    SET_SHOW_FRAME_POPUP(state, open: boolean) {
+      state.showFramePopup = open;
     },
     SET_ITEM(state) {
-      console.log(state);
+      // console.log(state);
     },
     async REMOVE_ITEM(state, items: Item[]) {
       state.items = items;
@@ -73,8 +66,8 @@ export default createStore<RootState>({
     },
   },
   actions: {
-    setIsShowPopup({ commit }, open) {
-      commit("SET_SHOWSTOPPING", open);
+    setShowFramePopup({ commit }, open) {
+      commit("SET_SHOW_FRAME_POPUP", open);
     },
     async setItem({ commit }, item) {
       await addItem(item);

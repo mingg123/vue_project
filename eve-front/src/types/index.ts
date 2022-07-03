@@ -16,8 +16,7 @@ export interface GaspTargetElement extends HTMLDivElement {
 }
 
 export type day = "7" | "14" | "28";
-export type language = "English" | "Korean";
-export type languageJson = "en" | "ko";
+export type language = "en" | "ko";
 
 export enum Language {
   en = "English",
@@ -51,5 +50,3 @@ export interface Quest {
   reward: Item;
   status: QuestStatusType;
 }
-
-export class Input {}

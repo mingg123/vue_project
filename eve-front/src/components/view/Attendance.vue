@@ -70,7 +70,7 @@ import { getDummyDataFromDay } from "../../types/dummy";
 import { Attendance, day, GaspTargetElement, Item, VueEvent } from "@/types";
 import { mapGetters, useStore } from "vuex";
 import store from "@/store";
-import ItemZone from "@/components/utils/ItemZone.vue";
+import ItemZone from "@/components/common/ItemZone.vue";
 import { useI18n } from "vue-i18n";
 import gsap from "gsap";
 import ItemPopup from "@/components/popup/ItemPopup.vue";
@@ -245,6 +245,6 @@ export default defineComponent({
 .popup_wrap {
   position: absolute;
   top: 20%;
-  left: 30%;
+  left: 20%;
 }
 </style>
