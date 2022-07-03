@@ -1,23 +1,17 @@
 <template>
-  <div class="setting_wrap">
-    <div class="setting_container">
-      <h1>{{ $t("language_setting") }}</h1>
-      <div class="select_wrap">
-        <h2 class="subTitle">{{ $t("lang_select") }}</h2>
-        <select
-          v-model="selectedValue"
-          class="select_inner"
-          @change="onChangeLang($event)"
-        >
-          <option
-            v-for="(lang, idx) in langs"
-            :key="`Lang${idx}`"
-            :value="lang"
-          >
-            {{ getLagnuageType(lang) }}
-          </option>
-        </select>
-      </div>
+  <div class="setting_container">
+    <h1>{{ $t("language_setting") }}</h1>
+    <div class="select_wrap">
+      <h2 class="subTitle">{{ $t("lang_select") }}</h2>
+      <select
+        v-model="selectedValue"
+        class="select_inner"
+        @change="onChangeLang($event)"
+      >
+        <option v-for="(lang, idx) in langs" :key="`Lang${idx}`" :value="lang">
+          {{ getLagnuageType(lang) }}
+        </option>
+      </select>
     </div>
   </div>
 </template>
@@ -25,8 +19,7 @@
 import store from "@/store";
 import { defineComponent, ref } from "@vue/runtime-core";
 import { useI18n } from "vue-i18n";
-import { Language, language, VueEvent } from "../../types";
-import { mapGetters } from "vuex";
+import { language, VueEvent } from "../../types";
 
 export default defineComponent({
   name: "Setting",
@@ -57,23 +50,19 @@ export default defineComponent({
 </script>
 <style lang="scss" scope>
 @import "../../assets/scss/index.scss";
-.setting_wrap {
-  @extend .wrap;
-  background-image: url("../../assets/image/common/contents_bg.png");
-  .setting_container {
-    padding: 3%;
-    text-align: left;
-    .select_wrap {
-      display: flex;
-      .subTitle {
-        width: 200px;
-        text-align: center;
-      }
-      .select_inner {
-        width: 120px;
-        height: 50px;
-        text-align: center;
-      }
+.setting_container {
+  padding: 3%;
+  text-align: left;
+  .select_wrap {
+    display: flex;
+    .subTitle {
+      width: 200px;
+      text-align: center;
+    }
+    .select_inner {
+      width: 120px;
+      height: 50px;
+      text-align: center;
     }
   }
 }

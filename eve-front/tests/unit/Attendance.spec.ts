@@ -3,9 +3,8 @@ import { i18nForTest } from "./EventPeriodBanner.spec";
 import Attendance from "@/components/view/Attendance.vue";
 import store from "@/store";
 import { nextTick } from "vue";
-import { dummyItem } from "@/types/dummy";
 
-describe("Attadance Page", () => {
+describe("Attendance Page", () => {
   it("Check if button exists", () => {
     const wrapper = mount(Attendance, {
       global: {
@@ -25,28 +24,27 @@ describe("Attadance Page", () => {
     expect(wrapper.find(".popup_wrap").exists()).toBe(false);
   });
 
-  it("Item popup after button click", () => {
+  it("Item popup after button click", async () => {
     const wrapper = mount(Attendance, {
       global: {
         plugins: [i18nForTest, store],
       },
     });
     wrapper.find(".at_btn").trigger("click");
-    nextTick().then(dat => {
-      expect(wrapper.find(".popup_wrap").exists()).toBe(true);
-    });
+    await nextTick();
+    expect(store.getters.getShowItemPopup).toBe(true);
   });
 
-  it("getShowItemPopup in Store", () => {
+  it("Check init selected Day", async () => {
     const wrapper = mount(Attendance, {
       global: {
         plugins: [i18nForTest, store],
       },
     });
-    wrapper.find(".at_btn").trigger("click");
-    nextTick().then(dat => {
-      expect(store.getters.getShowItemPopup).toBe(true);
-    });
+    const options = wrapper.find(".day_select").find("option");
+    expect(options.text().split(" ")[0]).toBe(
+      store.getters.getSelectedAttedanceDay
+    );
   });
 
   it("Match setItem and clickedItem", async () => {
@@ -65,29 +63,9 @@ describe("Attadance Page", () => {
       type: "ITEM",
     };
     await store.dispatch("setItem", dummy);
-    dummy.id = store.getters.getClickedItem.id;
-    expect(store.getters.getClickedItem).toEqual(dummy);
+    const getItem = await store.getters.getItems;
+    //현재 uuid로 id를 받고 있기 때문에
+    dummy.id = getItem[0].id;
+    expect(getItem[0]).toEqual(dummy);
   });
-
-  it("Check init selected Day", async () => {
-    const wrapper = mount(Attendance, {
-      global: {
-        plugins: [i18nForTest, store],
-      },
-    });
-    const options = wrapper.find(".day_select").find("option");
-    expect(options.text().split(" ")[0]).toBe(
-      store.getters.getSelectedAttedanceDay
-    );
-  });
-});
-
-it("dispatch setItem in Store", async () => {
-  const wrapper = mount(Attendance, {
-    global: {
-      plugins: [i18nForTest, store],
-    },
-  });
-
-  await store.dispatch("setItem", dummyItem[0]);
 });

@@ -35,26 +35,20 @@ export default defineComponent({
 <style lang="scss" scope>
 @import "../../assets/scss/index.scss";
 .item_popup_wrap {
+  @extend .flex_column_center;
   background-image: url("../../assets/image/popup/popup_bg.png");
   background-size: 450px 300px;
-  display: flex;
-  flex-direction: column;
   width: 450px;
   height: 300px;
-  align-items: center;
-
   .popup_title {
+    @extend .flex_row_center;
     width: 100%;
-    display: flex;
-    justify-content: center;
     flex: 1;
-    align-items: center;
     font-size: xx-large;
     color: white;
   }
   .item_container {
-    display: flex;
-    flex-direction: row;
+    @extend .flex_row;
     flex: 2;
     padding-top: 18%;
     .item_img {
@@ -68,12 +62,9 @@ export default defineComponent({
   }
 
   .close_btn_container {
+    @extend .flex_column_center;
     flex: 2;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     text-align: center;
     padding-bottom: 13%;
   }

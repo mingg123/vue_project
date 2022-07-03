@@ -1,30 +1,28 @@
 <template>
-  <div class="item_wrap">
-    <TransitionGroup
-      class="item_frame"
-      appear
-      tag="ul"
-      :css="false"
-      @before-enter="onBeforeEnter"
-      @enter="onEnter"
+  <TransitionGroup
+    class="item_frame"
+    appear
+    tag="ul"
+    :css="false"
+    @before-enter="onBeforeEnter"
+    @enter="onEnter"
+  >
+    <div
+      class="item_container"
+      v-for="(item, idx) in this.$store.state.items"
+      :key="item.id"
+      :data-index="idx"
     >
-      <div
-        class="item_container"
-        v-for="(item, idx) in this.$store.state.items"
-        :key="item.id"
-        :data-index="idx"
-      >
-        <div class="item_inner">
-          <ItemZone :item="item" :height="'71px'" />
-          <img
-            class="delete_icon"
-            src="../../assets/image/common/close-button.png"
-            @click="removeItem(item.id)"
-          />
-        </div>
+      <div class="item_inner">
+        <ItemZone :item="item" :height="'71px'" />
+        <img
+          class="delete_icon"
+          src="../../assets/image/common/close-button.png"
+          @click="removeItem(item.id)"
+        />
       </div>
-    </TransitionGroup>
-  </div>
+    </div>
+  </TransitionGroup>
 </template>
 
 <script lang="ts" scope>
@@ -59,42 +57,38 @@ export default defineComponent({
 </script>
 <style lang="scss" scope>
 @import "../../assets/scss/index.scss";
-.item_wrap {
-  @extend .wrap;
-  background-image: url("../../assets/image/common/contents_bg.png");
-  align-items: "flex-start";
-  .item_frame {
-    height: 480px;
-    display: flex;
-    flex-wrap: wrap;
-    overflow-y: auto;
-    justify-content: flex-start;
-    padding-left: 10%;
-    padding-top: 3%;
-    .item_container {
-      width: 100px;
-      height: 100px;
-      margin-right: 20px;
-      margin-top: 20px;
-      .item_inner {
-        position: relative;
-        margin-left: 10%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        height: 100%;
-        justify-content: center;
-        .delete_icon {
-          height: 30px;
-          position: absolute;
-          right: 11%;
-          top: 13%;
-        }
+
+.item_frame {
+  height: 480px;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: auto;
+  justify-content: flex-start;
+  padding-left: 10%;
+  padding-top: 3%;
+  .item_container {
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+    margin-top: 20px;
+    .item_inner {
+      position: relative;
+      margin-left: 10%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100%;
+      justify-content: center;
+      .delete_icon {
+        height: 30px;
+        position: absolute;
+        right: 11%;
+        top: 9%;
       }
     }
   }
-  .item_frame::-webkit-scrollbar {
-    display: none;
-  }
+}
+.item_frame::-webkit-scrollbar {
+  display: none;
 }
 </style>

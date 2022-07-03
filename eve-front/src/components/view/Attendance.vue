@@ -1,66 +1,58 @@
 <template>
-  <div
-    class="at_wrap"
-    :style="{ backgroundImage: 'url(' + backgroundImageUrl + ')' }"
-  >
-    <div class="select_container">
-      <select class="day_select" @change="onChangeDay($event)">
-        <option value="selectedAttedanceDay">
-          {{ selectedAttedanceDay }} {{ $t("attadance.day") }}
-        </option>
-        <option v-for="day in newDay" :value="day" :key="day">
-          {{ day }} {{ $t("attadance.day") }}
-        </option>
-      </select>
-    </div>
-    <div class="at_container">
-      <TransitionGroup
-        class="at_frame"
-        appear
-        tag="ul"
-        :css="false"
-        @before-enter="onBeforeEnter"
-        @enter="onEnter"
+  <div class="select_container">
+    <select class="day_select" @change="onChangeDay($event)">
+      <option value="selectedAttedanceDay">
+        {{ selectedAttedanceDay }} {{ $t("attadance.day") }}
+      </option>
+      <option v-for="day in newDay" :value="day" :key="day">
+        {{ day }} {{ $t("attadance.day") }}
+      </option>
+    </select>
+  </div>
+  <div class="at_container">
+    <TransitionGroup
+      class="at_frame"
+      appear
+      tag="ul"
+      :css="false"
+      @before-enter="onBeforeEnter"
+      @enter="onEnter"
+    >
+      <div
+        v-for="(attancance, idx) in attandanceInfo"
+        :key="attancance"
+        :data-index="idx"
       >
         <div
-          v-for="(attancance, idx) in attandanceInfo"
-          :key="attancance"
-          :data-index="idx"
+          class="day_container"
+          :style="{
+            'background-image': `url(${require(`../../assets/image/attendance/day_bg${addItemClass(
+              idx + 1
+            )}.png`)})`,
+          }"
         >
-          <div
-            class="day_container"
+          <div class="at_day">{{ idx + 1 }} 일</div>
+          <ItemZone :item="attancance.reward" />
+          <img
+            v-if="isFinishAttandance(attancance)"
+            src="../../assets/image/attendance/stamp.png"
             :style="{
-              'background-image': `url(${require(`../../assets/image/attendance/day_bg${addItemClass(
-                idx + 1
-              )}.png`)})`,
+              position: 'absolute',
+              paddingTop: '20%',
+              paddingRight: '40%',
             }"
-          >
-            <div class="at_day">{{ idx + 1 }} 일</div>
-            <ItemZone :item="attancance.reward" />
-            <img
-              v-if="isFinishAttandance(attancance)"
-              src="../../assets/image/attendance/stamp.png"
-              :style="{
-                position: 'absolute',
-                paddingTop: '20%',
-                paddingRight: '40%',
-              }"
-            />
-            <button
-              class="at_btn"
-              :style="{
-                backgroundImage: `url(${require(`../../assets/image/attendance/${localLang}/btn_${attancance.status.toLowerCase()}_28days.png`)})`,
-              }"
-              @click="addItem(attancance.attandanceId)"
-              :disabled="isFinishAttandance(attancance) || getShowItemPopup"
-            ></button>
-          </div>
+          />
+          <button
+            class="at_btn"
+            :style="{
+              backgroundImage: `url(${require(`../../assets/image/attendance/${localLang}/btn_${attancance.status.toLowerCase()}_28days.png`)})`,
+            }"
+            @click="addItem(attancance.attandanceId)"
+            :disabled="isFinishAttandance(attancance) || getShowItemPopup"
+          ></button>
         </div>
-      </TransitionGroup>
-    </div>
-    <div class="popup_wrap" v-if="getShowItemPopup">
-      <ItemPopup :item="getClickedItem" />
-    </div>
+      </div>
+    </TransitionGroup>
   </div>
 </template>
 
@@ -81,28 +73,25 @@ export default defineComponent({
   setup() {
     const store = useStore();
     const t = useI18n();
-    // const attandanceInfo = ref<Attendance[]>(dummyAttendance);
+
     const selectedAttedanceDay = store.getters.getSelectedAttedanceDay;
     const attandanceInfo = ref<Attendance[]>(
       getDummyDataFromDay(selectedAttedanceDay)
     );
     const days: string[] = ["28", "14", "7"];
+    const localLang = store.getters.getLocalLang;
 
     const newDay = computed(() =>
       days.filter(day => day !== selectedAttedanceDay)
     );
-    const localLang = store.getters.getLocalLang;
-
-    const backgroundImageUrl = require(`../../assets/image/attendance/${localLang}/bg_28days.png`);
 
     return {
       attandanceInfo,
       days,
+      t,
+      localLang,
       selectedAttedanceDay,
       newDay,
-      t,
-      backgroundImageUrl,
-      localLang,
     };
   },
   methods: {
@@ -122,6 +111,7 @@ export default defineComponent({
     onChangeDay(e: VueEvent.Input<HTMLSelectElement>) {
       const clickedDay = e.target.value as day;
       store.dispatch("setSelectedAttedanceDay", clickedDay);
+      console.log(clickedDay);
       this.attandanceInfo = getDummyDataFromDay(clickedDay);
     },
 
@@ -152,88 +142,75 @@ export default defineComponent({
     },
   },
   computed: {
-    ...mapGetters(["getShowItemPopup", "getClickedItem"]),
+    ...mapGetters(["getShowItemPopup"]),
   },
 });
 </script>
 
 <style lang="scss">
 @import "../../assets/scss/index.scss";
-.at_wrap {
-  @extend .wrap;
 
+.select_container {
+  position: absolute;
+  left: 8%;
+  top: 22%;
+  .day_select {
+    width: 120px;
+    height: 30px;
+  }
+}
+
+.at_container {
+  overflow-y: auto;
+  height: 310px;
+  margin-top: 20.5%;
+  margin-right: 4%;
+}
+
+.at_container::-webkit-scrollbar {
+  display: none;
+}
+
+.at_container h1 {
+  color: darkblue;
+}
+
+.at_frame {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 
-  .at_container {
-    overflow-y: auto;
-    height: 310px;
-    margin-top: 20.5%;
-    margin-right: 4%;
-  }
+  .day_container {
+    @extend .flex_column_center;
+    background-size: $attendance_container_width 180px;
+    border: 1px solid gray;
+    width: $attendance_container_width;
+    height: 130px;
+    margin: 5px;
+    position: relative;
 
-  .at_container::-webkit-scrollbar {
-    display: none;
-  }
-
-  .at_container h1 {
-    color: darkblue;
-  }
-
-  .subTitle {
-    font-size: $subTitle_font_size;
-    color: #828282;
-    font-weight: bold;
-  }
-
-  .select_container {
-    position: absolute;
-    left: 8%;
-    top: 22%;
-    .day_select {
-      width: 120px;
-      height: 30px;
+    .at_day {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex: 1;
+      width: 100%;
+      color: white;
+      font-weight: bold;
     }
-  }
 
-  .at_frame {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-
-    .day_container {
-      @extend .flex_column_center;
-      background-size: $attendance_container_width 180px;
-      border: 1px solid gray;
+    .at_image {
+      height: 70px;
+      flex: 1;
+      padding-left: 10%;
+      padding-bottom: 10%;
+    }
+    .at_btn {
+      height: 30px;
+      border: 0;
+      outline: 0;
+      background-size: $attendance_container_width 30px;
       width: $attendance_container_width;
-      height: 130px;
-      margin: 5px;
-      position: relative;
-
-      .at_day {
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        flex: 1;
-        width: 100%;
-        color: white;
-        font-weight: bold;
-      }
-
-      .at_image {
-        height: 70px;
-        flex: 1;
-        padding-left: 10%;
-        padding-bottom: 10%;
-      }
-      .at_btn {
-        height: 30px;
-        border: 0;
-        outline: 0;
-        background-size: $attendance_container_width 30px;
-        width: $attendance_container_width;
-      }
     }
   }
 }

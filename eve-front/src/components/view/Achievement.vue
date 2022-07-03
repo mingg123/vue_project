@@ -1,67 +1,52 @@
 <template>
-  <div
-    class="ac_wrap"
-    :style="{ backgroundImage: 'url(' + backgroundImageUrl + ')' }"
-  >
-    <div class="event_wrap">
-      <EventPeriodBanner
-        :startDate="'2022/06/01'"
-        :endDate="'12/31'"
-        :color="'#8B4513'"
-      />
-    </div>
-    <div class="ac_container">
-      <div class="quest_main_container">
-        <TransitionGroup
-          appear
-          tag="ul"
-          :css="false"
-          @before-enter="onBeforeEnter"
-          @enter="onEnter"
+  <div class="ac_container">
+    <div class="quest_main_container">
+      <TransitionGroup
+        appear
+        tag="ul"
+        :css="false"
+        @before-enter="onBeforeEnter"
+        @enter="onEnter"
+      >
+        <div
+          class="quest_container"
+          v-for="(quest, index) in quests"
+          :key="quest"
+          :class="quest.status"
+          :data-index="index"
         >
-          <div
-            class="quest_container"
-            v-for="(quest, index) in quests"
-            :key="quest"
-            :class="quest.status"
-            :data-index="index"
-          >
-            <img
-              v-if="quest.status !== 'READY'"
-              class="status_icon"
-              src="../../assets/image/incomplete.png"
-            />
-            <img
-              v-else
-              class="status_icon"
-              src="../../assets/image/complete.png"
-            />
-            <div class="quest_content">
-              <div class="quest_inner">
-                <span class="quest_title">
-                  {{ $t(`achievement.${quest.title}`) }}
-                </span>
-                <span>{{ $t(`achievement.${quest.subTitle}`) }}</span>
-              </div>
-            </div>
-            <div class="quest_item">
-              <ItemZone v-if="quest.reward" :item="quest.reward" />
-            </div>
-            <div class="quest_btn">
-              <img
-                :src="
-                  require(`../../assets/image/achievement/${localLang}/btn_reward_${quest.status.toLowerCase()}.png`)
-                "
-                @click="addItem(quest.id)"
-                :disabled="getShowItemPopup"
-              />
+          <img
+            v-if="quest.status !== 'READY'"
+            class="status_icon"
+            src="../../assets/image/incomplete.png"
+          />
+          <img
+            v-else
+            class="status_icon"
+            src="../../assets/image/complete.png"
+          />
+          <div class="quest_content">
+            <div class="quest_inner">
+              <span class="quest_title">
+                {{ $t(`achievement.${quest.title}`) }}
+              </span>
+              <span>{{ $t(`achievement.${quest.subTitle}`) }}</span>
             </div>
           </div>
-        </TransitionGroup>
-      </div>
-    </div>
-    <div class="popup_wrap" v-if="getShowItemPopup">
-      <ItemPopup :item="getClickedItem" />
+          <div class="quest_item">
+            <ItemZone v-if="quest.reward" :item="quest.reward" />
+          </div>
+          <div class="quest_btn">
+            <img
+              :src="
+                require(`../../assets/image/achievement/${localLang}/btn_reward_${quest.status.toLowerCase()}.png`)
+              "
+              @click="addItem(quest.id)"
+              :disabled="getShowItemPopup"
+            />
+          </div>
+        </div>
+      </TransitionGroup>
     </div>
   </div>
 </template>
@@ -88,9 +73,8 @@ export default defineComponent({
   setup() {
     const quests = ref<Quest[]>(dummyQuest);
     const localLang = store.getters.getLocalLang;
-    const backgroundImageUrl = require(`../../assets/image/achievement/${localLang}/bg_honeyitem.png`);
     const t = useI18n();
-    return { quests, backgroundImageUrl, localLang, t };
+    return { quests, localLang, t };
   },
   methods: {
     addItem(questId: string): void {
@@ -100,7 +84,6 @@ export default defineComponent({
         store.dispatch("setItem", newQuest.reward);
         store.dispatch("setShowItemPopup", true);
         store.dispatch("setClickedItem", newQuest.reward);
-        console.log(newQuest.reward);
         console.log("newQuest rewoard");
       }
     },
@@ -126,7 +109,7 @@ export default defineComponent({
     },
   },
   computed: {
-    ...mapGetters(["getShowItemPopup", "getClickedItem"]),
+    ...mapGetters(["getShowItemPopup"]),
   },
 });
 </script>
@@ -135,10 +118,6 @@ export default defineComponent({
 
 .ac_wrap {
   @extend .wrap;
-  .event_wrap {
-    padding-left: $event_period_padding_left;
-    position: absolute;
-  }
 
   .ac_container {
     @extend .flex_column_center;

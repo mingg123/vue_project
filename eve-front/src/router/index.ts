@@ -1,10 +1,10 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
-import Achievement from "@/components/view/Achievement.vue";
-import Attendance from "@/components/view/Attendance.vue";
-import Banner from "@/components/view/Banner.vue";
-import Shop from "@/components/view/Shop.vue";
-import Items from "@/components/view/Items.vue";
-import Setting from "@/components/view/Setting.vue";
+import AchievementContainer from "@/components/container/AchievementContainer.vue";
+import AttendanceContainer from "@/components/container/AttendanceContainer.vue";
+import BannerContainer from "@/components/container/BannerContainer.vue";
+import ShopContainer from "@/components/container/ShopContainer.vue";
+import ItemContainer from "@/components/container/ItemContainer.vue";
+import SettingContainer from "@/components/container/SettingContainer.vue";
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
@@ -13,52 +13,52 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/achievement",
     name: "achievement",
-    component: Achievement,
+    component: AchievementContainer,
   },
   {
     path: "/attendance",
     name: "attendance",
-    component: Attendance,
+    component: AttendanceContainer,
   },
   {
     path: "/banner",
     name: "banner",
-    component: Banner,
+    component: BannerContainer,
   },
   {
     path: "/shop",
     name: "shop",
-    component: Shop,
+    component: ShopContainer,
   },
   {
     path: "/items",
     name: "items",
-    component: Items,
+    component: ItemContainer,
   },
   {
     path: "/setting",
     name: "setting",
-    component: Setting,
+    component: SettingContainer,
   },
   {
     path: "/test1",
     name: "test1",
-    component: Setting,
+    component: SettingContainer,
   },
   {
     path: "/test2",
     name: "test2",
-    component: Setting,
+    component: SettingContainer,
   },
   {
     path: "/test3",
     name: "test3",
-    component: Setting,
+    component: SettingContainer,
   },
   {
     path: "/test4",
     name: "test4",
-    component: Setting,
+    component: SettingContainer,
   },
 ];
 const router = createRouter({
