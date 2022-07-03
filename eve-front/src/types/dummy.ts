@@ -6,7 +6,7 @@ export const dummyDate = now.getDate();
 
 export const dummyItem: Item[] = [
   {
-    id: uuid.v1(),
+    id: "0",
     code: "1",
     type: "ITEM",
     name: "quartz",
@@ -166,7 +166,7 @@ export const dummyQuest: Quest[] = [
   //   status: "RUNNING",
   // },
 ];
-dummyQuest.map((at) => (at.reward.id = uuid.v1()));
+dummyQuest.map(at => (at.reward.id = uuid.v1()));
 
 export const dummyTwoWeekAttandance: Attendance[] =
   createDummyData(dummyAttendance);
@@ -183,7 +183,7 @@ function createDummyData(dummy: Attendance[]): Attendance[] {
       Attendance,
       "attandanceId" | "status"
     >[]
-  ).map((attendance) => ({
+  ).map(attendance => ({
     ...attendance,
     status: "READY",
     attandanceId: uuid.v1(),

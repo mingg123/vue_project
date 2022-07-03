@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @RestController
 @RequestMapping("/eve-project")
-@CrossOrigin(origins = "http://localhost:8080/")
+@CrossOrigin(origins = "*")
 public class ApiController {
 
   @Autowired

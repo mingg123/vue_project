@@ -112,6 +112,7 @@ export default defineComponent({
       );
       if (newAttandance) {
         this.changeAttandanceState(newAttandance);
+        console.log(newAttandance.reward);
         store.dispatch("setItem", newAttandance.reward);
         store.dispatch("setShowItemPopup", true);
         store.dispatch("setClickedItem", newAttandance.reward);
