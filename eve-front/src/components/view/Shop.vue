@@ -27,15 +27,12 @@ export default defineComponent({
 @import "../../assets/scss/index.scss";
 
 .shop_wrap {
-  height: 100%;
-  background-size: $background_image_width $background_image_height;
+  @extend .wrap;
   background-image: url("../../assets/image/shopImage.png");
   text-align: center;
 
   .buyBtn_container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    @extend .flex_column_center;
     padding-top: 50%;
   }
 }

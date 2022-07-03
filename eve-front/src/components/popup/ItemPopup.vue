@@ -1,5 +1,5 @@
 <template>
-  <div class="wrap">
+  <div class="item_popup_wrap">
     <div v-if="item" class="item_container">
       <img class="item_img" :src="item.imageUrl" />
       <div class="item_content">{{ item.name }}</div>
@@ -34,7 +34,7 @@ export default defineComponent({
 </script>
 <style lang="scss" scope>
 @import "../../assets/scss/index.scss";
-.wrap {
+.item_popup_wrap {
   background-image: url("../../assets/image/popup/popup_bg.png");
   background-size: 450px 300px;
   display: flex;

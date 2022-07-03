@@ -21,10 +21,45 @@ $subTitle_font_size: 15px;
 
 $event_period_padding_left: 5%;
 
-$lnb_bg_width : 170px;
-$lnb_bg_height : 60px;
+$lnb_bg_width: 170px;
+$lnb_bg_height: 60px;
 
-$acheive_quest_width : 730px;
-$acheive_quest_height : 80px;
+$acheive_quest_width: 730px;
+$acheive_quest_height: 80px;
 
-$attendance_container_width : 90px;
+$attendance_container_width: 90px;
+
+.wrap {
+  height: 100%;
+  background-size: $background_image_width $background_image_height;
+}
+
+.flex_column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex_row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex_row_center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex_column_center {
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  align-items: center;
+}
+
+.popup_wrap {
+  position: absolute;
+  top: 20%;
+  left: 20%;
+}

@@ -64,18 +64,14 @@ export default defineComponent({
     height: 420px;
     overflow-y: auto;
     .lnb_inner {
+      @extend .flex_row_center;
       height: $lnb_bg_height;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       background-image: url("../../assets/image/common/btn_lnb_off.png");
       background-size: $lnb_bg_width $lnb_bg_height;
       a {
+        @extend .flex_row_center;
         width: 100%;
         height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
         font-weight: 600;
         color: white;
         text-decoration: none;

@@ -56,16 +56,12 @@ export default defineComponent({
   }
 
   .btn_wrap {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    @extend .flex_row_center;
     gap: 10%;
   }
 
   .buyBtn_container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    @extend .flex_column_center;
     padding-top: 42%;
   }
 

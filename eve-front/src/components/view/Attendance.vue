@@ -160,8 +160,7 @@ export default defineComponent({
 <style lang="scss">
 @import "../../assets/scss/index.scss";
 .at_wrap {
-  height: 100%;
-  background-size: $background_image_width $background_image_height;
+  @extend .wrap;
 
   display: flex;
   flex-direction: column;
@@ -204,11 +203,8 @@ export default defineComponent({
     flex-wrap: wrap;
 
     .day_container {
+      @extend .flex_column_center;
       background-size: $attendance_container_width 180px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
       border: 1px solid gray;
       width: $attendance_container_width;
       height: 130px;
@@ -240,11 +236,5 @@ export default defineComponent({
       }
     }
   }
-}
-
-.popup_wrap {
-  position: absolute;
-  top: 20%;
-  left: 20%;
 }
 </style>

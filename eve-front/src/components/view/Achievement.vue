@@ -134,18 +134,14 @@ export default defineComponent({
 @import "../../assets/scss/index.scss";
 
 .ac_wrap {
-  height: 100%;
-  background-size: $background_image_width $background_image_height;
-
+  @extend .wrap;
   .event_wrap {
     padding-left: $event_period_padding_left;
     position: absolute;
   }
 
   .ac_container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    @extend .flex_column_center;
   }
 
   .quest_main_container {
@@ -154,27 +150,22 @@ export default defineComponent({
     margin-top: 22%;
     padding-right: 5%;
     .quest_container {
+      @extend .flex_row_center;
       background-size: $acheive_quest_width $acheive_quest_height;
       background-image: url("../../assets/image/achievement/quest_bg.png");
-      display: flex;
       height: $acheive_quest_height;
       width: $acheive_quest_width;
       margin-bottom: 10px;
-      align-items: center;
-      justify-content: center;
 
       .status_icon {
         padding-left: 3%;
       }
-
       .quest_content {
-        display: flex;
-        flex-direction: column;
+        @extend .flex_column;
         flex: 7;
 
         .quest_inner {
-          display: flex;
-          flex-direction: column;
+          @extend .flex_column;
           padding-left: 10%;
 
           .quest_title {
@@ -184,14 +175,11 @@ export default defineComponent({
         }
       }
     }
-
     .quest_item {
       flex: 1;
     }
-
     .quest_btn {
       flex: 2;
-
       .quest_btn_inner {
         width: 120px;
         height: 40px;
@@ -203,10 +191,5 @@ export default defineComponent({
   .quest_main_container::-webkit-scrollbar {
     display: none;
   }
-}
-.popup_wrap {
-  position: absolute;
-  top: 20%;
-  left: 30%;
 }
 </style>

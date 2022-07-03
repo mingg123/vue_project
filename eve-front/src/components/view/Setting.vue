@@ -58,9 +58,8 @@ export default defineComponent({
 <style lang="scss" scope>
 @import "../../assets/scss/index.scss";
 .setting_wrap {
-  height: 100%;
+  @extend .wrap;
   background-image: url("../../assets/image/common/contents_bg.png");
-  background-size: $background_image_width $background_image_height;
   .setting_container {
     padding: 3%;
     text-align: left;

@@ -48,15 +48,14 @@ export default defineComponent({
 });
 </script>
 <style lang="scss" scoped>
+@import "../../assets/scss/index.scss";
 .btn_wrap {
+  @extend .flex_row_center;
   background-color: #9abf7f;
   font-size: large;
   color: white;
   border-radius: 15px;
   text-decoration: none;
   font-weight: bold;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 </style>
