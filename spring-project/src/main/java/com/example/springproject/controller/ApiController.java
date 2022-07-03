@@ -3,6 +3,9 @@ package com.example.springproject.controller;
 import com.example.springproject.domain.Item;
 import com.example.springproject.dto.ItemDto;
 import com.example.springproject.repository.ItemRepository;
+import com.example.springproject.service.ItemService;
+
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,28 +20,25 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/eve-project")
 @CrossOrigin(origins = "*")
+@RequiredArgsConstructor
 public class ApiController {
 
-  @Autowired
-  ItemRepository itemRepository;
+  private final ItemService itemService;
 
   @GetMapping("/allItem")
-  public List<Item> getAll() {
-    return itemRepository.findAll();
+  public List<ItemDto> getAllItems() {
+    return itemService.getAllItems();
   }
 
   @PostMapping("/addItem")
-  public List<Item> addItem(@RequestBody Item item) {
-    itemRepository.save(item);
-    log.info("addItem : {}", item);
-    return itemRepository.findAll();
+  public List<ItemDto> addItem(@RequestBody Item item) {
+    return itemService.addItem(item);
   }
 
   @DeleteMapping("/{id}")
-  public List<Item> deleteItem(@PathVariable String id) {
+  public List<ItemDto> deleteItem(@PathVariable String id) {
     log.info("delete id : {}", id);
-    itemRepository.deleteById(id);
-    return itemRepository.findAll();
+    return itemService.deleteItem(id);
   }
 
 
