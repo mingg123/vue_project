@@ -38,7 +38,7 @@
             src="../../assets/image/attendance/stamp.png"
             :style="{
               position: 'absolute',
-              paddingTop: '20%',
+              paddingTop: '70%',
               paddingRight: '40%',
             }"
           />
@@ -69,7 +69,7 @@ import ItemPopup from "@/components/popup/ItemPopup.vue";
 
 export default defineComponent({
   name: "Attendance",
-  components: { ItemPopup, ItemZone },
+  components: { ItemZone },
   setup() {
     const store = useStore();
     const t = useI18n();
@@ -82,7 +82,7 @@ export default defineComponent({
     const localLang = store.getters.getLocalLang;
 
     const newDay = computed(() =>
-      days.filter(day => day !== selectedAttedanceDay)
+      days.filter((day) => day !== selectedAttedanceDay)
     );
 
     return {
@@ -97,7 +97,7 @@ export default defineComponent({
   methods: {
     addItem(attandanceId: string): void {
       const newAttandance = this.attandanceInfo.find(
-        attandance => attandance.attandanceId === attandanceId
+        (attandance) => attandance.attandanceId === attandanceId
       );
       if (newAttandance) {
         this.changeAttandanceState(newAttandance);

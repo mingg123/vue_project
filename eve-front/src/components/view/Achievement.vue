@@ -67,8 +67,6 @@ export default defineComponent({
   name: "Achievement",
   components: {
     ItemZone,
-    EventPeriodBanner,
-    ItemPopup,
   },
   setup() {
     const quests = ref<Quest[]>(dummyQuest);
@@ -78,7 +76,7 @@ export default defineComponent({
   },
   methods: {
     addItem(questId: string): void {
-      const newQuest = this.quests.find(quest => quest.id === questId);
+      const newQuest = this.quests.find((quest) => quest.id === questId);
       if (newQuest && newQuest.status === "READY") {
         this.changeQuestState(newQuest);
         store.dispatch("setItem", newQuest.reward);

@@ -33,13 +33,13 @@ import Achievement from "../view/Achievement.vue";
 export default defineComponent({
   name: "AchievementContainer",
   components: {
-    ItemZone,
     EventPeriodBanner,
     ItemPopup,
     Achievement,
   },
   setup() {
     const localLang = store.getters.getLocalLang;
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     const backgroundImageUrl = require(`../../assets/image/achievement/${localLang}/bg_honeyitem.png`);
     const t = useI18n();
     return { localLang, backgroundImageUrl, t };

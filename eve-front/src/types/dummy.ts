@@ -152,7 +152,7 @@ export const dummyQuest: Quest[] = [
     status: "RUNNING",
   },
 ];
-dummyQuest.map(at => (at.reward.id = uuid.v1()));
+dummyQuest.map((at) => (at.reward.id = uuid.v1()));
 
 export const dummyTwoWeek: Attendance[] = createDummyData(dummyWeek);
 
@@ -166,7 +166,7 @@ function createDummyData(dummy: Attendance[]): Attendance[] {
       Attendance,
       "attandanceId" | "status"
     >[]
-  ).map(attendance => ({
+  ).map((attendance) => ({
     ...attendance,
     status: "READY",
     attandanceId: uuid.v1(),

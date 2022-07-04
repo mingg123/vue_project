@@ -23,7 +23,7 @@ import AttendanceComponent from "../view/Attendance.vue";
 
 export default defineComponent({
   name: "AttendanceContainer",
-  components: { ItemPopup, ItemZone, AttendanceComponent },
+  components: { ItemPopup, AttendanceComponent },
   setup() {
     const store = useStore();
     const t = useI18n();
@@ -35,7 +35,7 @@ export default defineComponent({
     const days: string[] = ["28", "14", "7"];
 
     const newDay = computed(() =>
-      days.filter(day => day !== selectedAttedanceDay)
+      days.filter((day) => day !== selectedAttedanceDay)
     );
     const localLang = store.getters.getLocalLang;
 

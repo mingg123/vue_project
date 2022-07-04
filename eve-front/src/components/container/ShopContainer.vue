@@ -6,13 +6,11 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import StyledButton from "@/components/common/StyledButton.vue";
 import Shop from "../view/Shop.vue";
 
 export default defineComponent({
   name: "ShopContainer",
-  components: { StyledButton, Shop },
-  setup() {},
+  components: { Shop },
   methods: {},
 });
 </script>

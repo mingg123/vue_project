@@ -14,7 +14,7 @@ export function loadLocaleMessages(): LocaleMessages<VueMessageType> {
     /[A-Za-z0-9-_,\s]+\.json$/i
   );
   const messages: LocaleMessages<VueMessageType> = {};
-  locales.keys().forEach(key => {
+  locales.keys().forEach((key) => {
     const matched = key.match(/([A-Za-z0-9-_]+)\./i);
     if (matched && matched.length > 1) {
       const locale = matched[1];

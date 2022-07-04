@@ -6,10 +6,6 @@
 
 <script lang="ts" scope>
 import { defineComponent } from "vue";
-import ItemZone from "@/components/common/ItemZone.vue";
-import store from "@/store";
-import { GaspTargetElement } from "@/types";
-import gsap from "gsap";
 import Items from "../view/Items.vue";
 
 export default defineComponent({
@@ -22,6 +18,6 @@ export default defineComponent({
 .item_wrap {
   @extend .wrap;
   background-image: url("../../assets/image/common/contents_bg.png");
-  align-items: "flex-start";
+  align-items: flex-start;
 }
 </style>
