@@ -152,8 +152,7 @@ export default defineComponent({
 
 .select_container {
   position: absolute;
-  left: 8%;
-  top: 22%;
+  left: 82%;
   .day_select {
     width: 120px;
     height: 30px;
